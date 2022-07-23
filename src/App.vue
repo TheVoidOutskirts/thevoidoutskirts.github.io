@@ -11,6 +11,12 @@ const attacker = computed(() => attackerIndex.value >= 0 ? Personaggi[attackerIn
 
 const weaponIndex = ref(-1)
 
+function resetWeapon() {
+  weaponIndex.value = -1;
+}
+
+
+
 </script>
 
 <template>
@@ -34,9 +40,9 @@ const weaponIndex = ref(-1)
     <div class="row">
       <div class="col-3">
         <h2>Scegli un attaccante</h2>
-        <div v-for="(character, index) in Personaggi">
-          <input type="radio" :value="index" v-model="attackerIndex">
-          <label :for="index">{{ character.nome }}</label>
+        <div class="form-check" v-for="(character, index) in Personaggi">
+          <input class="form-check-input" type="radio" :value="index" v-model="attackerIndex" @click="resetWeapon">
+          <label class="form-check-label" :for="index">{{ character.nome }}</label>
         </div>
       </div>
       <div class="col" v-if="attacker != null">
@@ -51,10 +57,12 @@ const weaponIndex = ref(-1)
         </div>
         <div class="row">
           <div class="col-1">Armi:</div>
-          <div v-if="attacker?.armi.length === 0">Il personaggio non ha armi</div>
-          <div v-for="(weapon, index) in attacker?.armi">
-            <input type="radio" :value="index" v-model="weaponIndex">
-            <label :for="index">{{weapon}}</label>
+          <div class="col" v-if="attacker?.armi.length === 0">Il personaggio non ha armi</div>
+          <div class="col" v-else>
+            <div class="form-check" v-for="(weapon, index) in attacker?.armi">
+              <input class="form-check-input" type="radio" :value="index" v-model="weaponIndex">
+              <label class="form-check-label" :for="index">{{ weapon }}</label>
+            </div>
           </div>
         </div>
       </div>
@@ -62,12 +70,12 @@ const weaponIndex = ref(-1)
 
     <!-- Grafico probabilità attacco -->
     <div class="row">
-      <div class="col" v-if="attackerIndex">
+      <div class="col" v-if="attacker != null && weaponIndex >= 0">
         <h2>Probabilità di colpire</h2>
         <!-- Bar chart -->
       </div>
-      <div class="col" v-if="!attackerIndex" style="text-align: center">
-        <p>Seleziona un personaggio!</p>
+      <div class="col" v-else style="text-align: center">
+        <p>Seleziona un personaggio e un'arma!</p>
       </div>
     </div>
   </div>
