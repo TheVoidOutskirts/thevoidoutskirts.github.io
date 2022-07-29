@@ -53,7 +53,7 @@ interface Arma {
     raggio?: string[][];
 }
 
-type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione';
+type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione' | 'accecante';
 type GravitaDanno = 'leggero' | 'pesante';
 
 interface Armatura {
