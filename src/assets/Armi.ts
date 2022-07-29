@@ -1,6 +1,24 @@
-import type {Arma} from './types';
-
 export {Armi}
+export type {TipoDanno, GravitaDanno, Arma}
+
+type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione' | 'accecante';
+type GravitaDanno = 'leggero' | 'pesante';
+
+interface Arma {
+    nome: string;
+    codice: string;
+    tipo: string;
+    danno: number[];
+    tipoDanno: TipoDanno;
+    gravitaDanno: GravitaDanno;
+    modifiche_poss: string[];
+    probabilita: number[];
+    descrizione: string;
+
+    // Campi opzionali
+    descrizione_danno?: string;
+    raggio?: string[][];
+}
 
 const Armi: Arma[] = [
     /*{

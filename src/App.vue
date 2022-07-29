@@ -32,10 +32,9 @@ const resetWeapon = () => { weaponIndex.value = undefined; }
 function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensore: Personaggio, copertura: number): number[] {
   const probVett = [0.7143, 0.7143, 0.7143, 0.7143, 0.7857, 0.8571, 0.9286, 1]
 
-  const nomeArmaturaDifensore = difensore.armatura
-  const armaturaDifensore = Armature.find(e => e.codice == nomeArmaturaDifensore)
+  const armaturaDifensore = Armature.find(e => e.codice == difensore.armatura)
   if (!armaturaDifensore)
-    throw "Could not find specified armor"
+    throw `Arma difensore non trovata ${difensore.armatura}`
 
   const tipoAttacco = arma.tipoDanno;
   const gravitaDanno = arma.gravitaDanno

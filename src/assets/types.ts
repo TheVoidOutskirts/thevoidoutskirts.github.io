@@ -1,7 +1,7 @@
 interface Personaggio {
     nome: string,
     nomeCompleto: string,
-    armatura: string,
+    armatura: ArmiStatic as const, //ArmiStatic.map(x => x.nome),
     competenzaAttacco: number,
     competenzaDifesa: number,
     armi: { arma: string, modifiche: string[] }[],
