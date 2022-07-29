@@ -8,25 +8,23 @@ import {Armature} from "@/assets/Armature";
 import {Personaggi} from "@/assets/Personaggi";
 import {Armi} from "@/assets/Armi";
 
-const attackerIndex = ref(-1);
-const attacker = computed<Personaggio | null>(() => attackerIndex.value >= 0 ? Personaggi[attackerIndex.value] : null);
 
-const weaponIndex = ref(-1);
+const attackerIndex = ref<number | undefined>(undefined);
+const weaponIndex = ref<number | undefined>(undefined);
+const defenderIndex = ref<number | undefined>(undefined);
+const coverValue = ref<number | undefined>(undefined);
+
+const attacker = computed<Personaggio | undefined>(() => attackerIndex.value ? Personaggi[attackerIndex.value] : undefined);
+const defender = computed(() => defenderIndex.value ? Personaggi[defenderIndex.value] : undefined)
+
 const weapon = computed(() => {
-  const wi = weaponIndex.value < 0 ? 0 : weaponIndex.value;
-
-  const weaponCode = attacker.value?.armi[wi].arma
-  // todo check
-  return Armi.find(weapon => weapon.codice == weaponCode) ?? Armi[0]
+  if(weaponIndex.value === undefined) return undefined;
+  if(attacker.value === undefined) return undefined;
+  const weaponCode = attacker.value.armi[weaponIndex.value].arma
+  return Armi.find(weapon => weapon.codice == weaponCode)
 });
 
-function resetWeapon() {
-  weaponIndex.value = -1;
-}
-
-const defenderIndex = ref(-1);
-const defender = computed(() => defenderIndex.value >= 0 ? Personaggi[defenderIndex.value] : null)
-const coverValue = ref(0);
+const resetWeapon = () => { weaponIndex.value = undefined; }
 
 // todo move null as far as possible; don't display the chart if it is passed.
 // todo cleanup shit
@@ -52,40 +50,21 @@ function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensor
     else
       probArray[i] = Math.round(arma.probabilita[i] * (100 + 5 * (attaccante.competenzaAttacco - difensore.competenzaDifesa) - resistenza - copertura) / 100)
   }
-
   return probArray
-
 }
 
-const attackPercentage = computed(() => {
-  return calcolaPercentualeAttacco(weapon.value,
-      attacker.value ?? Personaggi[0],
-      defender.value ?? Personaggi[0],
-      coverValue.value
-  )
+const weaponPercentage = computed(() => {
+  if(weapon.value === undefined) return undefined;
+  return weapon.value.probabilita
 })
 
-/*watch([attackerIndex, weaponIndex],
-    async ([newAttackerIndex, newWeaponIndex], [oldAttackerIndex, oldWeaponIndex]) => {
-      if (newAttackerIndex >= 0 && newWeaponIndex >= 0) {
-        const weaponProbs = Armi.find(weapon => weapon.codice == attacker.value?.armi[weaponIndex.value])?.probabilita
-        if (!weaponProbs)
-          return
-
-        chartData.value.datasets[0].data = weaponProbs
-      }
-    }
-)
-
-const chartData = ref<ChartData<'bar'>>({
-  labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
-  datasets: [{
-    label: 'Data One',
-    backgroundColor: '#F87979',
-    data: [40, 20, 12]
-  }]
-})*/
-
+const attackPercentage = computed(() => {
+  if(weapon.value === undefined) return undefined;
+  if(attacker.value === undefined) return undefined;
+  if(defender.value === undefined) return undefined;
+  if(coverValue.value === undefined) return undefined;
+  return calcolaPercentualeAttacco(weapon.value,attacker.value,defender.value,coverValue.value);
+})
 </script>
 
 <template>
@@ -97,11 +76,11 @@ const chartData = ref<ChartData<'bar'>>({
         <h2>Scegli un attaccante</h2>
         <div class="form-check" v-for="(character, index) in Personaggi" :key="index">
           <input class="form-check-input" type="radio" :value="index" v-model="attackerIndex" @click="resetWeapon">
-          <label class="form-check-label" :for="index">{{ character.nome }}</label>
+          <label class="form-check-label">{{ character.nome }}</label>
         </div>
       </div>
       <div class="col">
-        <div v-show="attacker != null">
+        <div v-show="attacker != undefined">
           <h2>Dettagli personaggio</h2>
           <div><span class="h4">Nome:</span> <span class="ps-3">{{ attacker?.nomeCompleto }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ attacker?.armatura }}</span></div>
@@ -117,7 +96,7 @@ const chartData = ref<ChartData<'bar'>>({
             <div v-else>
               <div class="form-check" v-for="(weapon, index) in attacker?.armi" :key="index">
                 <input class="form-check-input" type="radio" :value="index" v-model="weaponIndex">
-                <label class="form-check-label" :for="index">{{ weapon.arma }}</label>
+                <label class="form-check-label">{{ weapon.arma }}</label>
               </div>
             </div>
           </div>
@@ -130,11 +109,11 @@ const chartData = ref<ChartData<'bar'>>({
         <h2>Scegli un difensore</h2>
         <div class="form-check" v-for="(character, index) in Personaggi" :key="index">
           <input class="form-check-input" type="radio" :value="index" v-model="defenderIndex">
-          <label class="form-check-label" :for="index">{{ character.nome }}</label>
+          <label class="form-check-label">{{ character.nome }}</label>
         </div>
       </div>
       <div class="col">
-        <div v-show="defender != null">
+        <div v-show="defender != undefined">
           <h2>Dettagli personaggio</h2>
           <div><span class="h4">Nome:</span> <span class="ps-3">{{ defender?.nomeCompleto }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ defender?.armatura }}</span></div>
@@ -149,7 +128,7 @@ const chartData = ref<ChartData<'bar'>>({
             <div>
               <div class="form-check" v-for="(cover, index) in ValoriCopertura" :key="index">
                 <input class="form-check-input" type="radio" :value="cover" v-model="coverValue">
-                <label class="form-check-label" :for="index">{{ index }}</label>
+                <label class="form-check-label">{{ index }}</label>
               </div>
             </div>
           </div>
@@ -157,29 +136,12 @@ const chartData = ref<ChartData<'bar'>>({
         </div>
       </div>
     </div>
-
+<!--
+    -->
     <!-- Grafico probabilità attacco -->
-    <div class="row">
-      <div class="col">
-        <h2>Probabilità di colpire</h2>
-        <BarChart :height="300" :attack-data="attackPercentage"/>
-      </div>
-    </div>
+    <h2>Probabilità di colpire</h2>
+    <BarChart :title="'Probabilità di colpire'" :data="attackPercentage"/>
   </div>
-  <!--  <header>
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125"/>
-
-      <div class="wrapper">
-        <HelloWorld msg="You did it!"/>
-
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-        </nav>
-      </div>
-    </header>
-
-    <RouterView/>-->
 </template>
 
 <style></style>

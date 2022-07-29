@@ -3,7 +3,7 @@ import type {Arma} from './types';
 export {Armi}
 
 const Armi: Arma[] = [
-    {
+    /*{
         nome: "",
         codice: "",
         tipo: "",
@@ -13,7 +13,7 @@ const Armi: Arma[] = [
         modifiche_poss: ["HE"],
         probabilita: [],
         descrizione: ``
-    },
+    },*/
     {
         nome: "Lanciafiamme Ifrit",
         codice: "IF3",
@@ -169,7 +169,7 @@ const Armi: Arma[] = [
         codice: "SSPE",
         tipo: "Pistola (1 mano)",
         danno: [4],
-        tipoDanno: "elettrico, paralizzante",
+        tipoDanno: "elettrico",
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],
         probabilita: [78, 74, 70, 66, 62, 58, 54, 50, 47, 44, 41, 38, 35, 31, 28, 26, 24, 22, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7],
@@ -180,7 +180,7 @@ const Armi: Arma[] = [
         codice: "PER",
         tipo: "Fucile con serbatoio (2 mani)",
         danno: [],
-        tipoDanno: "intrappolante, espansione",
+        tipoDanno: "perforante",
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],
         probabilita: [90, 90, 85, 80, 75, 70, 60, 50, 40, 30, 20, 10, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1],
@@ -213,7 +213,7 @@ const Armi: Arma[] = [
         codice: "OMCC",
         tipo: "Arma pesante fissa",
         danno: [4],
-        tipoDanno: "microonde",
+        tipoDanno: "radiazione",
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],
         probabilita: [97, 96, 94, 91, 87, 82, 76, 72, 62, 56, 53, 48, 42, 37, 31, 25, 19, 13, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

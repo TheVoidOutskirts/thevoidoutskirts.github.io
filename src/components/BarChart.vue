@@ -3,63 +3,62 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import {Chart as ChartJS, registerables} from "chart.js";
+import { updateExpression } from "@babel/types";
 
 ChartJS.register(...registerables)
 
-defineProps<{
-  height: number,
-  attackData: number[]
+const props = defineProps<{
+  data: number[] | undefined,
+  title: string,
 }>()
 
-const chartDOMElement = ref<HTMLCanvasElement | null>(null)
-let myChart: ChartJS | undefined = undefined;
+const chartDOMElement = ref<HTMLCanvasElement | undefined>(undefined)
 
+let chartJs: ChartJS | undefined = undefined
+
+const update = () => {
+}
 
 onMounted(() => {
-  if (!chartDOMElement.value) {
+  if (chartDOMElement.value === undefined) {
     return
   }
-
-  myChart = new ChartJS(chartDOMElement.value, {
+  chartJs = new ChartJS(chartDOMElement.value, {
     type: 'bar',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [/*{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+      labels: [],
+      datasets: [{
+        data: [],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          'rgba(54, 162, 235, 0.8)',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
         ],
         borderWidth: 1
-      }*/]
+      }]
     },
     options: {
       responsive: true,
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          suggestedMax: 100,
+          suggestedMin: 0,
         }
       }
     }
-  });
+  })
+})
+watch(props, () => {
+  console.log(props.title, props.data)
+  if(chartJs !== undefined) {
+    chartJs.data.labels = (props.data ?? []).map((_,i) => i + 1)
+    chartJs.data.datasets[0].data = props.data ?? []
+    chartJs.update()
+  }
+  update()
 });
 </script>
-
-<style scoped>
-
-</style>
