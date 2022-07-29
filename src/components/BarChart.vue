@@ -28,7 +28,7 @@ onMounted(() => {
       labels: [],
       datasets: [{
         data: [],
-        label: '',
+        label: props.title,
         backgroundColor: [
           'rgba(54, 162, 235, 0.8)',
         ],
@@ -59,11 +59,10 @@ onMounted(() => {
   })
 })
 
-watch(props, () => {
+watch(() => props.data, () => {
   if(chartJs !== undefined) {
     chartJs.data.labels = (props.data ?? []).map((_,i) => i + 1)
     chartJs.data.datasets[0].data = props.data ?? []
-    chartJs.update()
     chartJs.update()
   }
 });
