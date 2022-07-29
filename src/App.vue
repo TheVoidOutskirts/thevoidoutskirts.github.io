@@ -38,12 +38,9 @@ function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensor
   if (!armaturaDifensore)
     throw `Arma difensore non trovata ${difensore.armatura}`
 
-  const tipoAttacco = arma.tipoDanno;
+  const tipoDanno = arma.tipoDanno;
   const gravitaDanno = arma.gravitaDanno
-  const resistenza = armaturaDifensore?.gravitaDanno?.[gravitaDanno]?.[tipoAttacco][0]
-
-  if (!resistenza)
-    throw "Tipo dell'arma non definito (tipi possibili: taglio, perforante, esplosione, ustione";
+  const resistenza = armaturaDifensore.gravitaDanno?.[gravitaDanno]?.[tipoDanno][0] ?? 0;
 
   const probArray: number[] = new Array(30)
   for (let i = 0; i < 30; i++) {
@@ -133,7 +130,7 @@ const attackPercentage = computed(() => {
               <div class="form-check" v-for="(cover, index) in ValoriCopertura" :key="index">
                 <input class="form-check-input" type="radio" :value="cover" v-model="coverValue">
                 <label class="form-check-label">{{
-                  // todo change cover type to object with string
+                    // todo change cover type to object with string
                     index === "pesante" ? "Copertura pesante" :
                         index === "nessuna" ? "Nessuna copertura" :
                             index === "leggera" ? "Leggera copertura" :
