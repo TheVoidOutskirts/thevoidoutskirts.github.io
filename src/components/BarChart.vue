@@ -46,6 +46,14 @@ onMounted(() => {
           suggestedMax: 100,
           suggestedMin: 0,
         }
+      },
+      plugins: {
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          offset: 2,
+          color: '#000'
+        }
       }
     }
   })
