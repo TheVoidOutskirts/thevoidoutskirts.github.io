@@ -9,7 +9,7 @@ interface Arma {
     codice: string;
     tipo: string;
     danno: number[];
-    tipoDanno: TipoDanno | 'accecante';
+    tipoDanno: TipoDanno;
     gravitaDanno: GravitaDanno;
     modifiche_poss: string[];
     probabilita: number[];
