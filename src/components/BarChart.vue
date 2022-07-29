@@ -5,9 +5,9 @@
 <script setup lang="ts">
 import {onMounted, ref, watch} from "vue";
 import {Chart as ChartJS, registerables} from "chart.js";
-import { updateExpression } from "@babel/types";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-ChartJS.register(...registerables)
+ChartJS.register(...registerables, ChartDataLabels)
 
 const props = defineProps<{
   data: number[] | undefined,
