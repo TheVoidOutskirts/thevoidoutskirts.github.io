@@ -1,0 +1,72 @@
+# Funzioni del calcolatore di combattimento tattico con armi leggere
+
+- 1 Deve essere possibile interfacciarsi con l'utente
+	- 1.1 Deve essere possibile selezionare l'attaccante
+		- 1.1.1Deve essere visualizzato a schermo un elenco dei personaggi selezionabili per l'attacco
+		- 1.1.2Deve essere possibile selezionare una voce dell'elenco
+	- 1.2 La selezione dell'attaccante deve rendere visualizzabili i dati del personaggio e le armi che l'attaccante dispone in un'elenco puntato
+		- 1.2.1 Il programma deve poter leggere i dati del personaggio attaccante da file "personaggi.js", inclusi:
+			- 1.2.1.1 Bonus di attacco
+			- 1.2.1.2 Bonus di difesa
+			- 1.2.1.3 Bonus di resistenza al danno
+			- 1.2.1.4 Lista delle armi personali del personaggio
+		- 1.2.2 Il programma deve presentare a schermo i dati letti
+			- 1.2.2.1 Bonus di attacco
+			- 1.2.2.2 Bonus di difesa
+			- 1.2.2.3 Bonus di resistenza al danno
+			- 1.2.2.4 Lista delle armi personali del personaggio
+	- 1.3 Deve essere possibile selezionare l'arma utilizzata per l'attacco tra la lista di armi del personaggio selezionato
+		- 1.3b Potenzialmente un personaggio può utilizzare qualsiasi arma da una lista completa
+	- 1.4 Immediatamente dopo la selezione dell'arma da utilizzare deve essere visualizzato un grafico che mostri la % di probabilità di colpire base dell'arma selezionata in funzione della distanza (da 1 a 30 caselle), le modifiche attuabili e i proiettili da utilizzare
+		- 1.4.1 La funzione deve attivarsi quando l'utente seleziona l'arma da utilizzare per l'attacco
+		- 1.4.2 Il programma deve poter leggere i dati dell'arma dal file "armi.js"
+		- 1.4.3 Il programma deve visualizzare un grafico con la probabilità di colpire base dell'arma
+		- 1.4.4 Il programma deve visualizzare le modifiche dell'arma possedute dal personaggio (per modifiche si intende anche l'utilizzo di proiettili di tipo diverso)
+	- 1.5 Deve essere possibile selezionare una o più modifiche per l'arma e visualizzarne l'impatto sulla probabilità di colpire
+		- 1.5.1 Il programma deve permettere la selezione di nessuna, una o più modifiche per l'arma selezionata, scelte tra le modifiche per quell'arma possedute dal personaggio
+		- 1.5.2 Il programma deve visualizzare un grafico sovrapposto all'originale con le modifiche alla % di probabilità di colpire dovute alla modifica
+	- 1.6 Deve essere possibile selezionare il bersaglio e visualizzarne i dati
+		- 1.6.1 Deve essere visualizzato a schermo un elenco dei personaggi selezionabili come bersaglio
+		- 1.6.2 Deve essere possibile selezionare una voce dell'elenco
+	- 1.7 La selezione del bersaglio deve rendere visualizzabili i dati del personaggio
+		- 1.7.1 Il programma deve poter leggere i dati del personaggio attaccante da file "personaggi.js", inclusi:
+			- 1.7.1.1 Bonus di attacco
+			- 1.7.1.2 Bonus di difesa
+			- 1.7.1.3 Bonus di resistenza al danno
+		- 1.7.2 Il programma deve presentare a schermo i dati letti
+			- 1.7.2.1 Bonus di attacco
+			- 1.7.2.2 Bonus di difesa
+			- 1.7.2.3 Bonus di resistenza al danno
+	- 1.8 Deve essere possibile visualizzare e selezionare la copertura del bersaglio tra le 4 possibili (con le relative riduzioni alla % di probabilità di colpire): alta esposizione (-15%), nessuna copertura (+0%), copertura leggera (+25%), copertura pesante (+50%)
+- 2 Deve essere possibile visualizzare la % di probabilità di colpire in funzione del numero di caselle di distanza
+	- 2.1 La funzione di calcolo è visualizzabile sul manuale del giocatore
+		- 2.1.1 Il programma deve poter leggere i dati dell'armatura dal file "armature.js"
+			- 2.1.1 Riduzione della % di probabilità di colpire associata alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco
+			- 2.1.2 Il programma deve effettuare il calcolo
+			- 2.1.3 Il programma deve tenere conto nel calcolo della modifica dei bonus della corazza che si modificano quando il bersaglio si trova vicino all'attaccante; per maggiori informazioni consultare la programmazione del precedente calcolatore
+	- 2.2 Deve essere possibile visualizzare un grafico con i risultati di % di probabilità di colpire modificata per distanze di fuoco da 1 a 30 caselle
+- 3 Deve essere possibile visualizzare il danno nel caso di colpo a segno in funzione del risultato dei dadi
+	- 3.1 Il programma deve poter leggere i dati dell'arma dal file "armi.js"
+		- 3.1.1 Leggere il tipo di danno associato alle modifiche selezionate dell'arma
+		- 3.1.2 Leggere numero e facce dei dadi associate al tipo di danno
+		- 3.1.3 Sommare eventuali bonus/malus costanti dovuti all'arma base o alle modifiche utilizzate
+	- 3.2 Deve essere possibile calcolare il danno ridotto che è la moltiplicazione della somma dei risultati dei dadi con la sottrazione tra 100% e la somma delle percentuali di riduzione del danno dovute all'armatura e alle abilità del personaggio; Successivamente si sottrae al risultato il bonus del punteggio abilità ossatura del personaggio per trovare il danno ridotto
+		- 3.2.1 Il programma deve poter leggere i dati dell'armatura dal file "armature.js"
+			- 3.2.1.1 Riduzione del danno associata alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco
+		- 3.2.2 Il programma deve poter leggere i dati del personaggio dal file "personaggi.js"
+			- 3.2.2.1 Riduzione del danno associato alle abilità, alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco
+			- 3.2.2.2 Bonus di resistenza al danno (quello derivante dall'ossatura)
+		- 3.2.3 Il programma deve essere in grado di effettuare il calcolo di riduzione del danno
+	- 3.3 Il calcolo dei danni inflitti deve essere svolto per tutti i possibili valori della somma dei dadi per il danno tirati dall'attaccante
+		- 3.3.1 Il calcolo deve essere possibile con un numero di dadi variabile e con dadi con diverso numero di facce tirati contemporaneamente
+		- 3.3.2 Il calcolo deve prevedere una dimensione variabile dell'output
+	- 3.4 Deve essere calcolata la probabilità di ottenere un certo risultato dei dadi, che coincide con la probabilità di ottenere un certo danno finale associato al risultato dei dadi
+	- 3.5 Deve essere mostrata una tabella (o un istogramma a voci verticali) con la prima colonna che definisce il risultato dei dadi che porta al valore di danno finale, la seconda colonna che mostra la probabilità di ottenere quel risultato, la terza colonna che mostra il danno associato arrecato
+	- 3.6 Deve essere calcolato il danno medio arrecabile e mostrato prima della tabella dei danni
+		- 3.6.1 Deve essere calcolato il danno medio già ridotto con tutti i modificatori
+		- 3.6.2 Deve essere mostrato il danno medio sopra la tabella dei danni, approssimato alla seconda cifra decimale
+- 4 Deve essere possibile salvare il log delle selezioni effettuate in modo da poterle reinserire con un solo click
+	- 4.1 Deve essere presente un tasto apposito per permettere di salvare il log
+	- 4.2 Deve essere visualizzato il menu dei log salvati direttamente a schermo, accessibile tramite un menu a tendina o direttamente visibile
+	- 4.3 Deve essere possibile schiacciare su un log desiderato e questo deve portare al reinserimento automatico di tutti i dati necessari per calcolare % di probabilità di colpire e danni
+	- 4.4 Il menu dei log deve mantenere accessibili i log dell'intera istanza corrente, fino alla chiusura
