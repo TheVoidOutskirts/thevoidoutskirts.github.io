@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import {ValoriCopertura} from "@/assets/Copertura";
 
-import {computed, ref, watch} from "vue";
+import {computed, ref} from "vue";
 import BarChart from "@/components/BarChart.vue";
 import {Armature} from "@/assets/Armature";
-import type {Armatura} from "@/assets/Armature";
 import {Personaggi} from "@/assets/Personaggi";
 import type {Personaggio} from "@/assets/Personaggi"
 import {Armi} from "@/assets/Armi";
@@ -70,7 +69,7 @@ const attackPercentage = computed(() => {
 
 <template>
   <div class="container">
-    <h1>Calcolatore</h1>
+    <h1 class="text-center">Calcolatore</h1>
     <!-- Selezione attaccante -->
     <div class="row">
       <div class="col">
@@ -104,8 +103,12 @@ const attackPercentage = computed(() => {
 
         </div>
       </div>
+    </div>
 
+    <!-- Probabilità dell'arma -->
+    <BarChart :title="'Probabilità di colpire base dell\'arma'" :data="weaponPercentage"/>
 
+    <div class="row">
       <div class="col">
         <h2>Scegli un difensore</h2>
         <div class="form-check" v-for="(character, index) in Personaggi" :key="index">
@@ -139,15 +142,10 @@ const attackPercentage = computed(() => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    <!-- Probabilità dell'arma -->
-    <h2>Probabilità di colpire base dell'arma</h2>
-    <BarChart :title="'Probabilità di colpire base dell\'arma'" :data="weaponPercentage"/>
     <!-- Grafico probabilità attacco -->
-    <h2>Probabilità di colpire</h2>
     <BarChart :title="'Probabilità di colpire'" :data="attackPercentage"/>
   </div>
 </template>
