@@ -1,6 +1,46 @@
 import type {Personaggio} from './types';
 
 export {Personaggi}
+export {Armatura}
+
+interface Personaggio {
+    nome: string,
+    nomeCompleto: string,
+    armatura: ArmiStatic as const, //ArmiStatic.map(x => x.nome),
+    competenzaAttacco: number,
+    competenzaDifesa: number,
+    armi: { arma: string, modifiche: string[] }[],
+
+    // Campi opzionali
+    fazione?: string,
+    luogo?: string,
+    livelloDiSfida?: number,
+    attributi?: string,
+    statistiche?: {
+        gravità_muscolare: [number, number]
+        precisione: [number, number]
+        ossatura: [number, number]
+        multitasking: [number, number]
+        calcolo: [number, number]
+        applicazione: [number, number]
+    },
+    sensi?: {
+        percezione: number,
+        percezionePassiva: number,
+        iniziativa: number
+    },
+    dimensioni?: string
+    azioni?: string[],
+    vulnerabilità?: {
+        taglio: { [k: number]: string }
+        perforazione: { [k: number]: string }
+        impatto: { [k: number]: string }
+        elettrico: { [k: number]: string }
+        ustione: { [k: number]: string }
+    },
+    resistenzaAlDanno?: number,
+    descrizione?: string
+}
 
 const Personaggi: Personaggio[] = [
     {

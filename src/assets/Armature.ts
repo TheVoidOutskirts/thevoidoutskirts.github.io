@@ -1,6 +1,26 @@
-import type {Armatura} from './types';
+import type {TipoDanno} from './Armi';
 
 export {Armature}
+export type {Armatura}
+
+interface Armatura {
+    nome: string;
+    codice: string;
+    tipoArmatura: string;
+
+    // Campi opzionali
+    gravitaDanno?: {
+        leggero?: Record<TipoDanno, [number, number]>,
+        pesante?: Record<TipoDanno, [number, number]>
+    };
+    funzionalità?: string[];
+    vulnerabilità?: {
+        taglio: { [k: number]: string }
+        perforazione: { [k: number]: string }
+        elettrico: { [k: number]: string }
+    };
+    descrizione?: string;
+}
 
 const Armature: Armatura[] = [
     {

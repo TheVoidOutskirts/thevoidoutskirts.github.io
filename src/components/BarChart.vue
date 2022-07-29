@@ -18,9 +18,6 @@ const chartDOMElement = ref<HTMLCanvasElement | undefined>(undefined)
 
 let chartJs: ChartJS | undefined = undefined
 
-const update = () => {
-}
-
 onMounted(() => {
   if (chartDOMElement.value === undefined) {
     return
@@ -31,6 +28,7 @@ onMounted(() => {
       labels: [],
       datasets: [{
         data: [],
+        label: '',
         backgroundColor: [
           'rgba(54, 162, 235, 0.8)',
         ],
@@ -52,13 +50,13 @@ onMounted(() => {
     }
   })
 })
+
 watch(props, () => {
-  console.log(props.title, props.data)
   if(chartJs !== undefined) {
     chartJs.data.labels = (props.data ?? []).map((_,i) => i + 1)
     chartJs.data.datasets[0].data = props.data ?? []
     chartJs.update()
+    chartJs.update()
   }
-  update()
 });
 </script>

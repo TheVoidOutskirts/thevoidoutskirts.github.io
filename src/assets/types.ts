@@ -1,7 +1,7 @@
 interface Personaggio {
     nome: string,
     nomeCompleto: string,
-    armatura: string,
+    armatura: ArmiStatic as const, //ArmiStatic.map(x => x.nome),
     competenzaAttacco: number,
     competenzaDifesa: number,
     armi: { arma: string, modifiche: string[] }[],
@@ -53,7 +53,7 @@ interface Arma {
     raggio?: string[][];
 }
 
-type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione';
+type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione' | 'accecante';
 type GravitaDanno = 'leggero' | 'pesante';
 
 interface Armatura {

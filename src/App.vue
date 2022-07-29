@@ -7,6 +7,7 @@ import type {Arma, Personaggio} from "@/assets/types";
 import {Armature} from "@/assets/Armature";
 import {Personaggi} from "@/assets/Personaggi";
 import {Armi} from "@/assets/Armi";
+import { mixedTypeAnnotation } from "@babel/types";
 
 
 const attackerIndex = ref<number | undefined>(undefined);
@@ -14,8 +15,8 @@ const weaponIndex = ref<number | undefined>(undefined);
 const defenderIndex = ref<number | undefined>(undefined);
 const coverValue = ref<number | undefined>(undefined);
 
-const attacker = computed<Personaggio | undefined>(() => attackerIndex.value ? Personaggi[attackerIndex.value] : undefined);
-const defender = computed(() => defenderIndex.value ? Personaggi[defenderIndex.value] : undefined)
+const attacker = computed<Personaggio | undefined>(() => attackerIndex.value !== undefined ? Personaggi[attackerIndex.value] : undefined);
+const defender = computed(() => defenderIndex.value !== undefined ? Personaggi[defenderIndex.value] : undefined)
 
 const weapon = computed(() => {
   if(weaponIndex.value === undefined) return undefined;
@@ -31,10 +32,9 @@ const resetWeapon = () => { weaponIndex.value = undefined; }
 function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensore: Personaggio, copertura: number): number[] {
   const probVett = [0.7143, 0.7143, 0.7143, 0.7143, 0.7857, 0.8571, 0.9286, 1]
 
-  const nomeArmaturaDifensore = difensore.armatura
-  const armaturaDifensore = Armature.find(e => e.codice == nomeArmaturaDifensore)
+  const armaturaDifensore = Armature.find(e => e.codice == difensore.armatura)
   if (!armaturaDifensore)
-    throw "Could not find specified armor"
+    throw `Arma difensore non trovata ${difensore.armatura}`
 
   const tipoAttacco = arma.tipoDanno;
   const gravitaDanno = arma.gravitaDanno
@@ -50,13 +50,15 @@ function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensor
     else
       probArray[i] = Math.round(arma.probabilita[i] * (100 + 5 * (attaccante.competenzaAttacco - difensore.competenzaDifesa) - resistenza - copertura) / 100)
   }
-  return probArray
+  return probArray.map(clamp)
 }
 
 const weaponPercentage = computed(() => {
   if(weapon.value === undefined) return undefined;
   return weapon.value.probabilita
 })
+
+const clamp = (x: number) => Math.min(99, Math.max(1, x))
 
 const attackPercentage = computed(() => {
   if(weapon.value === undefined) return undefined;
@@ -128,7 +130,11 @@ const attackPercentage = computed(() => {
             <div>
               <div class="form-check" v-for="(cover, index) in ValoriCopertura" :key="index">
                 <input class="form-check-input" type="radio" :value="cover" v-model="coverValue">
-                <label class="form-check-label">{{ index }}</label>
+                <label class="form-check-label">{{
+                   index == "pesante" ? "Copertura pesante" :
+                   index == "nessuna" ? "Nessuna copertura" :
+                   index == "leggera" ? "Leggera copertura" :
+                   index == "alta"    ? "Alta esposizione"  : "" }}</label>
               </div>
             </div>
           </div>
@@ -136,8 +142,9 @@ const attackPercentage = computed(() => {
         </div>
       </div>
     </div>
-<!--
-    -->
+    <!-- Probabilità dell'arma -->
+    <h2>Probabilità di colpire base dell'arma</h2>
+    <BarChart :title="'Probabilità di colpire base dell\'arma'" :data="weaponPercentage"/>
     <!-- Grafico probabilità attacco -->
     <h2>Probabilità di colpire</h2>
     <BarChart :title="'Probabilità di colpire'" :data="attackPercentage"/>
