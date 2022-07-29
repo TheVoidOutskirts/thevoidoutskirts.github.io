@@ -10,7 +10,6 @@ import type {Personaggio} from "@/assets/Personaggi"
 import {Armi} from "@/assets/Armi";
 import type {Arma} from "@/assets/Armi"
 
-
 const attackerIndex = ref<number | undefined>(undefined);
 const weaponIndex = ref<number | undefined>(undefined);
 const defenderIndex = ref<number | undefined>(undefined);

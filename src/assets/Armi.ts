@@ -1,7 +1,7 @@
 export {Armi}
 export type {TipoDanno, GravitaDanno, Arma}
 
-type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione' | 'accecante';
+type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione';
 type GravitaDanno = 'leggero' | 'pesante';
 
 interface Arma {
@@ -9,7 +9,7 @@ interface Arma {
     codice: string;
     tipo: string;
     danno: number[];
-    tipoDanno: TipoDanno;
+    tipoDanno: TipoDanno | 'accecante';
     gravitaDanno: GravitaDanno;
     modifiche_poss: string[];
     probabilita: number[];
@@ -20,18 +20,7 @@ interface Arma {
     raggio?: string[][];
 }
 
-const Armi: Arma[] = [
-    /*{
-        nome: "",
-        codice: "",
-        tipo: "",
-        danno: [],
-        tipoDanno: "",
-        gravitaDanno: "",
-        modifiche_poss: ["HE"],
-        probabilita: [],
-        descrizione: ``
-    },*/
+const Armi = [
     {
         nome: "Lanciafiamme Ifrit",
         codice: "IF3",
@@ -41,11 +30,12 @@ const Armi: Arma[] = [
         gravitaDanno: "leggero",
         modifiche_poss: [],
         probabilita: [99, 98, 97, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        raggio: [[' ', 'U', ' '],
-            [' ', 'C', ' '],
-            ['C', 'C', 'C'],
-            ['C', 'C', 'C'],
-            [' ', 'C', ' '],
+        raggio: [
+          [' ', 'U', ' '],
+          [' ', 'C', ' '],
+          ['C', 'C', 'C'],
+          ['C', 'C', 'C'],
+          [' ', 'C', ' '],
         ],
         descrizione: `Il lanciafiamme Ifrit è una soluzione pulita a qualsiasi minaccia organica all'interno della stazione.`,
         descrizione_danno: `Incendiario: dà fuoco a ciò che è infiammabile all'interno del raggio di azione.`,

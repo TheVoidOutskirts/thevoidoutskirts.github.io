@@ -5,7 +5,7 @@ interface Personaggio {
     nome: string,
     nomeCompleto: string,
     // todo
-    armatura: string, //ArmiStatic.map(x => x.nome),
+    armatura: string,
     competenzaAttacco: number,
     competenzaDifesa: number,
     armi: { arma: string, modifiche: string[] }[],
@@ -17,10 +17,10 @@ interface Personaggio {
     attributi?: string,
     statistiche?: {
         gravità_muscolare: [number, number]
-        precisione: [number, number]
-        ossatura: [number, number]
+        precisione:   [number, number]
+        ossatura:     [number, number]
         multitasking: [number, number]
-        calcolo: [number, number]
+        calcolo:      [number, number]
         applicazione: [number, number]
     },
     sensi?: {
@@ -31,11 +31,11 @@ interface Personaggio {
     dimensioni?: string
     azioni?: string[],
     vulnerabilità?: {
-        taglio: { [k: number]: string }
+        taglio:       { [k: number]: string }
         perforazione: { [k: number]: string }
-        impatto: { [k: number]: string }
-        elettrico: { [k: number]: string }
-        ustione: { [k: number]: string }
+        impatto:      { [k: number]: string }
+        elettrico:    { [k: number]: string }
+        ustione:      { [k: number]: string }
     },
     resistenzaAlDanno?: number,
     descrizione?: string
