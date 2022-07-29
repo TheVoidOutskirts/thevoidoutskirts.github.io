@@ -3,11 +3,12 @@ import {ValoriCopertura} from "@/assets/Copertura";
 
 import {computed, ref, watch} from "vue";
 import BarChart from "@/components/BarChart.vue";
-import type {Arma, Personaggio} from "@/assets/types";
 import {Armature} from "@/assets/Armature";
+import type {Armatura} from "@/assets/Armature";
 import {Personaggi} from "@/assets/Personaggi";
+import type {Personaggio} from "@/assets/Personaggi"
 import {Armi} from "@/assets/Armi";
-import { mixedTypeAnnotation } from "@babel/types";
+import type {Arma} from "@/assets/Armi"
 
 
 const attackerIndex = ref<number | undefined>(undefined);
@@ -19,13 +20,15 @@ const attacker = computed<Personaggio | undefined>(() => attackerIndex.value !==
 const defender = computed(() => defenderIndex.value !== undefined ? Personaggi[defenderIndex.value] : undefined)
 
 const weapon = computed(() => {
-  if(weaponIndex.value === undefined) return undefined;
-  if(attacker.value === undefined) return undefined;
+  if (weaponIndex.value === undefined) return undefined;
+  if (attacker.value === undefined) return undefined;
   const weaponCode = attacker.value.armi[weaponIndex.value].arma
   return Armi.find(weapon => weapon.codice == weaponCode)
 });
 
-const resetWeapon = () => { weaponIndex.value = undefined; }
+const resetWeapon = () => {
+  weaponIndex.value = undefined;
+}
 
 // todo move null as far as possible; don't display the chart if it is passed.
 // todo cleanup shit
@@ -54,18 +57,18 @@ function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensor
 }
 
 const weaponPercentage = computed(() => {
-  if(weapon.value === undefined) return undefined;
+  if (weapon.value === undefined) return undefined;
   return weapon.value.probabilita
 })
 
 const clamp = (x: number) => Math.min(99, Math.max(1, x))
 
 const attackPercentage = computed(() => {
-  if(weapon.value === undefined) return undefined;
-  if(attacker.value === undefined) return undefined;
-  if(defender.value === undefined) return undefined;
-  if(coverValue.value === undefined) return undefined;
-  return calcolaPercentualeAttacco(weapon.value,attacker.value,defender.value,coverValue.value);
+  if (weapon.value === undefined) return undefined;
+  if (attacker.value === undefined) return undefined;
+  if (defender.value === undefined) return undefined;
+  if (coverValue.value === undefined) return undefined;
+  return calcolaPercentualeAttacco(weapon.value, attacker.value, defender.value, coverValue.value);
 })
 </script>
 
@@ -82,7 +85,7 @@ const attackPercentage = computed(() => {
         </div>
       </div>
       <div class="col">
-        <div v-show="attacker != undefined">
+        <div v-show="attacker !== undefined">
           <h2>Dettagli personaggio</h2>
           <div><span class="h4">Nome:</span> <span class="ps-3">{{ attacker?.nomeCompleto }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ attacker?.armatura }}</span></div>
@@ -115,7 +118,7 @@ const attackPercentage = computed(() => {
         </div>
       </div>
       <div class="col">
-        <div v-show="defender != undefined">
+        <div v-show="defender !== undefined">
           <h2>Dettagli personaggio</h2>
           <div><span class="h4">Nome:</span> <span class="ps-3">{{ defender?.nomeCompleto }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ defender?.armatura }}</span></div>
@@ -131,10 +134,12 @@ const attackPercentage = computed(() => {
               <div class="form-check" v-for="(cover, index) in ValoriCopertura" :key="index">
                 <input class="form-check-input" type="radio" :value="cover" v-model="coverValue">
                 <label class="form-check-label">{{
-                   index == "pesante" ? "Copertura pesante" :
-                   index == "nessuna" ? "Nessuna copertura" :
-                   index == "leggera" ? "Leggera copertura" :
-                   index == "alta"    ? "Alta esposizione"  : "" }}</label>
+                  // todo change cover type to object with string
+                    index === "pesante" ? "Copertura pesante" :
+                        index === "nessuna" ? "Nessuna copertura" :
+                            index === "leggera" ? "Leggera copertura" :
+                                index === "alta" ? "Alta esposizione" : ""
+                  }}</label>
               </div>
             </div>
           </div>
