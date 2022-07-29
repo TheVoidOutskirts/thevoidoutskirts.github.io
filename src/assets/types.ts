@@ -1,4 +1,4 @@
-export interface Personaggio {
+interface Personaggio {
     nome: string,
     nomeCompleto: string,
     armatura: string,
@@ -37,7 +37,7 @@ export interface Personaggio {
     descrizione?: string
 }
 
-export interface Arma {
+interface Arma {
     nome: string;
     codice: string;
     tipo: string;
@@ -53,10 +53,10 @@ export interface Arma {
     raggio?: string[][];
 }
 
-export type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione';
-export type GravitaDanno = 'leggero' | 'pesante';
+type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione';
+type GravitaDanno = 'leggero' | 'pesante';
 
-export interface Armatura {
+interface Armatura {
     nome: string;
     codice: string;
     tipoArmatura: string;
@@ -75,8 +75,10 @@ export interface Armatura {
     descrizione?: string;
 }
 
-export interface Modifica {
+interface Modifica {
     nome: string;
     codice: string;
     modifica: any;
 }
+
+export type {Personaggio, Arma, Armatura, Modifica, TipoDanno, GravitaDanno}
