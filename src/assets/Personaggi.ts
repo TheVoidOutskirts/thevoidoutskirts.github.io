@@ -4,8 +4,7 @@ export type {Personaggio, Azione}
 type Azione = 'arma' | 'presa' | 'spinta' | 'divincolarsi' | 'distrarre' | 'comunicare';
 
 interface Personaggio {
-    nome?: string,
-    nomeCompleto: string,
+    nome: string,
     // todo
     armatura: string,
     competenzaAttacco: number,
@@ -45,56 +44,49 @@ interface Personaggio {
 
 const Personaggi: Personaggio[] = [
     {
-        nomeCompleto: "Aaron Dack",
-        nome: "Aaron",
+        nome: "Aaron Dack",
         armatura: "MCRNSTD",
         competenzaAttacco: 1,
         competenzaDifesa: 1,
         armi: [{arma: "H12", modifiche: []}, {arma: "V1S", modifiche: []}]
     },
     {
-        nomeCompleto: "Jason Armstrong",
-        nome: "Jason",
+        nome: "Jason Armstrong",
         armatura: "MCRNSTD",
         competenzaAttacco: 2,
         competenzaDifesa: 3,
         armi: [{arma: "VCL2", modifiche: []}]
     },
     {
-        nomeCompleto: "Mikey Mushimura",
-        nome: "Mikey",
+        nome: "Mikey Mushimura",
         armatura: "MCRAGPA",
         competenzaAttacco: 1,
         competenzaDifesa: 2,
         armi: [{arma: "VCL2", modifiche: []}]
     },
     {
-        nomeCompleto: "Rosa Memei",
-        nome: "Rosa",
+        nome: "Rosa Memei",
         armatura: "MCRNSTD",
         competenzaAttacco: 2,
         competenzaDifesa: 2,
         armi: [{arma: "VCL2", modifiche: []}]
     },
     {
-        nomeCompleto: "Valanga 'Lare' Senigagliesi",
-        nome: "Valanga",
+        nome: "Valanga 'Lare' Senigagliesi",
         armatura: "MCRNSTD",
         competenzaAttacco: 3,
         competenzaDifesa: 2,
         armi: [{arma: "VCL2", modifiche: []}]
     },
     {
-        nomeCompleto: "Iacot Katinsky",
-        nome: "Iacot",
+        nome: "Iacot Katinsky",
         armatura: "MCRAGPA",
         competenzaAttacco: 2,
         competenzaDifesa: 2,
         armi: [{arma: "R52A", modifiche: []}, {arma: "V1S", modifiche: []}]
     },
     {
-        nomeCompleto: "Sciacallo di Kaita",
-        nome: "Sciacallo",
+        nome: "Sciacallo di Kaita",
         fazione: "#Seguaci_di_Kaita",
         luogo: "#Periferie_del_Vuoto",
         attributi: "#Organico, #Umano",
@@ -157,15 +149,13 @@ const Personaggi: Personaggio[] = [
         descrizione: `Povera gente, reclutata per paura o perché l'unico modo per sopravvivere. Tipicamente di etnia cinturiana, gli sciacalli fanno parte di tutti i clan e al contempo di nessuno perché ora commettono il crimine sotto la bandiera nascosta di Kaita.`
     },
     {
-        nomeCompleto: "Soldato della MRCN",
-        nome: "Soldato",
+        nome: "Soldato della MRCN",
         armatura: "MCRNSTD",
         competenzaAttacco: 2,
         competenzaDifesa: 2,
         armi: [{arma: "MMCHG2B", modifiche: []}, {arma: "V1S", modifiche: []}]
     },
     {
-        nomeCompleto: "Muzan",
         nome: "Muzan",
         armatura: "MCRNSTD",
         competenzaAttacco: 2,
@@ -173,7 +163,6 @@ const Personaggi: Personaggio[] = [
         armi: [{arma: "VCL2", modifiche: []}]
     },
     {
-        nomeCompleto: "Stolthet",
         nome: "Stolthet",
         armatura: "MCRNSTD",
         competenzaAttacco: 2,
@@ -181,16 +170,14 @@ const Personaggi: Personaggio[] = [
         armi: [{arma: "R52A", modifiche: []}]
     },
     {
-        nomeCompleto: "Task Force Duskiane",
-        nome: "DuskTF",
+        nome: "Task Force Duskiane",
         armatura: "LHGA",
         competenzaAttacco: 3,
         competenzaDifesa: 2,
         armi: [{arma: "CTNTASCI", modifiche: []}]
     },
     {
-        nomeCompleto: "Task Force Duskiane Micro Force",
-        nome: "DuskTF Micro",
+        nome: "Task Force Duskiane Micro Force",
         armatura: "LMA",
         competenzaAttacco: 2,
         competenzaDifesa: 2,

@@ -109,12 +109,12 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
           <h2 class="text-center">Scegli un attaccante</h2>
           <v-select
               :options="Personaggi"
-              label="nomeCompleto"
+              label="nome"
               v-model="attacker"></v-select>
         </div>
         <div v-show="attacker" class="mb-4">
           <h2>Dettagli personaggio</h2>
-          <div><span class="h4">Nome:</span> <span class="ps-3">{{ attacker?.nomeCompleto }}</span></div>
+          <div><span class="h4">Nome:</span> <span class="ps-3">{{ attacker?.nome }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ attacker?.armatura }}</span></div>
           <div>
             <span class="h4">Competenza Attacco:</span> <span class="ps-3">{{ attacker?.competenzaAttacco }}</span>
@@ -157,12 +157,12 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
         <div class="mb-4">
           <h2 class="text-center">Scegli un difensore</h2>
           <v-select :options="Personaggi"
-                    label="nomeCompleto"
+                    label="nome"
                     v-model="defender"></v-select>
         </div>
         <div v-show="defender">
           <h2>Dettagli personaggio</h2>
-          <div><span class="h4">Nome:</span> <span class="ps-3">{{ defender?.nomeCompleto }}</span></div>
+          <div><span class="h4">Nome:</span> <span class="ps-3">{{ defender?.nome }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ defender?.armatura }}</span></div>
           <div>
             <span class="h4">Competenza Attacco:</span> <span class="ps-3">{{ defender?.competenzaAttacco }}</span>

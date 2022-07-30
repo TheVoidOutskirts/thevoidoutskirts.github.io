@@ -71,7 +71,7 @@ const Armi: Arma[] = [
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],
         probabilita: [82, 81, 80, 78, 75, 71, 66, 60, 53, 45, 36, 28, 21, 15, 10, 6, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1],
-        descrizione: ``
+        descrizione: `La Catecam A2 è una pistola che utilizza proiettili a dispersione, costruiti per liberare una serie di schegge appena usciti dalla canna della pistola. L'arma è quindi molto utile per colpire bersagli ravvicinati, ma è in generale imprecisa a medio e lungo raggio.`
     },
     {
         nome: "Rayman 9 Foldable",
@@ -225,7 +225,7 @@ const Armi: Arma[] = [
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],
         probabilita: [97, 96, 94, 91, 87, 82, 76, 72, 62, 56, 53, 48, 42, 37, 31, 25, 19, 13, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        descrizione: ``
+        descrizione: `Arma a microonde utilizzata per la dispersione della folla.`
     },
     {
         nome: "Vulcan fragmentation granade version 2",
@@ -271,7 +271,7 @@ const Armi: Arma[] = [
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],
         probabilita: [70, 75, 85, 85, 84, 83, 82, 81, 80, 79, 77, 75, 73, 71, 70, 68, 65, 65, 60, 55, 50, 45, 40, 37, 34, 31, 28, 25, 22, 20],
-        descrizione: ``
+        descrizione: `Un'arma minuscola e leggera, capace di trasportare un potere offensivo specifico della massa di gran lungo superiore ad altre mitragliette. L'arma delle industrie duskiane Coetnat è stata studiata per l'utilizzo da parte di microumani.`
     },
     {
         nome: "Coetnat AECM",
