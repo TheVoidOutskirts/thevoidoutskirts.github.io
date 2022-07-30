@@ -4,10 +4,7 @@
 
 <script setup lang="ts">
 import {onMounted, ref, watch} from "vue";
-import {Chart as ChartJS, registerables} from "chart.js";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-
-ChartJS.register(...registerables, ChartDataLabels)
+import {Chart as ChartJS} from "chart.js";
 
 const props = defineProps<{
   data: number[] | undefined,
