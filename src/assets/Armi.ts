@@ -20,7 +20,7 @@ interface Arma {
     raggio?: string[][];
 }
 
-const Armi = [
+const Armi: Arma[] = [
     {
         nome: "Lanciafiamme Ifrit",
         codice: "IF3",
@@ -31,11 +31,11 @@ const Armi = [
         modifiche_poss: [],
         probabilita: [99, 98, 97, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         raggio: [
-          [' ', 'U', ' '],
-          [' ', 'C', ' '],
-          ['C', 'C', 'C'],
-          ['C', 'C', 'C'],
-          [' ', 'C', ' '],
+            [' ', 'U', ' '],
+            [' ', 'C', ' '],
+            ['C', 'C', 'C'],
+            ['C', 'C', 'C'],
+            [' ', 'C', ' '],
         ],
         descrizione: `Il lanciafiamme Ifrit è una soluzione pulita a qualsiasi minaccia organica all'interno della stazione.`,
         descrizione_danno: `Incendiario: dà fuoco a ciò che è infiammabile all'interno del raggio di azione.`,
@@ -243,7 +243,8 @@ const Armi = [
         codice: "LG3",
         tipo: "Accecante lanciabile (leggero)",
         danno: [],
-        tipoDanno: "accecante",
+        // todo tipoDanno: "accecante",
+        tipoDanno: "elettrico",
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],
         probabilita: [98, 85, 60, 40, 20, 10, 8, 7, 6, 5, 4, 3, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
