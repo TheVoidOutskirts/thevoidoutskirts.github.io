@@ -1,5 +1,7 @@
 export {Personaggi}
-export type {Personaggio}
+export type {Personaggio, Azione}
+
+type Azione = 'arma' | 'presa' | 'spinta' | 'divincolarsi' | 'distrarre' | 'comunicare';
 
 interface Personaggio {
     nome: string,
@@ -29,7 +31,7 @@ interface Personaggio {
         iniziativa: number
     },
     dimensioni?: string
-    azioni?: string[],
+    azioni?: Azione[],
     vulnerabilità?: {
         taglio:       { [k: number]: string }
         perforazione: { [k: number]: string }
