@@ -124,10 +124,6 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
                   :options="attackerWeapons"
                   label="codice"
                   v-model="weapon"></v-select>
-              <!--              <div class="form-check" v-for="(weapon, index) in attacker?.armi" :key="index">
-                              <input class="form-check-input" type="radio" :value="index" v-model="weaponIndex">
-                              <label class="form-check-label">{{ weapon.arma }}</label>
-                            </div>-->
             </div>
           </div>
         </div>
