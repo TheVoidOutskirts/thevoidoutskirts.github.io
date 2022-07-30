@@ -1,33 +1,42 @@
 <script setup lang="ts">
 import {ValoriCopertura} from "@/assets/Copertura";
 
-import {computed, ref} from "vue";
+import {computed, ref, watch} from "vue";
 import BarChart from "@/components/BarChart.vue";
 import {Armature} from "@/assets/Armature";
 import {Personaggi} from "@/assets/Personaggi";
 import type {Personaggio} from "@/assets/Personaggi"
 import {Armi} from "@/assets/Armi";
 import type {Arma} from "@/assets/Armi"
+import {ChartDataset} from "chart.js";
 
-const weaponIndex = ref<number | undefined>(undefined);
 const coverValue = ref<number | undefined>(undefined);
 
-const attacker = ref<Personaggio | undefined>(undefined);
-const defender = ref<Personaggio | undefined>(undefined);
+const attacker = ref<Personaggio | null>(null);
+const defender = ref<Personaggio | null>(null);
 
-const weapon = computed(() => {
-  if (weaponIndex.value === undefined) return undefined;
-  if (attacker.value === undefined) return undefined;
-  const weaponCode = attacker.value.armi[weaponIndex.value].arma
-  return Armi.find(weapon => weapon.codice == weaponCode)
+const attackerWeapons = computed<Arma[]>(() => {
+  if (attacker.value == null) return [];
+  const weapons: Arma[] = []
+
+  attacker.value.armi.forEach(wc => {
+    const foundWeapon = Armi.find(w => w.codice == wc.arma)
+    if (foundWeapon !== undefined) {
+      weapons.push(foundWeapon);
+    }
+  })
+
+  return weapons;
 });
 
-const resetWeapon = () => {
-  weaponIndex.value = undefined;
-}
+const weapon = ref<Arma | null>(null);
 
-// todo move null as far as possible; don't display the chart if it is passed.
-// todo cleanup shit
+// Fix for vue-select not emitting an event when the selection is cleared.
+// todo ask if the selector should immediately use the first weapon for convenience. If this is not the case, at least select the first weapon if it is the only one.
+watch(attacker, () => {
+  weapon.value = attackerWeapons.value[0];
+})
+
 function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensore: Personaggio, copertura: number): number[] {
   const probVett = [0.7143, 0.7143, 0.7143, 0.7143, 0.7857, 0.8571, 0.9286, 1]
 
@@ -49,19 +58,38 @@ function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensor
   return probArray.map(clamp)
 }
 
+const clamp = (x: number) => Math.min(99, Math.max(1, x))
+
 const weaponPercentage = computed(() => {
-  if (weapon.value === undefined) return undefined;
-  return weapon.value.probabilita
+  return weapon.value?.probabilita
 })
 
-const clamp = (x: number) => Math.min(99, Math.max(1, x))
+const weaponPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
+  return [{
+    label: "Probabilità di colpire base dell'arma",
+    data: weaponPercentage.value ?? [],
+    backgroundColor: ['rgba(54, 162, 235, 0.8)'],
+    borderColor: ['rgba(54, 162, 235, 1)'],
+    borderWidth: 1
+  },]
+})
 
 const attackPercentage = computed(() => {
   if (weapon.value === undefined) return undefined;
-  if (attacker.value === undefined) return undefined;
-  if (defender.value === undefined) return undefined;
+  if (attacker.value === null) return undefined;
+  if (defender.value === null) return undefined;
   if (coverValue.value === undefined) return undefined;
   return calcolaPercentualeAttacco(weapon.value, attacker.value, defender.value, coverValue.value);
+})
+
+const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
+  return [{
+    label: "Probabilità di colpire",
+    data: attackPercentage.value ?? [],
+    backgroundColor: ['rgba(54, 162, 235, 0.8)'],
+    borderColor: ['rgba(54, 162, 235, 1)'],
+    borderWidth: 1
+  }]
 })
 
 </script>
@@ -71,7 +99,7 @@ const attackPercentage = computed(() => {
     <h1 class="text-center">Calcolatore</h1>
     <!-- Selezione attaccante -->
     <div class="row">
-      <div class="col-4">
+      <div class="col-6">
         <div class="mb-4">
           <h2 class="text-center">Scegli un attaccante</h2>
           <v-select
@@ -93,10 +121,11 @@ const attackPercentage = computed(() => {
             <span class="h4">Armi:</span>
             <div v-if="attacker?.armi.length === 0">Il personaggio non ha armi</div>
             <div v-else>
-              <div class="form-check" v-for="(weapon, index) in attacker?.armi" :key="index">
-                <input class="form-check-input" type="radio" :value="index" v-model="weaponIndex">
-                <label class="form-check-label">{{ weapon.arma }}</label>
-              </div>
+              <v-select :options="attackerWeapons" label="codice" v-model="weapon"></v-select>
+              <!--              <div class="form-check" v-for="(weapon, index) in attacker?.armi" :key="index">
+                              <input class="form-check-input" type="radio" :value="index" v-model="weaponIndex">
+                              <label class="form-check-label">{{ weapon.arma }}</label>
+                            </div>-->
             </div>
           </div>
         </div>
@@ -105,13 +134,13 @@ const attackPercentage = computed(() => {
 
     <!-- Probabilità dell'arma -->
     <div class="row justify-content-center">
-      <div class="col-sm col-md col-lg-9 col-xl-8 col-xxl-8">
-        <BarChart :title="'Probabilità di colpire base dell\'arma'" :data="weaponPercentage"/>
+      <div class="col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8">
+        <BarChart :data="weaponPercentageChartData"/>
       </div>
     </div>
 
     <div class="row mt-4">
-      <div class="col-4">
+      <div class="col-6">
         <div class="mb-4">
           <h2 class="text-center">Scegli un difensore</h2>
           <v-select :options="Personaggi"
@@ -148,8 +177,8 @@ const attackPercentage = computed(() => {
     </div>
     <!-- Grafico probabilità attacco -->
     <div class="row justify-content-center">
-      <div class="col-sm col-md col-lg-9 col-xl-8 col-xxl-8">
-        <BarChart :title="'Probabilità di colpire'" :data="attackPercentage"/>
+      <div class="col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8">
+        <BarChart :data="attackPercentageChartData"/>
       </div>
     </div>
   </div>
