@@ -4,7 +4,7 @@ export type {Personaggio, Azione}
 type Azione = 'arma' | 'presa' | 'spinta' | 'divincolarsi' | 'distrarre' | 'comunicare';
 
 interface Personaggio {
-    nome: string,
+    nome?: string,
     nomeCompleto: string,
     // todo
     armatura: string,

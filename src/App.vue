@@ -32,7 +32,6 @@ const attackerWeapons = computed<Arma[]>(() => {
 const weapon = ref<Arma | null>(null);
 
 // Fix for vue-select not emitting an event when the selection is cleared.
-// todo ask if the selector should immediately use the first weapon for convenience. If this is not the case, at least select the first weapon if it is the only one.
 watch(attacker, () => {
   weapon.value = attackerWeapons.value[0];
 })
@@ -75,7 +74,7 @@ const weaponPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
 })
 
 const attackPercentage = computed(() => {
-  if (weapon.value === undefined) return undefined;
+  if (weapon.value === null) return undefined;
   if (attacker.value === null) return undefined;
   if (defender.value === null) return undefined;
   if (coverValue.value === undefined) return undefined;
@@ -104,7 +103,7 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
           <h2 class="text-center">Scegli un attaccante</h2>
           <v-select
               :options="Personaggi"
-              label="nome"
+              label="nomeCompleto"
               v-model="attacker"></v-select>
         </div>
         <div v-show="attacker" class="mb-4">
@@ -121,7 +120,10 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
             <span class="h4">Armi:</span>
             <div v-if="attacker?.armi.length === 0">Il personaggio non ha armi</div>
             <div v-else>
-              <v-select :options="attackerWeapons" label="codice" v-model="weapon"></v-select>
+              <v-select
+                  :options="attackerWeapons"
+                  label="codice"
+                  v-model="weapon"></v-select>
               <!--              <div class="form-check" v-for="(weapon, index) in attacker?.armi" :key="index">
                               <input class="form-check-input" type="radio" :value="index" v-model="weaponIndex">
                               <label class="form-check-label">{{ weapon.arma }}</label>
@@ -144,7 +146,7 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
         <div class="mb-4">
           <h2 class="text-center">Scegli un difensore</h2>
           <v-select :options="Personaggi"
-                    label="nome"
+                    label="nomeCompleto"
                     v-model="defender"></v-select>
         </div>
         <div v-show="defender">
