@@ -9,13 +9,11 @@ import type {Personaggio} from "@/assets/Personaggi"
 import {Armi} from "@/assets/Armi";
 import type {Arma} from "@/assets/Armi"
 
-const attackerIndex = ref<number | undefined>(undefined);
 const weaponIndex = ref<number | undefined>(undefined);
-const defenderIndex = ref<number | undefined>(undefined);
 const coverValue = ref<number | undefined>(undefined);
 
-const attacker = computed<Personaggio | undefined>(() => attackerIndex.value !== undefined ? Personaggi[attackerIndex.value] : undefined);
-const defender = computed(() => defenderIndex.value !== undefined ? Personaggi[defenderIndex.value] : undefined)
+const attacker = ref<Personaggio | undefined>(undefined);
+const defender = ref<Personaggio | undefined>(undefined);
 
 const weapon = computed(() => {
   if (weaponIndex.value === undefined) return undefined;
@@ -65,6 +63,7 @@ const attackPercentage = computed(() => {
   if (coverValue.value === undefined) return undefined;
   return calcolaPercentualeAttacco(weapon.value, attacker.value, defender.value, coverValue.value);
 })
+
 </script>
 
 <template>
@@ -72,15 +71,15 @@ const attackPercentage = computed(() => {
     <h1 class="text-center">Calcolatore</h1>
     <!-- Selezione attaccante -->
     <div class="row">
-      <div class="col">
-        <h2>Scegli un attaccante</h2>
-        <div class="form-check" v-for="(character, index) in Personaggi" :key="index">
-          <input class="form-check-input" type="radio" :value="index" v-model="attackerIndex" @click="resetWeapon">
-          <label class="form-check-label">{{ character.nome }}</label>
+      <div class="col-4">
+        <div class="mb-4">
+          <h2 class="text-center">Scegli un attaccante</h2>
+          <v-select
+              :options="Personaggi"
+              label="nome"
+              v-model="attacker"></v-select>
         </div>
-      </div>
-      <div class="col">
-        <div v-show="attacker !== undefined">
+        <div v-show="attacker" class="mb-4">
           <h2>Dettagli personaggio</h2>
           <div><span class="h4">Nome:</span> <span class="ps-3">{{ attacker?.nomeCompleto }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ attacker?.armatura }}</span></div>
@@ -100,24 +99,26 @@ const attackPercentage = computed(() => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
     <!-- Probabilità dell'arma -->
-    <BarChart :title="'Probabilità di colpire base dell\'arma'" :data="weaponPercentage"/>
-
-    <div class="row">
-      <div class="col">
-        <h2>Scegli un difensore</h2>
-        <div class="form-check" v-for="(character, index) in Personaggi" :key="index">
-          <input class="form-check-input" type="radio" :value="index" v-model="defenderIndex">
-          <label class="form-check-label">{{ character.nome }}</label>
-        </div>
+    <div class="row justify-content-center">
+      <div class="col-sm col-md col-lg-9 col-xl-8 col-xxl-8">
+        <BarChart :title="'Probabilità di colpire base dell\'arma'" :data="weaponPercentage"/>
       </div>
-      <div class="col">
-        <div v-show="defender !== undefined">
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-4">
+        <div class="mb-4">
+          <h2 class="text-center">Scegli un difensore</h2>
+          <v-select :options="Personaggi"
+                    label="nome"
+                    v-model="defender"></v-select>
+        </div>
+        <div v-show="defender">
           <h2>Dettagli personaggio</h2>
           <div><span class="h4">Nome:</span> <span class="ps-3">{{ defender?.nomeCompleto }}</span></div>
           <div><span class="h4">Armatura:</span> <span class="ps-3">{{ defender?.armatura }}</span></div>
@@ -146,7 +147,11 @@ const attackPercentage = computed(() => {
       </div>
     </div>
     <!-- Grafico probabilità attacco -->
-    <BarChart :title="'Probabilità di colpire'" :data="attackPercentage"/>
+    <div class="row justify-content-center">
+      <div class="col-sm col-md col-lg-9 col-xl-8 col-xxl-8">
+        <BarChart :title="'Probabilità di colpire'" :data="attackPercentage"/>
+      </div>
+    </div>
   </div>
 </template>
 
