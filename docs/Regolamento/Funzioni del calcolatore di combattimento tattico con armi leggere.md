@@ -1,50 +1,50 @@
 # Funzioni del calcolatore di combattimento tattico con armi leggere
 
 - 1 Deve essere possibile interfacciarsi con l'utente
-	- 1.1 Deve essere possibile selezionare l'attaccante
-		- 1.1.1Deve essere visualizzato a schermo un elenco dei personaggi selezionabili per l'attacco
-		- 1.1.2Deve essere possibile selezionare una voce dell'elenco
-	- 1.2 La selezione dell'attaccante deve rendere visualizzabili i dati del personaggio e le armi che l'attaccante dispone in un'elenco puntato
-		- 1.2.1 Il programma deve poter leggere i dati del personaggio attaccante da file "personaggi.js", inclusi:
-			- 1.2.1.1 Bonus di attacco
-			- 1.2.1.2 Bonus di difesa
-			- 1.2.1.3 Bonus di resistenza al danno
-			- 1.2.1.4 Lista delle armi personali del personaggio
-		- 1.2.2 Il programma deve presentare a schermo i dati letti
-			- 1.2.2.1 Bonus di attacco
-			- 1.2.2.2 Bonus di difesa
-			- 1.2.2.3 Bonus di resistenza al danno
-			- 1.2.2.4 Lista delle armi personali del personaggio
-	- 1.3 Deve essere possibile selezionare l'arma utilizzata per l'attacco tra la lista di armi del personaggio selezionato
-		- 1.3b Potenzialmente un personaggio può utilizzare qualsiasi arma da una lista completa
+	- 1.1 Deve essere possibile selezionare l'attaccante ✅
+		- 1.1.1Deve essere visualizzato a schermo un elenco dei personaggi selezionabili per l'attacco ✅
+		- 1.1.2Deve essere possibile selezionare una voce dell'elenco ✅
+	- 1.2 La selezione dell'attaccante deve rendere visualizzabili i dati del personaggio e le armi che l'attaccante dispone in un elenco puntato ✅
+		- 1.2.1 Il programma deve poter leggere i dati del personaggio attaccante da file "personaggi.js", inclusi: ✅
+			- 1.2.1.1 Bonus di attacco ✅
+			- 1.2.1.2 Bonus di difesa ✅
+			- 1.2.1.3 Bonus di resistenza al danno ✅
+			- 1.2.1.4 Lista delle armi personali del personaggio ✅
+		- 1.2.2 Il programma deve presentare a schermo i dati letti ✅
+			- 1.2.2.1 Bonus di attacco ✅
+			- 1.2.2.2 Bonus di difesa ✅
+			- 1.2.2.3 Bonus di resistenza al danno ✅
+			- 1.2.2.4 Lista delle armi personali del personaggio ✅
+	- 1.3 Deve essere possibile selezionare l'arma utilizzata per l'attacco tra la lista di armi del personaggio selezionato ✅
+		- 1.3b Potenzialmente un personaggio può utilizzare qualsiasi arma da una lista completa ✅
 	- 1.4 Immediatamente dopo la selezione dell'arma da utilizzare deve essere visualizzato un grafico che mostri la % di probabilità di colpire base dell'arma selezionata in funzione della distanza (da 1 a 30 caselle), le modifiche attuabili e i proiettili da utilizzare
-		- 1.4.1 La funzione deve attivarsi quando l'utente seleziona l'arma da utilizzare per l'attacco
-		- 1.4.2 Il programma deve poter leggere i dati dell'arma dal file "armi.js"
-		- 1.4.3 Il programma deve visualizzare un grafico con la probabilità di colpire base dell'arma
+		- 1.4.1 La funzione deve attivarsi quando l'utente seleziona l'arma da utilizzare per l'attacco ✅
+		- 1.4.2 Il programma deve poter leggere i dati dell'arma dal file "armi.js" ✅
+		- 1.4.3 Il programma deve visualizzare un grafico con la probabilità di colpire base dell'arma ✅
 		- 1.4.4 Il programma deve visualizzare le modifiche dell'arma possedute dal personaggio (per modifiche si intende anche l'utilizzo di proiettili di tipo diverso)
 	- 1.5 Deve essere possibile selezionare una o più modifiche per l'arma e visualizzarne l'impatto sulla probabilità di colpire
 		- 1.5.1 Il programma deve permettere la selezione di nessuna, una o più modifiche per l'arma selezionata, scelte tra le modifiche per quell'arma possedute dal personaggio
 		- 1.5.2 Il programma deve visualizzare un grafico sovrapposto all'originale con le modifiche alla % di probabilità di colpire dovute alla modifica
-	- 1.6 Deve essere possibile selezionare il bersaglio e visualizzarne i dati
-		- 1.6.1 Deve essere visualizzato a schermo un elenco dei personaggi selezionabili come bersaglio
-		- 1.6.2 Deve essere possibile selezionare una voce dell'elenco
-	- 1.7 La selezione del bersaglio deve rendere visualizzabili i dati del personaggio
-		- 1.7.1 Il programma deve poter leggere i dati del personaggio attaccante da file "personaggi.js", inclusi:
-			- 1.7.1.1 Bonus di attacco
-			- 1.7.1.2 Bonus di difesa
-			- 1.7.1.3 Bonus di resistenza al danno
-		- 1.7.2 Il programma deve presentare a schermo i dati letti
-			- 1.7.2.1 Bonus di attacco
-			- 1.7.2.2 Bonus di difesa
-			- 1.7.2.3 Bonus di resistenza al danno
-	- 1.8 Deve essere possibile visualizzare e selezionare la copertura del bersaglio tra le 4 possibili (con le relative riduzioni alla % di probabilità di colpire): alta esposizione (-15%), nessuna copertura (+0%), copertura leggera (+25%), copertura pesante (+50%)
-- 2 Deve essere possibile visualizzare la % di probabilità di colpire in funzione del numero di caselle di distanza
-	- 2.1 La funzione di calcolo è visualizzabile sul manuale del giocatore
-		- 2.1.1 Il programma deve poter leggere i dati dell'armatura dal file "armature.js"
+	- 1.6 Deve essere possibile selezionare il bersaglio e visualizzarne i dati ✅
+		- 1.6.1 Deve essere visualizzato a schermo un elenco dei personaggi selezionabili come bersaglio ✅
+		- 1.6.2 Deve essere possibile selezionare una voce dell'elenco ✅
+	- 1.7 La selezione del bersaglio deve rendere visualizzabili i dati del personaggio ✅
+		- 1.7.1 Il programma deve poter leggere i dati del personaggio attaccante da file "personaggi.js", inclusi: ✅
+			- 1.7.1.1 Bonus di attacco ✅
+			- 1.7.1.2 Bonus di difesa ✅
+			- 1.7.1.3 Bonus di resistenza al danno ✅ 
+		- 1.7.2 Il programma deve presentare a schermo i dati letti ✅ 
+			- 1.7.2.1 Bonus di attacco ✅
+			- 1.7.2.2 Bonus di difesa ✅
+			- 1.7.2.3 Bonus di resistenza al danno ✅
+	- 1.8 Deve essere possibile visualizzare e selezionare la copertura del bersaglio tra le 4 possibili (con le relative riduzioni alla % di probabilità di colpire): alta esposizione (-15%), nessuna copertura (+0%), copertura leggera (+25%), copertura pesante (+50%) ✅
+- 2 Deve essere possibile visualizzare la % di probabilità di colpire in funzione del numero di caselle di distanza ✅
+	- 2.1 La funzione di calcolo è visualizzabile sul manuale del giocatore ✅
+		- 2.1.1 Il programma deve poter leggere i dati dell'armatura dal file "armature.js" ✅
 			- 2.1.1 Riduzione della % di probabilità di colpire associata alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco
-			- 2.1.2 Il programma deve effettuare il calcolo
+			- 2.1.2 Il programma deve effettuare il calcolo ✅
 			- 2.1.3 Il programma deve tenere conto nel calcolo della modifica dei bonus della corazza che si modificano quando il bersaglio si trova vicino all'attaccante; per maggiori informazioni consultare la programmazione del precedente calcolatore
-	- 2.2 Deve essere possibile visualizzare un grafico con i risultati di % di probabilità di colpire modificata per distanze di fuoco da 1 a 30 caselle
+	- 2.2 Deve essere possibile visualizzare un grafico con i risultati di % di probabilità di colpire modificata per distanze di fuoco da 1 a 30 caselle ✅
 - 3 Deve essere possibile visualizzare il danno nel caso di colpo a segno in funzione del risultato dei dadi
 	- 3.1 Il programma deve poter leggere i dati dell'arma dal file "armi.js"
 		- 3.1.1 Leggere il tipo di danno associato alle modifiche selezionate dell'arma

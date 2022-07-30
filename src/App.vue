@@ -15,9 +15,15 @@ const coverValue = ref<number | undefined>(undefined);
 const attacker = ref<Personaggio | null>(null);
 const defender = ref<Personaggio | null>(null);
 
+const useAllWeapons = ref(false);
+
 const attackerWeapons = computed<Arma[]>(() => {
   if (attacker.value == null) return [];
-  const weapons: Arma[] = []
+  // todo return not only all weapons, but also the weapons owned by the character (by marking their name in some way)
+  // this to be able to use modifications owned by the player!
+  if (useAllWeapons.value) return Armi;
+
+  const weapons: Arma[] = [];
 
   attacker.value.armi.forEach(wc => {
     const foundWeapon = Armi.find(w => w.codice == wc.arma)
@@ -117,13 +123,22 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
             <span class="h4">Competenza Difesa:</span> <span class="ps-3">{{ attacker?.competenzaDifesa }}</span>
           </div>
           <div>
+            <span class="h4">Resistenza al danno:</span>
+            <span class="ps-3">{{ attacker?.resistenzaAlDanno ?? 0 }}</span>
+          </div>
+          <div>
             <span class="h4">Armi:</span>
-            <div v-if="attacker?.armi.length === 0">Il personaggio non ha armi</div>
+            <div v-if="attackerWeapons.length === 0">Il personaggio non ha armi</div>
             <div v-else>
               <v-select
                   :options="attackerWeapons"
-                  label="codice"
+                  label="nome"
                   v-model="weapon"></v-select>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="attackerAllWeaponsCheckbox"
+                     v-model="useAllWeapons">
+              <label class="form-check-label" for="attackerAllWeaponsCheckbox">Mostra tutte le armi</label>
             </div>
           </div>
         </div>
@@ -154,6 +169,10 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
           </div>
           <div>
             <span class="h4">Competenza Difesa:</span> <span class="ps-3">{{ defender?.competenzaDifesa }}</span>
+          </div>
+          <div>
+            <span class="h4">Resistenza al danno:</span>
+            <span class="ps-3">{{ defender?.resistenzaAlDanno ?? 0 }}</span>
           </div>
           <div>
             <span class="h4">Copertura:</span>
