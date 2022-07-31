@@ -1,76 +1,24 @@
 import type { Arma } from "./Armi";
 import type { Armatura } from "./Armature";
 import type { Azione, Personaggio } from "./Personaggi";
-
-const a: Armatura = {
-    nome: "Goliath Powered Armor",
-    codice: "MCRAGPA",
-    tipoArmatura: "Powered EVA suit (armatura pesante)",
-    gravitaDanno: {
-        leggero: {
-            taglio: [96, 0],
-            perforante: [96, 0],
-            impatto: [94, 30],
-            elettrico: [80, 0],
-            ustione: [20, 10],
-            radiazione: [15, 0]
-        },
-        pesante: {
-            taglio: [0, 0],
-            perforante: [20, 0],
-            impatto: [30, 10],
-            elettrico: [0, 0],
-            ustione: [0, 0],
-            radiazione: [0, 0]
-        }
-    },
-    funzionalità: [
-        "Sistema di comunicazione integrato",
-        "Tuta per attività extraveicolari: permette di sopravvivere in vuoto",
-        "Riserva di ossigeno: 8 ore",
-        "Batteria centralina: 10 ore",
-        "Faro anteriore d'illuminazione",
-        "Stivali magnetici",
-        "Guanti magnetici",
-        "Thrusters di controllo",
-        "Servomotori di potenziamento al movimento",
-        "[[Rogun 100 rpm]]"
-    ],
-    vulnerabilità: {
-        taglio: {
-            1: "nessun effetto",
-            4: "piccola apertura",
-            6: "squarcio",
-        },
-        perforazione: {
-            1: "nessun effetto",
-            2: "foratura della riserva di ossigeno",
-            5: "squarcio",
-            9: "servomotore danneggiato",
-            14: "distruzione della centralina di controllo"
-        },
-        elettrico: {
-            1: "nessun effetto",
-            9: "spegnimento della centralina di controllo"
-        },
-    },
-    descrizione: `Armatura pesante utilizzata dalle truppe speciali dell'esercito marziano. Può essere utilizzata come testa di ponte in una carica o in un'assalto o essere posizionata a bloccare un passaggio strategico. Il combattimento visto da questa piattaforma corazzata è caratterizzabile come una via di mezzo tra il combattimento di fanteria e quello di una di una piattaforma robotizzata.`
-}
-
+import type { Giorno, Evento } from "./Cronologia";
+import { Cronologia } from "./Cronologia.ts";
 
 const title = (t: string) => `\n### ${t}\n\n`
 const subtitle = (t: string) => `\n#### ${t}\n\n`
+const subsubtitle = (t: string) => `\n##### ${t}\n\n`
 const row = (r: string[]) => `|${r.join('|')}|`
 const field = (k: string, v: string) => v ? `**${k}**: ${v}\n` : ""
 const table = (h: string[], r: string[][]) => `${row(h)}\n${row(h.map(_ => '---:'))}\n${r.map(row).join('\n')}\n`
 const ul = (_: string[]) => _.map(s => `- ${s}\n`).join('')
+const mapS = <A,B>(s: A | undefined, f : (s: A) => B) => s ? f(s) : ''
 
 const mdArma = (a: Arma) =>
     title(a.nome) +
     field('Codice', a.codice) +
     field('Tipo arma', a.tipo) +
     subtitle('Danno') +
-    field('Gravità danno', a.gravitaDanno || "N/A") +
+    field('Gravità danno', a.gravitaDanno) +
     field('Dadi danno', a.danno.map(n => `d${n}`).join(',')) +
     field('Tipo danno', a.tipoDanno) +
     subtitle('Probabilità di colpire') +
@@ -91,12 +39,13 @@ const titoliAzioni: Record<Azione, string> = {
 
 const nextGreater = (n: number, o: { [k: number]: any }) => Object.keys(o).map(x => parseInt(x)).sort((a, b) => b - a).reduce((s, x) => x > n ? (x - 1).toString() : s, "..")
 
+
 const mdPersonaggi = (p: Personaggio) =>
     title(p.nome)
-    + field('Fazione', p.fazione ?? "-")
-    + field('Luogo', p.luogo ?? "-")
-    + field('Livello di sfida', p.livelloDiSfida?.toString() ?? "-")
-    + field('Attributi', p.attributi ?? "-")
+    + mapS(p.fazione,        s => field('Fazione', s))
+    + mapS(p.luogo,          s => field('Luogo', s))
+    + mapS(p.livelloDiSfida, s => field('Livello di sfida', s.toString()))
+    + mapS(p.attributi,      s => field('Attributi', s))
     + title('Statistiche')
     + table(['Abilità', 'Punteggio', 'Bonus/malus'],
         [['Gravità   muscolare ', p?.statistiche?.gravità_muscolare?.[0].toString() ?? "-", p?.statistiche?.gravità_muscolare?.[1].toString() ?? "-",],
@@ -106,11 +55,11 @@ const mdPersonaggi = (p: Personaggio) =>
         ['Calcolo             ', p?.statistiche?.calcolo?.[0].toString() ?? "-", p?.statistiche?.calcolo?.[1].toString() ?? "-",],
         ['Applicazione        ', p?.statistiche?.applicazione?.[0].toString() ?? "-", p?.statistiche?.applicazione?.[1].toString() ?? "-",],
         ])
-    + field('Dimensioni', p.dimensioni ?? "-")
+    + mapS(p.dimensioni, s => field('Dimensioni', s))
     + field('Sensi', " ")
     + ul([`Percezione: ${p?.sensi?.percezione}`,
-    `Percezione passiva: ${p?.sensi?.percezionePassiva}`,
-    `Iniziativa: ${p?.sensi?.iniziativa}`])
+          `Percezione passiva: ${p?.sensi?.percezionePassiva}`,
+          `Iniziativa: ${p?.sensi?.iniziativa}`])
     + subtitle('Azioni')
     + p?.azioni?.map(a => titoliAzioni[a]).join('\n\n')
     + subtitle('Vulnerabilità')
@@ -123,8 +72,7 @@ const mdPersonaggi = (p: Personaggio) =>
             a ? `${t}${ul(Object.entries(a).map(([k, v]) => `${k}-${nextGreater(parseInt(k), a)} -> ${v}`))}` : "Nessuna").join("\n")
     + p.armi.map((a, i) =>
         subtitle(`Equipaggiamento ${i + 1}`)
-        + ul([`Arma: ${a.arma}`,
-        `Modifiche: ${a.modifiche.join(',')}`])
+        + ul([`Arma: ${a.arma}`, `Modifiche: ${a.modifiche.join(',')}`])
     ).join('')
     + title('Descrizione')
     + p.descrizione + '\n'
@@ -134,15 +82,12 @@ const mdArmatura = (a: Armatura) =>
     + field('Codice', a.codice)
     + field('Tipo armatura', a.tipoArmatura)
     + subtitle('Riduzione % probabilità di colpire e danno')
-    + (a.gravitaDanno ?
-        Object.entries(a.gravitaDanno)
+    + Object.entries(a.gravitaDanno)
             .map(([k, v]) =>
                 field("Gravità danno", k)
                 + table(['Tipo danno', 'Riduzione % probabilità di colpire', 'Riduzione % danno'],
                     Object.entries(v).map(([k, v]) => [k, ...v.map(n => n.toString())])))
-        : "-")
-    + (a.funzionalità ? subtitle('Funzionalità')
-        + ul(a.funzionalità) : '')
+    + mapS(a.funzionalità, s => subtitle('Funzionalità') + ul(s))
     + subtitle('Vulnerabilità')
     + [["**Danno da taglio**:\n", a?.vulnerabilità?.taglio],
     ["**Danno da perforazione**:\n", a?.vulnerabilità?.perforazione],
@@ -152,4 +97,29 @@ const mdArmatura = (a: Armatura) =>
     + title('Descrizione')
     + a.descrizione + '\n'
 
-console.log(mdArmatura(a))
+const NomiMese: Record<number,string> = {
+    1  : "gennaio",
+    2  : "febbraio",
+    3  : "marzo",
+    4  : "aprile",
+    5  : "maggio",
+    6  : "giugno",
+    7  : "luglio",
+    8  : "agosto",
+    9  : "settembre",
+    10 : "ottobre",
+    11 : "novembre",
+    12 : "dicembre",
+}
+
+const mdCronologia = (c: Giorno[]) =>
+    title('Cronologia')
+    + c.map(a =>
+        subtitle(`${a.when.day} ${NomiMese[a.when.month]} ${a.when.year}`)
+        + a.events.map((e, i) =>
+            subsubtitle(`${a.when.year}${a.when.month}${a.when.day}.${i+1}`)
+            + (e.who === 'scenario' ? "<Scenario>" : e.who.map(s => `[[${s}]]`).join(','))
+            + e.what
+        ).join('\n')).join('\n')
+
+console.log(mdCronologia(Cronologia))

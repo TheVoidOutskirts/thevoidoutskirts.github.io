@@ -1,6 +1,8 @@
 export {Personaggi}
 export type {Personaggio, Azione}
 
+import type {TipoDanno} from './Armi'
+
 type Azione = 'arma' | 'presa' | 'spinta' | 'divincolarsi' | 'distrarre' | 'comunicare';
 
 interface Personaggio {
@@ -31,13 +33,7 @@ interface Personaggio {
     },
     dimensioni?: string
     azioni?: Azione[],
-    vulnerabilità?: {
-        taglio:       { [k: number]: string }
-        perforazione: { [k: number]: string }
-        impatto:      { [k: number]: string }
-        elettrico:    { [k: number]: string }
-        ustione:      { [k: number]: string }
-    },
+    vulnerabilità?: Record<TipoDanno, { [k: number]: string }>;
     resistenzaAlDanno?: number,
     descrizione?: string
 }
@@ -113,7 +109,7 @@ const Personaggi: Personaggio[] = [
                 10: "fuori combattimento + ferita grave",
                 14: "ferita mortale"
             },
-            perforazione: {
+            perforante: {
                 1: "ferita leggera",
                 6: "ferita grave",
                 10: "fuori combattimento + ferita grave",
@@ -138,6 +134,9 @@ const Personaggi: Personaggio[] = [
                 6: "ferita grave",
                 10: "fuori combattimento + ferita grave",
                 14: "ferita mortale",
+            },
+            radiazione: {
+                1: "nessun effetto"
             }
         },
         armatura: "Nessuna",
