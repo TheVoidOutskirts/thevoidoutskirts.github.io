@@ -154,7 +154,7 @@ const Armi: Arma[] = [
         nome: "Void Combat Laser 2a versione",
         codice: "VCL2",
         tipo: "Fucile (2 mani)",
-        danno: [10],
+        danno: [10,10],
         tipoDanno: "ustione",
         gravitaDanno: "leggero",
         modifiche_poss: ["HE"],

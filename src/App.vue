@@ -9,6 +9,7 @@ import type {Personaggio} from "@/assets/Personaggi"
 import {Armi} from "@/assets/Armi";
 import type {Arma} from "@/assets/Armi"
 import {ChartDataset} from "chart.js";
+import { objectExpression } from "@babel/types";
 
 const coverValue = ref<number | undefined>(undefined);
 
@@ -114,14 +115,13 @@ const tabellaProbabilita = computed(() => {
   const dicePossibilities = (dices: number[]) => dices.reduce((_: number[], face) => _.reduceRight((s: number[], x) => [0,...sum(Array(face).fill(x), s)], []), [1])
 
   const diceProbabilities = dicePossibilities(weapon.value.danno).map(x => x / totComb*100).map(x => x.toFixed(2)).map((a,i) => [a,i]).filter(([a,i])=> a > 0.0)
-  console.log(diceProbabilities)
-  return
-    diceProbabilities.map((x, i) => [
-      i * (100-resistenza)/100 - (defender.value?.statistiche?.ossatura[1] ?? 0),
+  
+  return diceProbabilities.map((x, i) => [
+      (i + dannoMin) * (100-resistenza)/100 - (defender.value?.statistiche?.ossatura[1] ?? 0),
       x
     ]);
 })
-console.log(tabellaProbabilita)
+
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
   return [{
     label: "Probabilità di colpire",
@@ -233,8 +233,8 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
         <BarChart :data="attackPercentageChartData"/>
       </div>
     </div>
-    <!-- Tabella probabilità danni -->
-    <table id="tabDanni">
+      <!-- Tabella probabilità danni -->
+    <table  class="table table-striped-columns" id="tabDanni">
       <thead>
         <tr>
           <th>Risultato dadi</th>
@@ -244,13 +244,14 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
       </thead>
        <tbody>
         <tr v-for="(row, index) in tabellaProbabilita">
-          <td>{{ index }}</td>
+          <td>{{ row[1][1] }}</td>
           <td>{{ row[0] }}</td> 
-          <td>{{ row[1] }}</td>
+          <td>{{ row[1][0] }} %</td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
+ 
 
 <style></style>
