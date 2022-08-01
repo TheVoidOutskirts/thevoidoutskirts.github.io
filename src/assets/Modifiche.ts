@@ -1,4 +1,4 @@
-import type {Modifica} from "@/assets/Modifica";
+import type {Modifica} from "./Modifica";
 
 export {Modifiche}
 
