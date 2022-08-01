@@ -43,7 +43,7 @@ watch(attacker, () => {
 })
 
 function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensore: Personaggio, copertura: number): number[] {
-  const probVett = [ 0.7000, 0.7375, 0.7750, 0.8125, 0.8500, 0.8875, 0.9250, 0.9625]
+  const probVett = [0.7143, 0.7143, 0.7143, 0.7143, 0.7857, 0.8571, 0.9286, 1]
 
   const armaturaDifensore = Armature.find(e => e.codice == difensore.armatura)
   if (!armaturaDifensore)
@@ -87,41 +87,6 @@ const attackPercentage = computed(() => {
   return calcolaPercentualeAttacco(weapon.value, attacker.value, defender.value, coverValue.value);
 })
 
-const tabellaProbabilita = computed(() => {
-  if (weapon.value === null) return undefined;
-  if (attacker.value === null) return undefined;
-  if (defender.value === null) return undefined;
-  if (coverValue.value === undefined) return undefined;
-  const nomeArmaturaDifensore = defender.value.armatura
-  const armaturaDifensore = Armature.find(e => e.codice == nomeArmaturaDifensore)
-  const dannoMax = weapon.value.danno.reduce((a,b) => a + b, 0)
-  const dannoMin = weapon.value.danno.length
-  const totComb = weapon.value.danno.reduce((a,b) => a * b, 1)
-  const tipoAttacco = weapon.value.tipoDanno
-  const gravitaDanno = weapon.value.gravitaDanno
-  let resistenza: number
-  if(armaturaDifensore?.gravitaDanno == undefined){
-      resistenza = 0
-  }
-  else{
-      resistenza = armaturaDifensore.gravitaDanno[gravitaDanno]?.[tipoAttacco][0] ?? 0
-  }
-
-  const sum = (a: number[], b: number[]) => a.length > b.length
-         ? a.map((_,i) => i < b.length ? a[i] + b[i] : a[i])
-         : b.map((_,i) => i < a.length ? a[i] + b[i] : b[i])
-
-  const dicePossibilities = (dices: number[]) => dices.reduce((_: number[], face) => _.reduceRight((s: number[], x) => [0,...sum(Array(face).fill(x), s)], []), [1])
-
-  const diceProbabilities = dicePossibilities(weapon.value.danno).map(x => x / totComb*100).map(x => x.toFixed(2)).map((a,i) => [a,i]).filter(([a,i])=> a > 0.0)
-  console.log(diceProbabilities)
-  return
-    diceProbabilities.map((x, i) => [
-      i * (100-resistenza)/100 - (defender.value?.statistiche?.ossatura[1] ?? 0),
-      x
-    ]);
-})
-console.log(tabellaProbabilita)
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
   return [{
     label: "Probabilità di colpire",
@@ -233,23 +198,6 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
         <BarChart :data="attackPercentageChartData"/>
       </div>
     </div>
-    <!-- Tabella probabilità danni -->
-    <table id="tabDanni">
-      <thead>
-        <tr>
-          <th>Risultato dadi</th>
-          <th>Danno effettivo</th>
-          <th>Probabilità</th>
-        </tr>
-      </thead>
-       <tbody>
-        <tr v-for="(row, index) in tabellaProbabilita">
-          <td>{{ index }}</td>
-          <td>{{ row[0] }}</td> 
-          <td>{{ row[1] }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 
