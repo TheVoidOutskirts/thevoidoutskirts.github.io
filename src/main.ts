@@ -11,6 +11,7 @@ import 'vue-select/dist/vue-select.css';
 import 'bootstrap/scss/bootstrap.scss'
 
 import App from './App.vue'
+import NavApp from './NavalApp.vue'
 
 ChartJS.register(...registerables, ChartDataLabels)
 
