@@ -5,6 +5,7 @@
       <div class="col-6">
         <div class="mb-4">
           <h2 class="text-center">Scegli un attaccante</h2>
+          <!--suppress HtmlUnknownTag -->
           <v-select
               :options="Personaggi"
               label="nome"
@@ -97,7 +98,7 @@
       </div>
     </div>
     <!-- Tabella probabilità danni -->
-    <table  class="table table-striped-columns" id="tabDanni">
+    <table class="table table-striped-columns" id="tabDanni">
       <thead>
       <tr>
         <th>Risultato dadi</th>
@@ -106,7 +107,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(row, index) in tabellaProbabilita">
+      <tr v-for="(row, index) in tabellaProbabilita" :key="index">
         <td>{{ row[1][1] }}</td>
         <td>{{ row[0] }}</td>
         <td>{{ row[1][0] }} %</td>
@@ -211,6 +212,7 @@ const tabellaProbabilita = computed(() => {
   if (attacker.value === null) return undefined;
   if (defender.value === null) return undefined;
   if (coverValue.value === undefined) return undefined;
+
   const nomeArmaturaDifensore = defender.value.armatura
   const armaturaDifensore = Armature.find(e => e.codice == nomeArmaturaDifensore)
   const dannoMax = weapon.value.danno.reduce((a, b) => a + b, 0)
@@ -234,7 +236,7 @@ const tabellaProbabilita = computed(() => {
   const diceProbabilities = dicePossibilities(weapon.value.danno).map(x => x / totComb * 100).map(x => x.toFixed(2)).map((a, i) => [a, i]).filter(([a, i]) => a > 0.0)
 
   return diceProbabilities.map((x, i) => [
-    (i + dannoMin) * (100 - resistenza) / 100 - (defender.value?.statistiche?.ossatura[1] ?? 0),
+    Math.max(0, (i + dannoMin) * (100 - resistenza) / 100 - (defender.value?.statistiche?.ossatura?.[1] ?? 0)),
     x
   ]);
 })

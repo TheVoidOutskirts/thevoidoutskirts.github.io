@@ -9,6 +9,7 @@ import vSelect from "vue-select";
 import 'vue-select/dist/vue-select.css';
 
 import 'bootstrap/scss/bootstrap.scss'
+// import * as bootstrap from 'bootstrap'
 
 import App from './App.vue'
 
