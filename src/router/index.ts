@@ -18,6 +18,11 @@ const router = createRouter({
             path: '/naval',
             name: 'navalCalculator',
             component: () => import('../views/NavalCalculatorView.vue')
+        },
+        {
+            path: '/unit-viewer',
+            name: 'unitViewer',
+            component: () => import('../views/UnitViewerView.vue')
         }
     ]
 })

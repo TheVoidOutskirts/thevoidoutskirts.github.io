@@ -8,6 +8,9 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import vSelect from "vue-select";
 import 'vue-select/dist/vue-select.css';
 
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+import 'vue3-easy-data-table/dist/style.css';
+
 import 'bootstrap/scss/bootstrap.scss'
 // import * as bootstrap from 'bootstrap'
 
@@ -22,5 +25,6 @@ app.use(router)
 
 // https://vuejs.org/guide/components/registration.html
 app.component('v-select', vSelect)
+app.component('EasyDataTable', Vue3EasyDataTable);
 
 app.mount('#app')
