@@ -123,9 +123,10 @@ import {ValoriCopertura} from "@/assets/Copertura";
 import {computed, ref, watch} from "vue";
 import BarChart from "@/components/BarChart.vue";
 
-import type { AllData, Arma, Armatura, Personaggio } from "@assets/Types";
+import type {Arma, Armatura, Personaggio} from "@/assets/Types";
 
 import type {ChartDataset} from "chart.js";
+import {useDataStore} from "@/stores/data";
 
 const coverValue = ref<number | undefined>(undefined);
 
@@ -134,18 +135,11 @@ const defender = ref<Personaggio | null>(null);
 
 const useAllWeapons = ref(false);
 
-const apiKey = ref("asdf");
+const store = useDataStore();
 
-// TODO: retrieve the actual key fom the current URL
-//       (DO NOT CREATE A NEW HTML FIELD, USE A URL-BASED SOLUTION
-//        SO THAT IT CAN BE BOOKMARKED + NO SESSION TO BE SAVED)
-const Data: AllData = await fetch(`https://enigma-data.deno.dev/${apiKey.value}`)
-                              .then(d => d.json())
-                              .catch(e => console.log(e)) as AllData
-
-const Armi = Data.armi;
-const Personaggi = Data.personaggi;
-const Armature = Data.armature;
+const Armi = store.getArmi
+const Personaggi = store.getPersonaggi;
+const Armature = store.getArmature;
 
 const attackerWeapons = computed<Arma[]>(() => {
   if (attacker.value == null) return [];
@@ -175,7 +169,7 @@ watch(attacker, () => {
 function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensore: Personaggio, copertura: number): number[] {
   const probVett = [0.7000, 0.7375, 0.7750, 0.8125, 0.8500, 0.8875, 0.9250, 0.9625]
 
-  const armaturaDifensore: Armatura = Armature.find(e => e.codice == difensore.armatura)
+  const armaturaDifensore: Armatura | undefined = Armature.find(e => e.codice == difensore.armatura)
   if (!armaturaDifensore)
     throw `Arma difensore non trovata ${difensore.armatura}`
 
