@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import {useDataStore} from "@/stores/data";
 import {useRouter} from "vue-router";
+import {inject} from "vue";
+import {VueCookies} from "vue-cookies";
 
 const store = useDataStore();
 const router = useRouter()
+const cookies = inject<VueCookies>('$cookies') ?? (() => {
+  throw new Error("Cookies library is not defined");
+})();
 
 function logout() {
   store.deleteData()
+  cookies.remove("accessKey")
   router.replace("/")
 }
 </script>

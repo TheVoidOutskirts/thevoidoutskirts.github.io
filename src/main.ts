@@ -22,6 +22,9 @@ import 'bootstrap/scss/bootstrap.scss'
 import axios from "axios";
 import VueAxios from "vue-axios";
 
+// VueCookies
+import VueCookies from "vue-cookies";
+
 /* Setup */
 import App from './App.vue'
 
@@ -39,5 +42,6 @@ app.component('v-select', vSelect)
 app.component('EasyDataTable', Vue3EasyDataTable);
 app.use(VueAxios, axios);
 app.provide('axios', app.config.globalProperties.axios);
+app.use(VueCookies, {expire: '12y'})
 
 app.mount('#app')
