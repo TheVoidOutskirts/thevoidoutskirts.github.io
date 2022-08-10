@@ -16,7 +16,7 @@ export const useDataStore = defineStore({
     },
     actions: {
         loadData(loadedData: AllData) {
-            this.data = loadedData;
+            this.$state.data = loadedData;
         },
         deleteData() {
             this.data = undefined;

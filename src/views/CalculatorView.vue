@@ -120,7 +120,7 @@
 <script setup lang="ts">
 import {ValoriCopertura} from "@/assets/Copertura";
 
-import {computed, ref, watch} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import BarChart from "@/components/BarChart.vue";
 
 import type {Arma, Armatura, Personaggio} from "@/assets/Types";
@@ -137,20 +137,31 @@ const useAllWeapons = ref(false);
 
 const store = useDataStore();
 
-const Armi = store.getArmi
-const Personaggi = store.getPersonaggi;
-const Armature = store.getArmature;
+// Fix for loading because I don't know how to get a ref from a store getter...
+watch(() => store.isDataLoaded, loadData)
+// Mounted needed to load data for the first time
+onMounted(loadData)
+
+function loadData() {
+  Armi.value = store.getArmi;
+  Personaggi.value = store.getPersonaggi;
+  Armature.value = store.getArmature;
+}
+
+const Armi = ref<Arma[]>([]);
+const Personaggi = ref<Personaggio[]>([]);
+const Armature = ref<Armatura[]>([]);
 
 const attackerWeapons = computed<Arma[]>(() => {
   if (attacker.value == null) return [];
   // todo return not only all weapons, but also the weapons owned by the character (by marking their name in some way)
   // this to be able to use modifications owned by the player!
-  if (useAllWeapons.value) return Armi;
+  if (useAllWeapons.value) return Armi.value;
 
   const weapons: Arma[] = [];
 
   attacker.value.armi.forEach(wc => {
-    const foundWeapon = Armi.find(w => w.codice == wc.arma)
+    const foundWeapon = Armi.value.find(w => w.codice == wc.arma)
     if (foundWeapon !== undefined) {
       weapons.push(foundWeapon);
     }
@@ -169,7 +180,7 @@ watch(attacker, () => {
 function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensore: Personaggio, copertura: number): number[] {
   const probVett = [0.7000, 0.7375, 0.7750, 0.8125, 0.8500, 0.8875, 0.9250, 0.9625]
 
-  const armaturaDifensore: Armatura | undefined = Armature.find(e => e.codice == difensore.armatura)
+  const armaturaDifensore: Armatura | undefined = Armature.value.find(e => e.codice == difensore.armatura)
   if (!armaturaDifensore)
     throw `Arma difensore non trovata ${difensore.armatura}`
 
@@ -218,7 +229,7 @@ const tabellaProbabilita = computed(() => {
   if (coverValue.value === undefined) return undefined;
 
   const nomeArmaturaDifensore = defender.value.armatura
-  const armaturaDifensore = Armature.find(e => e.codice == nomeArmaturaDifensore)
+  const armaturaDifensore = Armature.value.find(e => e.codice == nomeArmaturaDifensore)
   const dannoMax = weapon.value.danno.reduce((a, b) => a + b, 0)
   const dannoMin = weapon.value.danno.length
   const totComb = weapon.value.danno.reduce((a, b) => a * b, 1)
