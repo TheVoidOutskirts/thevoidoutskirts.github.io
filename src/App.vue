@@ -1,5 +1,14 @@
 <script setup lang="ts">
+import {useDataStore} from "@/stores/data";
+import {useRouter} from "vue-router";
 
+const store = useDataStore();
+const router = useRouter()
+
+function logout() {
+  store.deleteData()
+  router.replace("/")
+}
 </script>
 
 <template>
@@ -11,6 +20,11 @@
           <router-link to="/calculator" class="nav-link">Calcolatore</router-link>
           <router-link to="/unit-viewer" class="nav-link">Unit Viewer</router-link>
           <router-link to="/naval" class="nav-link">Calcolatore Navale</router-link>
+        </div>
+        <div class="navbar-nav ms-auto" v-show="store.isDataLoaded">
+          <div class="nav-item">
+            <a class="nav-link text-danger" href="" @click.prevent="logout">Logout</a>
+          </div>
         </div>
       </div>
     </div>
