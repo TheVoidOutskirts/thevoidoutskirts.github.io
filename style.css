@@ -1,0 +1,42 @@
+body {
+    background: rgb(58, 58, 58);
+    color: white;
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    background: black;
+    padding: 150px;
+}
+
+div {
+    background: black;
+    margin:auto;
+    width: 100px;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    text-align: left;
+}
+
+li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+section {
+    background: white;
+    color: grey;
+    padding: 130px;
+    display: flex;
+    flex-direction: row;
+}
+
+footer {
+    background: black;
+    padding: 50px;
+}
