@@ -7,8 +7,8 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.dropdown {
-  display: inline-block;
+.menu {
+  display: wrap;
   float: right;
   margin-right: 100px;
 }
@@ -22,13 +22,32 @@ body{
 .dropdown:hover .dropdown-content {
   display: block;
 }
-.dropdown-content a {
-  display: block;
-  color: purple;
-  padding: 5px;
-  text-decoration: none;
+.menu > a {
+  float: right;
+  color: rgb(255, 255, 255);
+  margin: 10px;
+  padding: 20px;
+  font-size: 20px;
 }
 .dropdown-content a:hover {
   color: #b2a9a96f;
   background-color: #00A4BD;
+}
+.flex-container {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.329);
+}
+.flex-container > div {
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+font-face {
+  font-family: myFirstFont;
+  src: url(Protomolecule.woff) format("woff");
+}
+
+* {
+  font-family: myFirstFont;
 }
