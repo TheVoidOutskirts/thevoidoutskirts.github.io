@@ -34,7 +34,7 @@ body{
 }
 font-face {
   font-family: myFirstFont;
-  src: url(Protomolecule.woff) format("woff");
+  src: "Protomolecule.woff" format("woff");
 }
 
 * {
