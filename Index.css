@@ -32,3 +32,11 @@ body{
   color: #b2a9a96f;
   background-color: #00A4BD;
 }
+font-face {
+  font-family: myFirstFont;
+  src: url(Protomolecule.woff) format("woff");
+}
+
+* {
+  font-family: myFirstFont;
+}
