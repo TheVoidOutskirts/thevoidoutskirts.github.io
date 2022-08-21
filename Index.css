@@ -4,7 +4,7 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed; 
     background-size: 100% 100%;
-    font-family: "theExpance";/*,Arial, Helvetica, sans-serif;*/
+    font-family: 'theExpance';/*,Arial, Helvetica, sans-serif;*/
 }
 
 .dropdown {
@@ -46,7 +46,7 @@ body{
 }*/
 @font-face {
   font-family: 'the Expance';
-  src: url('../../TheVoidOutskirts Protomolecule.ttf') format('truetype');
+  src: url('../../TheVoidOutskirts.github.io Protomolecule.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 
