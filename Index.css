@@ -1,10 +1,10 @@
 body{
     background-color: black;
-    background-image: url('portaleee.gif');
+    background-image: url('portaleeNoBlur2.gif');
     background-repeat: no-repeat;
     background-attachment: fixed; 
     background-size: 100% 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "theExpanse";/*,Arial, Helvetica, sans-serif;*/
 }
 
 .menu {
@@ -43,11 +43,31 @@ body{
   font-size: 30px;
 }
 
-font-face {
+/*font-face {
   font-family: myFirstFont;
-  src: url(Protomolecule.woff) format("woff");
+  src: "Protomolecule.woff" format("woff");
+}*/
+font-face {
+  font-family: "theExpance";
+  src: url("Protomolecule.otf");
+  src: url('Protomolecule.otf') format('opentype'),
+       url('Protomolecule.woff2') format('woff2'),
+       url('Protomolecule.woff') format('woff'),
+       url('Protomolecule.ttf') format('truetype'),
+       url('Protomolecule.svg#Proto') format('svg');
 }
 
-* {
-  font-family: myFirstFont;
+@keyframes change{
+  0%
+  {
+      background-image: url(Disegno_portale.png);
+  }
+  70%
+  {
+      background-image: url(MOSHED-2022-8-9-13-10-29.gif);
+  }
+  100%
+  {
+      background-image: url(NoSignal.webp);
+  }
 }
