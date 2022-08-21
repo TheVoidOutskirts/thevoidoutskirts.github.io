@@ -32,7 +32,7 @@ body{
   color: #b2a9a96f;
   background-color: #00A4BD;
 }
-font-face {
+@font-face {
   font-family: "theExpance";
   src: url("Protomolecule.otf");
   src: url('Protomolecule.otf') format('opentype'),
