@@ -32,12 +32,22 @@ body{
   color: #b2a9a96f;
   background-color: #00A4BD;
 }
+/*
 @font-face {
-  font-family: "theExpance";
-  src: url("Protomolecule.otf");
-  src: url('Protomolecule.otf') format('opentype'),
-       url('Protomolecule.woff2') format('woff2'),
+  font-family: 'the Expance';
+  src: url('Protomolecule.eot');
+  src: url('Protomolecule.eot?#iefix') format('opentype'),
        url('Protomolecule.woff') format('woff'),
        url('Protomolecule.ttf') format('truetype'),
-       url('Protomolecule.svg#Proto') format('svg');
+       url('Protomolecule.svg#theExpance') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}*/
+@font-face {
+  font-family: 'the Expance';
+  src: url('../../TheVoidOutskirts Protomolecule.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
 }
