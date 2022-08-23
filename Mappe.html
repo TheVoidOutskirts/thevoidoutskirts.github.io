@@ -19,7 +19,7 @@
                 <li><a href="Regolamento.html">Regolamento</a></li>
             </ul>
         </nav>
-        <h1>Mappe</h1>
+        <h1 id="testA">Mappe</h1>
     </header>
     <section>
         <div></div>
@@ -28,5 +28,12 @@
     </section>
     <footer>footer</footer>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script>
+        onload = setTimeout(test, 3000)
+        function test(){
+            testA.innerHTML += `ciao`
+            alert('Hello')
+        }
+    </script>
 </body>
 </html>
