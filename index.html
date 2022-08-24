@@ -7,7 +7,7 @@
     <title>The Void Outskirts</title>
     <link rel="stylesheet" href="Index.css">
   </head>
-  <body onresize="openNav()">
+  <body>
     <video autoplay muted loop id="myVideo">
       <source src="PortaleeNoBlur3.webm" type="video/webm">
       Your browser does not support HTML5 video.
@@ -41,14 +41,12 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script>
       function openNav() {
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-        document.getElementById("mySidepanel").style.width = `${w}px`;
-        document.getElementById("mySidepanel").style.height = `${h}px`;
+        document.getElementById("mySidepanel").style.width = "100%";
+        
       }
       
       function closeNav() {
-        document.getElementById("mySidepanel").style.width = "0";
+        document.getElementById("mySidepanel").style.width = "0%";
       }
       </script>
   </body>
