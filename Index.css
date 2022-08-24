@@ -51,7 +51,7 @@ body{
   min-height: 100%;
 }
 .header {
-  position: relative;
+  position: sticky;
   overflow: hidden;
   background-color: #f1f1f1;
   padding: 20px 10px;
@@ -88,16 +88,7 @@ body{
   position: sticky;
 }
 .sidepanel  {
-  width: 0;
-  position: absolute;
-  z-index: 1;
-  height: 270px;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+  display: none;
 }
 
 .sidepanel a {
@@ -124,6 +115,20 @@ body{
 }
 
 @media screen and (max-width: 500px) {
+  .sidepanel  {
+    width: 0;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    height: calc();
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
   .sidepanel a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
