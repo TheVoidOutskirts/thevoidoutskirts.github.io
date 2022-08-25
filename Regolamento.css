@@ -7,14 +7,14 @@ body {
 #navbar {
     overflow: hidden;
     background-color: #383838;
-    padding: 20px 10px;
+    padding: 5px;
   }
   
   #navbar a {
     float: right;
     margin-right: 20px;
     color: white;
-    padding: 8px 5px;
+    padding: 6px 5px;
     text-decoration: none;
     font-size: 18px; 
     line-height: 25px;
@@ -37,7 +37,7 @@ body {
   }
   .content {
     margin-left: 460px;
-    padding: 0px 10px;
+    padding: 30px 10px;
     background-color: black;
     color: white;
   }
@@ -95,7 +95,7 @@ body {
 .sidenav {
     height: 100%;
     width: 460;
-    margin-top: 81px;
+    margin-top: 47px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -111,8 +111,4 @@ body {
  }
  .sidenav a:hover {
     color: #797979;
-  }
-  .main {
-    margin-left: 700px;
-    padding: 0px 10px;
   }
