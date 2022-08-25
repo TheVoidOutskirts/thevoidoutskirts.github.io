@@ -55,6 +55,9 @@ body {
   font-size: 30px;
   font-weight: bold;
 }
+#navbar a.logo:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
 
 #myBtn {
     display: none;
