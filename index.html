@@ -12,10 +12,22 @@
       <source src="PortaleeNoBlur3.webm" type="video/webm">
       Your browser does not support HTML5 video.
     </video>
-    <div >
-    <div class="header">
-      <a href="/" class="logo">The Void Outskirts</a>
-      <div class="header-right">
+    <div id="myHeader" class="header" >
+      <div class="navbar">
+        <a href="/" class="logo">The Void Outskirts</a>
+        <a href="Regolamento.html" class="menu">Regolamento</a>
+        <a href="Mappe.html" class="menu">Mappe</a>
+        <a href="Luoghi.html" class="menu">Luoghi</a> 
+        <a href="Fazioni.html" class="menu">Fazioni</a>
+        <a href="Storia.html" class="menu">Storia</a> 
+        <a href="index.html" class="menu" class="active">Home</a>  
+      </div>
+    
+    
+    
+      <button class="openbtn" onclick="openNav()">☰ The Void Outshirts</button>  
+      <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a href="index.html">Home</a>
         <a href="Storia.html">Storia</a>
         <a href="Fazioni.html">Fazioni</a>
@@ -23,30 +35,19 @@
         <a href="Mappe.html">Mappe</a>
         <a href="Regolamento.html">Regolamento</a>
       </div>
-    </div>
-    
-    <button class="openbtn" onclick="openNav()">☰ The void Outshirts</button>  
-
-    <div id="mySidepanel" class="sidepanel">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <a href="index.html">Home</a>
-      <a href="Storia.html">Storia</a>
-      <a href="Fazioni.html">Fazioni</a>
-      <a href="Luoghi.html">Luoghi</a>
-      <a href="Mappe.html">Mappe</a>
-      <a href="Regolamento.html">Regolamento</a>
-    </div>
+  
   </div>
   
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script>
       function openNav() {
         document.getElementById("mySidepanel").style.width = "100%";
-        
+        document.getElementById("myHeader").style.height = "100%";
       }
       
       function closeNav() {
         document.getElementById("mySidepanel").style.width = "0%";
+        document.getElementById("myHeader").style.height = "auto";
       }
       </script>
   </body>

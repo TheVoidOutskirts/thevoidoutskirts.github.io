@@ -9,15 +9,31 @@
     <link rel="stylesheet" href="Regolamento.css">
 </head>
 <body>
+  <div id="myHeader" class="header">
   <div id="navbar">
     <a href="/" class="logo">The Void Outskirts</a>
-    <a href="Regolamento.html" class="active">Regolamento</a>
-    <a href="Mappe.html">Mappe</a>
-    <a href="Luoghi.html">Luoghi</a> 
+    <a href="Regolamento.html" class="menu">Regolamento</a>
+    <a href="Mappe.html" class="menu">Mappe</a>
+    <a href="Luoghi.html" class="menu">Luoghi</a> 
+    <a href="Fazioni.html" class="menu">Fazioni</a>
+    <a href="Storia.html" class="menu">Storia</a> 
+    <a href="index.html" class="menu" class="active">Home</a>
+  </div>  
+
+
+
+
+  <button class="openbtn" onclick="openNav()">☰ The Void Outshirts</button>  
+  <div id="mySidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="index.html">Home</a>
+    <a href="Storia.html">Storia</a>
     <a href="Fazioni.html">Fazioni</a>
-    <a href="Storia.html">Storia</a> 
-    <a href="index.html">Home</a>  
+    <a href="Luoghi.html">Luoghi</a>
+    <a href="Mappe.html">Mappe</a>
+    <a href="Regolamento.html">Regolamento</a>
   </div>
+</div>
       
 <div class="sidenav">
 
@@ -1835,18 +1851,27 @@ function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
-window.onscroll = function() {myFunction()};
+  window.onscroll = function() {myFunction()};
 
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
+  var navbar = document.getElementById("navbar");
+  var sticky = navbar.offsetTop;
 
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
+  function myFunction() {
+    if (window.pageYOffset >= sticky) {
+      navbar.classList.add("sticky")
   } else {
-    navbar.classList.remove("sticky");
+      navbar.classList.remove("sticky");
   }
 }
+  function openNav() {
+    document.getElementById("mySidepanel").style.width = "100%";
+    document.getElementById("myHeader").style.height = "100%"; 
+  }
+  function closeNav() {
+    document.getElementById("mySidepanel").style.width = "0%";
+    document.getElementById("myHeader").style.height = "auto";
+  }
+
 </script>
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>

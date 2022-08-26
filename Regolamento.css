@@ -4,13 +4,23 @@ body {
     margin: 0px;
     padding: 0px;
   }
+  .header{
+    background-color: #383838;
+    padding: 5px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    transition: 0.5s;
+  
+  }
 #navbar {
     overflow: hidden;
     background-color: #383838;
     padding: 5px;
+    position: sticky;
   }
   
-  #navbar a {
+  #navbar a.menu {
     float: right;
     margin-right: 20px;
     color: white;
@@ -34,6 +44,8 @@ body {
     float: left;
     font-size: 30px;
     font-weight: bold;
+    color: white;
+    text-decoration: none;
   }
   .content {
     margin-left: 460px;
@@ -51,13 +63,84 @@ body {
   .sticky + .content{
     padding-top: 60px;
   }
-#navbar a.logo {
-  font-size: 30px;
-  font-weight: bold;
-}
-#navbar a.logo:hover {
-  background-color: rgba(0, 0, 0, 0);
-}
+
+
+        /* ----- Mobile Version ------ */
+
+
+        .sidepanel  {
+          display: none;
+          overflow: hidden;
+        }
+        
+        .sidepanel a {
+          display: none;
+        }
+        
+        .sidepanel a:hover {
+          color: #f1f1f1;
+        }
+        
+        .sidepanel .closebtn {
+          position: absolute;
+          top: 0;
+          right: 25px;
+          font-size: 36px;
+        }
+        
+        .openbtn {
+          display: none;
+        }
+        
+        .openbtn:hover {
+          background-color:#444;
+        }
+        
+        @media screen and (max-width: 500px) {
+          .sidepanel  {
+            width: 0;
+            display: block;
+            position: absolute;
+            z-index: 1;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+          }
+          
+          .sidepanel a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+          }
+          .openbtn {
+            position: sticky;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            display: inline;
+          }
+        
+          #navbar a {
+            display: none;
+          }
+          .sidenav{
+            display: none;
+          }
+          .content{
+            margin-left: 0px;
+          }
+          
+        }
 
 #myBtn {
     display: none;
