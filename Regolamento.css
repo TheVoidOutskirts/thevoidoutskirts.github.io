@@ -4,23 +4,23 @@ body {
     margin: 0px;
     padding: 0px;
   }
-  .header{
-    background-color: #383838;
-    padding: 5px;
-    width: 100%;
-    height: auto;
-    position: absolute;
-    transition: 0.5s;
-  
-  }
-#navbar {
+.header{
+  background-color: #383838;
+  padding: 5px;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  transition: 0.5s;
+  z-index: 999;
+}
+.navbar {
     overflow: hidden;
     background-color: #383838;
     padding: 5px;
     position: sticky;
   }
   
-  #navbar a.menu {
+  .navbar a.menu {
     float: right;
     margin-right: 20px;
     color: white;
@@ -31,12 +31,12 @@ body {
     border-radius: 5px;
   }
   
-  #navbar a:hover {
+  .navbar a:hover {
     background-color: #ddd;
     color: black;
   }
   
-  #navbar a.active {
+  .navbar a.active {
     background-color: #525252;
     color: white;
     float: right;
@@ -47,7 +47,7 @@ body {
     line-height: 25px;
     border-radius: 5px;
   }
-  #navbar a.logo {
+  .navbar a.logo {
     float: left;
     font-size: 30px;
     color: white;
@@ -136,7 +136,7 @@ body {
             display: inline;
           }
         
-          #navbar a {
+          .navbar a {
             display: none;
           }
           .sidenav{

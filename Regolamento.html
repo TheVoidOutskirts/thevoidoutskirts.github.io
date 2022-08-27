@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="myHeader" class="header">
-  <div id="navbar">
+  <div class="navbar">
     <a href="/" class="logo">The Void Outskirts</a>
     <a href="Regolamento.html" class="active">Regolamento</a>
     <a href="Mappe.html" class="menu">Mappe</a>
@@ -1853,14 +1853,14 @@ function topFunction() {
 }
   window.onscroll = function() {myFunction()};
 
-  var navbar = document.getElementById("navbar");
-  var sticky = navbar.offsetTop;
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop;
 
   function myFunction() {
     if (window.pageYOffset >= sticky) {
-      navbar.classList.add("sticky")
+      header.classList.add("sticky")
   } else {
-      navbar.classList.remove("sticky");
+      header.classList.remove("sticky");
   }
 }
   function openNav() {
