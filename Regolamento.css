@@ -39,11 +39,17 @@ body {
   #navbar a.active {
     background-color: #525252;
     color: white;
+    float: right;
+    margin-right: 20px;
+    padding: 6px 5px;
+    text-decoration: none;
+    font-size: 18px; 
+    line-height: 25px;
+    border-radius: 5px;
   }
   #navbar a.logo {
     float: left;
     font-size: 30px;
-    font-weight: bold;
     color: white;
     text-decoration: none;
   }
@@ -181,7 +187,7 @@ body {
 .sidenav {
     height: 100%;
     width: 460;
-    margin-top: 47px;
+    margin-top: 57px;
     position: fixed;
     z-index: 1;
     top: 0;
