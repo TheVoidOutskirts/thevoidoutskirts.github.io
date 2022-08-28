@@ -57,6 +57,7 @@ body {
     padding: 30px 10px;
     background-color: black;
     color: white;
+    overflow: hidden;
   }
   
   .sticky {
