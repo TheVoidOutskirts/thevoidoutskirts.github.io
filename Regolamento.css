@@ -1,178 +1,24 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    margin: 0px;
-    padding: 0px;
-  }
-.header{
-  background-color: #383838;
-  padding: 5px;
-  width: 100%;
-  height: auto;
-  position: fixed;
-  z-index: 999;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
 }
-.navbar {
-    overflow: hidden;
-    background-color: #383838;
-    padding: 5px;
-    position: sticky;
-  }
-  
-  .navbar a.menu {
-    float: right;
-    margin-right: 20px;
-    color: white;
-    padding: 6px 5px;
-    text-decoration: none;
-    font-size: 18px; 
-    line-height: 25px;
-    border-radius: 5px;
-  }
-  
-  .navbar a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .navbar a.active {
-    background-color: #525252;
-    color: white;
-    float: right;
-    margin-right: 20px;
-    padding: 6px 5px;
-    text-decoration: none;
-    font-size: 18px; 
-    line-height: 25px;
-    border-radius: 5px;
-  }
-  .navbar a.logo {
-    float: left;
-    font-size: 30px;
-    color: white;
-    text-decoration: none;
-  }
-  .content {
-    margin-left: 460px;
-    padding: 30px 10px;
-    background-color: black;
-    color: white;
-    overflow: hidden;
-  }
-  
-  .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-  
-  .sticky + .content{
-    padding-top: 60px;
-  }
 
-
-        /* ----- Mobile Version ------ */
-
-
-        .sidepanel  {
-          display: none;
-          overflow: hidden;
-        }
-        
-        .sidepanel a {
-          display: none;
-        }
-        
-        .sidepanel a:hover {
-          color: #f1f1f1;
-        }
-        
-        .sidepanel .closebtn {
-          position: absolute;
-          top: 0;
-          right: 25px;
-          font-size: 36px;
-        }
-        
-        .openbtn {
-          display: none;
-        }
-        
-        .openbtn:hover {
-          background-color:#444;
-        }
-        
-        @media screen and (max-width: 500px) {
-          .sidepanel  {
-            width: 0;
-            display: block;
-            position: absolute;
-            z-index: 1;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-          }
-          
-          .sidepanel a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-          }
-          .openbtn {
-            position: sticky;
-            font-size: 30px;
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0);
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            display: inline;
-          }
-        
-          .navbar a {
-            display: none;
-          }
-          .sidenav{
-            display: none;
-          }
-          .content{
-            margin-left: 0px;
-          }
-          
-        }
-
-#myBtn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    border-radius: 4px;
-  }
-  
-  #myBtn:hover {
-    background-color: #555;
-  }
-
+.sidenav {
+  height: 100%;
+  width: 460;
+  margin-top: 57px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: rgb(29, 29, 29);
+  overflow-x: hidden;
+}
 .sidenav ul {
-    text-align: left;
-    color: white;
-    margin-top: 0px;
-    
+  text-align: left;
+  color: white;
+  margin-top: 0px;   
 }
 .sidenav ul li {
   display: inline-block;
@@ -180,27 +26,16 @@ body {
   margin-top: 0px;
 }  
 .sidenav li {
-    display: inline-block;
-    margin-left: 20px;
-    margin-top: 10px;
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 10px;
 }  
-.sidenav {
-    height: 100%;
-    width: 460;
-    margin-top: 57px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    background-color: rgb(29, 29, 29);
-    overflow-x: hidden;
-    
-  }
 .sidenav a {
-   text-decoration: none;
-   font-size: 15px;
-   color: #ffffff;
-   display: block;
- }
- .sidenav a:hover {
-    color: #797979;
-  }
+  text-decoration: none;
+  font-size: 15px;
+  color: #ffffff;
+  display: block;
+}
+.sidenav a:hover {
+  color: #797979;
+}
