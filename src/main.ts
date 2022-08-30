@@ -27,7 +27,6 @@ import VueCookies from "vue-cookies";
 
 /* Setup */
 import App from './App.vue'
-import NavApp from './NavalApp.vue'
 
 // Done globally
 ChartJS.register(...registerables, ChartDataLabels)

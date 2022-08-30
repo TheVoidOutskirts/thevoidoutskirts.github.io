@@ -137,7 +137,7 @@ const useAllWeapons = ref(false);
 
 const store = useDataStore();
 
-// Fix for loading because I don't know how to get a ref from a store getter...
+// Fix for loading because I don't know how to get a ref from a store getter... todo find better way
 watch(() => store.isDataLoaded, loadData)
 // Mounted needed to load data for the first time
 onMounted(loadData)
