@@ -98,7 +98,7 @@
       </div>
     </div>
     <!-- Tabella probabilità danni -->
-    <table class="table table-striped-columns" id="tabDanni">
+    <table class="table table-dark table-striped mt-4" id="tabDanni">
       <thead>
       <tr>
         <th>Risultato dadi</th>
@@ -283,5 +283,21 @@ const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() =
 </script>
 
 <style scoped>
+/*https://vue-select.org/guide/css.html#dark-mode-example*/
+>>> {
+  --vs-controls-color: #664CC3;
+  --vs-border-color: #664CC3;
 
+  --vs-dropdown-bg: #282C34;
+  --vs-dropdown-color: #CC99CD;
+  --vs-dropdown-option-color: #CC99CD;
+
+  --vs-selected-bg: #664CC3;
+  --vs-selected-color: #EEEEEE;
+
+  --vs-search-input-color: #EEEEEE;
+
+  --vs-dropdown-option--active-bg: #664CC3;
+  --vs-dropdown-option--active-color: #EEEEEE;
+}
 </style>
