@@ -1,0 +1,1901 @@
+<template>
+  <main class="container">
+    <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button">
+      Link with href
+    </a>
+    <h1 id="manuale-del-giocatore">Manuale del giocatore</h1>
+    <h2 id="introduzione">Introduzione</h2>
+    <p>In The Void Outskirts il giocatore interpreta un astronauta che
+      arriva nei dintorni di un enorme portale a 25 anni di viaggio dal
+      sistema solare. Il portale è una delle ultime scoperte dell’umanità dopo
+      quella della vita su Alpha Centauri ed è sede di un immenso numero di
+      esperimenti scientifici finanziati da tutte le nazioni della Terra e
+      dell’Espanso. Il grande brulichio di novità e di fondi ha portato alla
+      nascita di piccole nazioni formalmente inesistenti intorno al portale
+      che vengono chiamate Le Periferie del Vuoto e che gestiscono i fondi per
+      gli esperimenti e al tempo stesso crescono come parassiti succhiando una
+      parte degli investimenti.</p>
+    <hr/>
+    <h2 id="sigle-e-acronimi">Sigle e acronimi</h2>
+    <p><strong>DC</strong> Difficulty classClasse di difficoltà di una prova
+      di abilità o di un tiro salvezza. Perché il tiro abbia successo il
+      valore della DC va eguagliato o superato, consirendo bonus e malus già
+      sommati al tiro di dado.</p>
+    <p><strong>Giocatore</strong> Qualsiasi giocatore reale che muove il
+      proprio personaggio.</p>
+    <p><strong>Station Master</strong> Il Dungeon Master, il Narratore,
+      colei o colui che racconta il gioco, mostra le mappe, muove i personaggi
+      non controllati dai giocatori e racconta quello che sta succedento ai
+      giocatori.</p>
+    <p><strong>Entità</strong> Qualsiasi personaggio, essere vivente o
+      animato che rappresenta un attore all’interno del mondo di gioco.</p>
+    <p><strong>Linea di vista</strong> Linea che unisce la casella
+      dell’entità attiva alla generica casella bersaglio selezionata. La linea
+      di vista si dice stabilita se è libera da ostacoli a piena altezza o da
+      entità nemiche o neutrali.</p>
+    <p><strong>XdY</strong> Termine abbreviato che descrive un numero X di
+      dadi uguali, tutti con lo stesso numero Y di facce</p>
+    <p><strong>Tipologia di danno</strong> La tipologia di danno rappresente
+      il modo di danneggiare il bersaglio e può essere di diversi tipi. La
+      resistenza del bersaglio è in generale diversa a diverse tipologie di
+      danno.</p>
+    <p><strong>Gravità del danno</strong> La gravità del danno è un modo per
+      indicare la penetrazione, la capacità dell’arma di danneggiare il
+      bersaglio. La gravità del danno può essere ad esempio leggero o pesante,
+      e definisce la possibilità di ignorare o no determinate armature.</p>
+    <h2 id="punteggi-abilità-e-talenti">Punteggi abilità e talenti</h2>
+    <p>I punteggi abilità determinano i l’abilità di un personaggio in una
+      certa macroarea, che comprende diversi ambiti di competenza, cosiddetti
+      talenti. Le punteggi abilità sono divisi in quelli del corpo e quelli
+      della testa.</p>
+    <ul>
+      <li>Corpo
+        <ul>
+          <li><strong>Gravità muscolare</strong>: definisce la forza di un
+            individuo in gravità abitualmente resistita (Forza)
+          </li>
+          <li><strong>Precisione</strong>: capacità di effettuare con precisione
+            un compito che l’utilizzo del corpo (Destrezza)
+          </li>
+          <li><strong>Ossatura</strong>: definisce la resistenza delle ossa e
+            degli organi e la capacità del cuore di un individuo in termini di
+            gravità abitualmente resistita (Costituzione)
+          </li>
+        </ul>
+      </li>
+      <li>Testa
+        <ul>
+          <li><strong>Multitasking</strong>: capacità di svolgere più incarichi
+            contemporaneamente senza perdere di efficacia nei singoli, definisce
+            anche i riflessi della persona.
+          </li>
+          <li><strong>Calcolo</strong>: capacità di calcolare a mente lo svolgersi
+            degli eventi o trovare soluzioni a problemi (Intelligenza)
+          </li>
+          <li><strong>Applicazione</strong>: capacità di applicarsi e imparare
+            teoria e pratica legate a un argomento (Saggezza)
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p>I talenti sono compresi all’interno di una macroarea di uno dei sei
+      punteggi abilità, oppure sotto la macroarea di interazione (sostituisce
+      il carisma) per cui non si ha un punteggio abilità.</p>
+    <ul>
+      <li><strong>Gravità muscolare</strong>
+        <ul>
+          <li>Combattimento ravvicinato</li>
+          <li>Utilizzo armi e strumenti ravvicinati</li>
+          <li>Atletica</li>
+          <li>Acrobatica</li>
+        </ul>
+      </li>
+      <li><strong>Precisione</strong>
+        <ul>
+          <li>Utilizzo armi e strumenti a distanza</li>
+          <li>Utilizzo armi e strumenti di precisione</li>
+          <li>Furtività</li>
+          <li>Pilotaggio</li>
+        </ul>
+      </li>
+      <li><strong>Ossatura</strong>
+        <ul>
+          <li>Accelerazione</li>
+          <li>Radiazione</li>
+          <li>Sopravvivenza</li>
+        </ul>
+      </li>
+      <li><strong>Multitasking</strong>
+        <ul>
+          <li>Percezione attiva</li>
+          <li>Percezione passiva</li>
+          <li>Attenzione suddivisa</li>
+          <li>Iniziativa</li>
+        </ul>
+      </li>
+      <li><strong>Calcolo</strong>
+        <ul>
+          <li>Investigazione</li>
+          <li>Programmazione</li>
+          <li>Hacking</li>
+          <li>Elettronica</li>
+          <li>Navigazione</li>
+        </ul>
+      </li>
+      <li><strong>Applicazione</strong>
+        <ul>
+          <li>Intuizione</li>
+          <li>Medicina</li>
+          <li>Riparazione</li>
+          <li>Movimentazione macchinari</li>
+          <li>Storia</li>
+          <li>Botanica</li>
+          <li>Religione</li>
+        </ul>
+      </li>
+      <li><strong>Interazione</strong>
+        <ul>
+          <li>Inganno</li>
+          <li>Intimidazione</li>
+          <li>Persuasione</li>
+        </ul>
+      </li>
+    </ul>
+    <h3 id="bonus-dai-punteggi-abilità-e-dalle-competenze">Bonus dai
+      punteggi abilità e dalle competenze</h3>
+    <p>Puunteggi abilità e competenze sui talenti possono dare bonus/malus
+      esclusivi (o uno o l’altro a scelta del giocatore) per una prova di
+      abilità o tiro salvezza. Se non si possiede la competenza per quel
+      talento si è obbligati a utilizzare il bonus/malus del punteggio
+      abilità. Sono elencati qui sotto i bonus/malus derivanti dai punteggi
+      abilità.</p>
+    <h3 id="prova-di-abilità">Prova di abilità</h3>
+    <p>Quando è richiesta una prova di una specifica abilità e di uno
+      specifico talento di quell’abilità, nella forma di “prova di
+      &lt;abilità&gt; (&lt;talento&gt;)”, si può scegliere di aggiungere il
+      bonus di competenza in quel talento oppure utilizzare il bonus/malus del
+      punteggio abilità in cui è compreso il talento. Verrà tirato 1d20 a cui
+      sarà sommato il bonus/malus. Se il punteggio finale eguaglia o supera la
+      classe di difficoltà (DC) della prova di abilità, la prova è superata
+      con successo, altrimenti la prova è fallita.</p>
+    <p>Un esempio di prova di abilità è: Prova di precisione (furtività)
+      DC12.</p>
+    <p>Le prove di interazione con i personaggi controllati dallo Station
+      Master possono dipendere da un tiro di dado, ma non ottengono
+      modificatori dal punteggio abilità. Possono però ottenere dei
+      modificatori dalla competenza nel talento richiesto (inganno,
+      intimidazione o persuasione).</p>
+    <h3 id="tiri-salvezza">Tiri salvezza</h3>
+    <p>Prove di abilità e tiri salvezza sono due facce della stessa
+      medaglia: mentre le prime sono tiri di 1d20 che decidono l’esito di
+      un’azione o di un confronto, i secondi sono sempre tiri di 1d20 che
+      hanno il potenziale di escludere una penalizzazione.</p>
+    <p>Entrambi questi tiri di dado hanno la necessità di eguagliare o
+      superare il livello di difficoltà (difficulty class – DC) della prova o
+      del tiro per avere successo.</p>
+    <p>Si considera il risultato del dado e si sommano o sottraggono i
+      modificatori.</p>
+    <h3 id="vantaggio-e-svantaggio">Vantaggio e svantaggio</h3>
+    <p>Determinate condizioni possono offrire un vantaggio o uno svantaggio
+      al tiro. Nel caso di vantaggio si tirano due volte i dati e si seleziona
+      il risultato migliore. Nel caso di svantaggio si tirano due volte i dati
+      e si seleziona il risultato peggiore. Non si può accumulare più di un
+      vantaggio o più di uno svantaggio. Se sono presenti condizioni sia per
+      svantaggi/o e vantaggi/o non viene applicato nessuno dei due.</p>
+    <hr/>
+    <h2 id="luogo-di-appartenenza">Luogo di appartenenza</h2>
+    <h3 id="nazioni-unite-della-terra">Nazioni Unite della Terra</h3>
+    <p>La Terra è la patria prima dell’umanità, contenente circa il 40%
+      dell’intero genere umano. Nel ventiquattresimo secolo le nazioni della
+      Terra e della Luna si sono unite nella confederazione delle Nazioni
+      Unite della Terra, diventando la prima potenza dell’Espanso in termini
+      di risorse ed estensione della superficie coltivabile. La robotizzazione
+      industriale e l’avvento dell’automazione del terziario ha aumentato la
+      percentuale di lavori altamente qualificati, ma ridotto la quantità
+      complessiva di opportunità di lavoro, portando a grande disoccupazione e
+      alla fissazione di un reddito di cittadinanza globale.</p>
+    <p>Gli astronauti terrestri sono generalmente particolarmente ben visti
+      in quanto a capacità fisiche e buona preparazione tecnica, ma
+      generalmente meno laboriosi degli astronauti marziani. Solo i migliori
+      terrestri hanno un lavoro nello spazio, oppure i peggiori, disoccupati e
+      disperati, che cercano casa tra le stelle.</p>
+    <p>Richiede: Gravità muscolare e Ossatura a 1 g (almeno 12 di
+      punteggio)</p>
+    <p>Garantisce: Cittadinanza Terrestre, Agorafilia, Conoscenza della
+      Terra</p>
+    <p>Agorafilia</p>
+    <p>Anche in spazi aperti planetari rimani capace di mantenere
+      l’orientamento e in generale sai navigare sulla superficie di un
+      pianeta. Non sei turbato dalla presenza di vegetazione e fauna.</p>
+    <h3 id="repubblica-congressuale-marziana">Repubblica Congressuale
+      Marziana</h3>
+    <p>La repubblica comprende Marte, Phobos e Deimos (lune marziane), è un
+      piccolo attore nell’Espanso in termini di popolazione, ma ospita in
+      media i membri più laboriosi e ispirati del genere umano. La repubblica
+      è contraddistinta da un forte nazionalismo dovuto ai frequenti contrasti
+      commerciali e territoriali con le Nazioni Unite e al senso di missione
+      nella centenaria impresa di rendere abitabile e respirabile l’atmosfera
+      marziana. I marziani sono maestri della terraformazione e devono
+      sottostare a una pesantissima e completissima preparazione scolastica
+      per poter partecipare alla società e trovare un mestiere. Gli astronauti
+      marziani seguono anch’essi queste basi e l’astronauta è per il marziano
+      un lavoro come un altro perché tutti indispensabili per il loro grande
+      progetto.</p>
+    <p><strong>Richiede</strong>: Gravità muscolare e Ossatura a 0.4 g
+      (almeno 10 di punteggio)</p>
+    <p><strong>Garantisce</strong>: Cittadinanza Marziana, Stacanovismo,
+      Conoscenza di Marte.</p>
+    <p><strong>Stacanovismo</strong> Puoi lavorare per molto tempo a un
+      preciso incarico con efficacia costante.</p>
+    <h3 id="alleanza-dei-pianeti-esterni">Alleanza dei Pianeti Esterni</h3>
+    <p>I pianeti esterni, per poter comunicare alla pari con le due nazioni
+      planetarie di Terra e Marte, si sono unite in un’alleanza che si
+      suddivide poi in zone di controllo gestite da diversi clan. I più
+      popolosi in termini popolazione, sono però molto frammentati su un
+      territorio immenso che vede i principali centri in Ceres, Eros e altri
+      asteroidi di grandi dimensioni. La distanza provoca forti divisioni tra
+      i clan. Queste divisioni portano generalmente alla mancata adesione a un
+      esercito unitario che possa competere con la marina militare dei pianeti
+      interni.</p>
+    <p>I cinturiani o umani dei pianeti esterni sono nati e cresciuti a
+      bassa gravità e sono poco adatti alla vita ad alta gravità. Si trovano
+      tuttavia a loro agio nello spazio, come se fossero a casa e sono
+      abituati a convivere con i sistemi di pilotaggio e gli apparati di navi
+      e stazioni. Sono grandi costruttori di megastrutture.</p>
+    <p><strong>Garantisce</strong>: Clan di appartenenza, Dialetto
+      cinturiano, Vantaggio in gravità zero</p>
+    <p><strong>Clan di appartenenza</strong> Il clan di appartenenza è la
+      tua vera casa, generalmente il tuo luogo di origine è il preciso clan e
+      non l’intera Alleanza dei Pianeti Esterni.</p>
+    <p><strong>Vantaggio a gravità zero</strong> Quando esegui compiti a
+      gravità zero in competizione con un marziano o terrestre, guadagni un
+      vantaggio.</p>
+    <hr/>
+
+    <h2 id="professioni">Professioni</h2>
+    <h3 id="professioni-terrestri">Professioni terrestri</h3>
+    <p><strong>Pilota della marina NU</strong> Competente in (2 a scelta)
+      Pilotaggio, Accelerazione, Percezione, Intuizione</p>
+    <p><strong>Diplomatico inviato</strong> Competente in (2 a scelta)
+      Persuasione, Inganno, Intuizione, Investigazione</p>
+    <p><strong>Commerciante spaziale</strong> Competente in (2 a scelta)
+      Persuasione, Investigazione, Movimentazione macchinari, Botanica</p>
+    <p><strong>Casco blu</strong> Competente in (2 a scelta) Combattimento
+      ravvicinato, utilizzo di armi a distanza, Furtività, Intuizione</p>
+    <p><strong>Disoccupato</strong> Competente in (2 a scelta) Intuizione,
+      Storia, Religione</p>
+    <h3 id="professioni-marziane">Professioni marziane</h3>
+    <p><strong>Soldato della marina marziana</strong> Competente in (2 a
+      scelta) Combattimento ravvicinato, Utilizzo armi ravvicinate e a
+      distanza, Sopravvivenza, Storia</p>
+    <p><strong>Ingegnere di terraformazione</strong> Competente in (2 a
+      scelta) Riparazione, Movimentazione Macchinari, Botanica,
+      Programmazione</p>
+    <p><strong>Spia marziana</strong> Competente in (2 a scelta) Acrobatica,
+      Furtività, Percezione, Inganno</p>
+    <p><strong>Ufficiale corrotto</strong> Competente in (2 a scelta)
+      Utilizzo armi a distanza, Inganno, Intimidazione, Hacking</p>
+    <p><strong>Spazzino dei pianeti interni</strong> Competente in (2 a
+      scelta) Pilotaggio, Navigazione, Riparazione, Movimentazione
+      macchinari</p>
+    <h3 id="professioni-cinturiane">Professioni cinturiane</h3>
+    <p><strong>Pilota di Callisto</strong> Competente in (2 a scelta)
+      Pilotaggio, Navigazione, Riparazione, Attenzione suddivisa</p>
+    <p><strong>Ingegnere di Ceres</strong> Competente in (2 a scelta)
+      Utilizzo strumenti di precisione e strumenti ravvicinati,
+      Programmazione, Riparazione, Elettronica</p>
+    <p><strong>Scagnozzo del clan dei Gioviani</strong> Competente in (2 a
+      scelta) Combattimento ravvicinato, Intimidazione, Percezione,
+      Hacking</p>
+    <p><strong>Raccoglitore di ghiaccio di Saturno</strong> Competente in (2
+      a scelta) Atletica, Sopravvivenza, Movimentazione macchinari,
+      Medicina</p>
+    <p><strong>Pirata della Fascia</strong> Competente in (2 a scelta)
+      Intuizione, Navigazione, Utilizzo armi a distanza, Intimidazione</p>
+    <hr/>
+
+    <h1 id="combattimento-tattico-con-armi-leggere">Combattimento tattico
+      con armi leggere</h1>
+    <h2 id="introduzione-al-combattimento-tattico">Introduzione al
+      combattimento tattico</h2>
+    <p>Il combattimento può avvenire in modo rapido e descrittivo o in modo
+      numerico, esteso e tridimensionale. Nel secondo caso il combattimento
+      esteso è definito su una tassellatura cubica, con cubetti di 1.5 metri
+      di lato.</p>
+    <hr/>
+
+    <h2 id="il-round-di-gioco">Il round di gioco</h2>
+    <p>Durante il round di gioco ogni entità all’interno del combattimento
+      potrà svolgere una volta il proprio turno seguendo un ordine di turno
+      definito all’inizio dello scontro.</p>
+    <h3 id="iniziare-un-combattimento">Iniziare un combattimento</h3>
+    <p>Il combattimento inizia quando due fazioni avversarie entrano a
+      contatto e sono ognuna a conoscenza della presenza dell’altra. Le regole
+      normali di combattimento si applicano quindi nel caso di uno scontro
+      frontale.</p>
+    <h4 id="tirare-per-liniziativa">Tirare per l’iniziativa</h4>
+    <p>All’inizio del combattimento si assegna l’ordine di turno tramite una
+      prova di multitasking (iniziativa) effettuata da ciascuna entità
+      coinvolta nel combattimento. L’ordine di turno è assegnato seguendo i
+      risultati della prova in ordine decrescente. Nel caso di pareggio tra
+      entità della stessa fazione, queste possono decidere tra loro quale
+      entità giocherà prima il proprio turno. Nel caso di pareggio tra entità
+      di fazioni avversarie, è lo Station Master a decidere chi giocherà prima
+      il proprio turno. Alla fine del round di gioco, quando tutte le entità
+      hanno giocato, il round ricomincia con lo stesso ordine di turno.
+      L’ordine di turno viene mantenuto fino a quando il combattimento non
+      finisce oppure si modifica lo scenario di combattimento. Se ci sono
+      entità in campo note, ma nascoste, anch’esse dovranno tirare per
+      l’iniziativa. Il tiro per l’iniziativa di queste entità potrà essere
+      svolto in modo nascosto senza divulgare il risultato del tiro agli altri
+      giocatori. Lo Station Master deve tuttavia essere a conoscienza
+      dell’intero ordine di iniziativa di tutte le unità in combattimento
+      dichiarate o nascoste</p>
+    <h4 id="cogliere-di-sorpresa">Cogliere di sorpresa</h4>
+    <p>Può capitare che in situazioni particolari sia possibile cogliere
+      alcune entità di sorpresa. Le entità colte di sorpresa saltano il loro
+      primo turno di gioco e non possono effettuare reazioni.</p>
+    <h3 id="rinforzi">Rinforzi</h3>
+    <p>Nel caso arrivino rinforzi di una o più delle fazioni in
+      combattimento, oppure una nuova fazione si aggiunga al combattimento,
+      tutte le nuove entità nel combattimento dovranno essere posizionate
+      sulla mappa all’inizio del round, prima del turno della prima entità del
+      round. Le nuove entità effettueranno un tiro iniziativa e saranno
+      allocate nell’ordine di turno in funzione del risultato ottenuto dalla
+      prova di multitasking (iniziativa). Le unità di rinforzo giocano
+      normalmente il turno già dal loro primo turno di gioco.</p>
+    <h3 id="scoprire-entità-esterne-al-combattimento">Scoprire entità
+      esterne al combattimento</h3>
+    <p>Quando entità esterne al combattimento vengono scoperte, queste
+      devono immediatamente effettuare un tiro iniziativa, cioè una prova di
+      multitasking (iniziativa) al fine di inserirsi all’interno dell’ordine
+      di turno. Queste unità potrebbero, in base alla situazione, venire colte
+      di sorpresa oppure giocare normalmente il proprio turno durante
+      l’attuale round di gioco. Quando nuove entità vengono scoperte il round
+      di gioco non si resetta, quindi tali entità avranno la possibilità di
+      giocare il loro primo turno nel round in cui sono scoperte solo nel caso
+      in cui il loro ordine di turno risulti essere successivo a quello
+      dell’entità attiva al momento della scoperta. Se così non fosse il primo
+      turno giocabile dalle entità scoperte sarà nel round di gioco
+      successivo.</p>
+    <hr/>
+
+    <h2 id="il-turno-di-gioco">Il turno di gioco</h2>
+    <p>Il turno di gioco di ogni entità coinvolta nel combattimento vede
+      l’esecuzione opzionale di ognuna delle seguenti attività una volta
+      durante il proprio turno:</p>
+    <ul>
+      <li>Movimento</li>
+      <li>Azione</li>
+      <li>Interazione</li>
+      <li>Azione bonus</li>
+    </ul>
+    <p>Le attività qua sotto possono come quelle sopra essere svolte ognuna
+      non più di una volta per round, ma possono essere svolte al di fuori del
+      proprio turno.</p>
+    <ul>
+      <li>Reazione</li>
+    </ul>
+    <h3 id="movimento">Movimento</h3>
+    <p>Le regole di movimento sono spiegate nella sezione “Posizione e
+      movimento”.</p>
+    <h3 id="azione">Azione</h3>
+    <p>Una singola scelta tra un elenco di possibili azioni. L’azione è di
+      solito la parte centrale del turno di gioco di un’entità. Per maggiori
+      informazioni vedi “Eseguire un’azione”.</p>
+    <h3 id="interazione">Interazione</h3>
+    <p>Un “piccola” azione, come raccogliere un oggetto da terra,
+      schiacciare un bottone, o dire poche parole. Alcune volte lo Station
+      Master può richiedere di utilizzare un’azione al posto di
+      un’interazione. Ad esempio estrarre un’arma poco accessibile senza
+      togliersi prima lo zaino potrebbe richiedere un’azione mentre estrarre
+      la pistola dalla fondina potrebbe limitarsi a un’interazione.</p>
+    <h3 id="azione-bonus">Azione bonus</h3>
+    <p>Un’azione bonus è un’azione specifica data dall’equipaggiamento,
+      esperienza o impianti. Si può applicare in contesti specifici ed è
+      descritta nel dettaglio per ogni azione bonus. In ogni caso non è
+      possibile effettuare più di un’azione bonus per turno.</p>
+    <h3 id="reazione">Reazione</h3>
+    <p>Può essere intrapresa una volta per round, fuori dal proprio turno.
+      Può trattarsi di:</p>
+    <ul>
+      <li>Un’attacco ravvicinato nel momento in cui un nemico esce dalla
+        propria area di reazione senza un’azione di disingaggio
+      </li>
+      <li>L’attivazione di un dispositivo o un’abilità di difesa o di
+        attacco
+      </li>
+      <li>La risposta a un richiamo o a una comunicazione di un’altra entità
+        al di fuori del proprio turno di gioco
+      </li>
+      <li>La risoluzione di una reazione consecutiva a un’azione di prepararsi
+        effettuata nell’ultimo turno di gioco.
+      </li>
+    </ul>
+    <p>Si può avere una sola reazione per turno.</p>
+    <hr/>
+
+    <h2 id="posizione-e-movimento">Posizione e movimento</h2>
+    <h3 id="spezzare-il-movimento">Spezzare il movimento</h3>
+    <p>in un turno il movimento può essere spezzato un più volte da
+      un’azione, interazione, azione speciale.</p>
+    <h3 id="velocità-di-movimento-e-modificatori">Velocità di movimento e
+      modificatori</h3>
+    <p>Il movimento massimo in un turno è definito dalla velocità di
+      moviento nel particolare tipo di movimento considerato. Ad esempio, la
+      velocità di movimento standard per un essere umano è 5 caselle. Esistono
+      diversi tipi di movimento: camminare, strisciare, nuotare, volare,
+      arrampicarsi, balzare. A ogni modalità di movimento sarà associata una
+      velocità in termini di caselle mosse per turno. Durante il movimento si
+      possono più modi di muoversi e cambiare da uno all’altro come si
+      preferisce. Quando si cambia modo di muoversi si sottrae la distanza già
+      percorsa alla velocità di movimento del nuovo del nuovo modo di muoversi
+      e quella sarà la distanza per la quale sarà ancora possibile muoversi
+      con quel tipo di movimento. Nuotare, strisciare o muoversi su terreno
+      accidentato costa 1 casella di movimento in più per ogni casella mossa e
+      queste tre condizioni sono tra loro cumulabili. Ad esempio se si
+      striscia su terreno accidentato ogni casella costa 2 caselle di
+      movimento in più.</p>
+    <h3 id="tassellatura-e-limitazioni">Tassellatura e limitazioni</h3>
+    <p>Il movimento segue una griglia tridimensionale con tassellatura
+      cubica in cui ogni cubo ha lato 1.5 metri. Il movimento può avvenire
+      nelle direzioni cardinali o in diagonale con il medesimo costo in
+      movimento. Il movimento diagonale è possibile solamente quando le due
+      caselle adiacenti alla casella di partenza e a quella di arrivo sono
+      libere da ostacoli e nemici. Se vi sono ostacoli o nemici, sarà
+      necessario percorrere una delle due caselle cardinali e non sarà
+      possibile andare in diagonale. Se una o entrambe le caselle adiacenti
+      alla casella di partenza e a quella di arrivo nelle caselle diagonali è
+      terreno accidentato o occupato da un alleato si potrà comunque muovere
+      in diagonale pagando il costo aggiuntivo di movimento della più costosa
+      delle due caselle adiacenti, più l’eventuale costo aggiuntivo di
+      movimento della casella di arrivo.</p>
+    <h3 id="balzo">Balzo</h3>
+    <p>Un balzo è un tipo di movimento che normalmente ha velocità di
+      movimento 4 per gli umani a 0.2 g. Il costo in movimento viene pagato
+      solo per le caselle verticali saltate, il movimento orizzontale che può
+      essere presente durante il balzo non viene contato nel costo in punti
+      movimento. Il balzo permette un salto verticale di 2 caselle verticali +
+      bonus che si avrebbe in una prova di gravità muscolare (atletica). Si
+      può saltare più in alto del limite descritto con una prova di gravità
+      muscolare (atletica) con una difficulty class calcolata con la formula
+      seguente:</p>
+    <p><span class="math display">\[DC = n_{caselle\ verticali} \times 2 +
+6\]</span></p>
+    <p>dove:</p>
+    <ul>
+      <li><span class="math inline">\(DC =\)</span> difficulty class della
+        prova di gravità muscolare (atletica)
+      </li>
+      <li><span class="math inline">\(n_{caselle\ verticali} =\)</span>
+        altezza massima del balzo raggiunta in caselle verticali
+      </li>
+    </ul>
+    <p>Se si ha successo nella prova di abilità, il balzo riesce. Se non si
+      ha successo, il balzo avverrà comunque, ma del numero di caselle massimo
+      saltabile senza prova di abilità.</p>
+    <p>Se la gravità cambia anche l’altezza massima saltabile e la prova di
+      abilità cambieranno con le seguenti formule:</p>
+    <p><span class="math display">\[n_{max} = \left \lfloor \left(2 +
+Bonus_{atletica} \right) \times \frac{0.2}{g_{attuale}}\right
+\rfloor\]</span></p>
+    <p>dove:</p>
+    <ul>
+      <li><span class="math inline">\(n_{max} =\)</span> numero massimo di
+        caselle saltabili senza necessità di una prova di gravità muscolare
+        (atletica)
+      </li>
+      <li><span class="math inline">\(Bonus_{atletica} =\)</span> bonus che si
+        avrebbe in una prova di gravità muscolare (atletica)
+      </li>
+      <li><span class="math inline">\(g_{attuale} =\)</span> gravità attuale
+        misurata in g (<span class="math inline">\(1 g = 9.81
+\frac{m}{s^{2}}\)</span>)
+      </li>
+      <li><span class="math inline">\(\lfloor \ \rfloor =\)</span> arrotondato
+        per difetto
+      </li>
+    </ul>
+    <p><span class="math display">\[DC = \left \lfloor \left(n_{caselle\
+verticali} \times 2 + 6 \right) \times \frac{0.2}{g_{attuale}} \right
+\rfloor\]</span></p>
+    <p>dove:</p>
+    <ul>
+      <li><span class="math inline">\(DC =\)</span> difficulty class della
+        prova di gravità muscolare (atletica)
+      </li>
+      <li><span class="math inline">\(n_{caselle\ verticali} =\)</span>
+        altezza massima del balzo raggiunta in caselle verticali
+      </li>
+      <li><span class="math inline">\(g_{attuale} =\)</span> gravità attuale
+        misurata in g (<span class="math inline">\(1 g = 9.81
+\frac{m}{s^{2}}\)</span>)
+      </li>
+      <li><span class="math inline">\(\lfloor \ \rfloor =\)</span> arrotondato
+        per difetto
+      </li>
+    </ul>
+    <p>Nel balzo è possibile coprire anche una distanza orizzontale in
+      presenza di gravità. La distanza orizzontale massima che si può coprire
+      con un balzo si può calcolare con la formula seguente</p>
+    <p><span class="math display">\[d_{orizz} = \lfloor n_{vert} + 2 \times
+rincorsa \rfloor\]</span></p>
+    <p>dove:</p>
+    <ul>
+      <li><span class="math inline">\(d_{orizz} =\)</span> massima distanza
+        orizzontale percorribile dal balzo, si può scegliere un qualsiasi valore
+        di distanza uguale o inferiore (prima di effettuare il balzo)
+      </li>
+      <li><span class="math inline">\(n_{vert} =\)</span> altezza verticale
+        massima raggiunta misurata in caselle verticali
+      </li>
+      <li><span class="math inline">\(rincorsa =\)</span> caselle percorse in
+        linea retta nella direzione di salto, prima del salto e senza spezzare
+        il movimento durante la rincorsa o prima del salto
+      </li>
+    </ul>
+    <h3 id="movimento-tridimensionale-in-microgravità">Movimento
+      tridimensionale in microgravità</h3>
+    <p>In microgravità o gravità zero, la gravità attira le entità in una
+      direzione e un verso predefiniti. Le entità che ne sono dotate potranno
+      utilizzare gli stivali magnetici o opportune appendici per rimanere
+      ancorate al terreno. Tuttavia anche le pareti e il soffitto diventano
+      utilizzabili come terreno di scontro. Il modo migliore per muoversi in
+      microgravità è tramite l’uso di balzi, ma può capitare di ritrovarsi a
+      fluttuare nello spazio a microgravità.</p>
+    <h4 id="movimento-tridimensionale-tramite-balzi">Movimento
+      tridimensionale tramite balzi</h4>
+    <p>I balzi in microgravità permettono di lanciarsi verso una casella con
+      la velocità di balzo, raddoppiata. Se non è possibile raggiungere la
+      superficie di arrivo in un turno, il turno seguente ci si muoverà nella
+      direzione della superficie di arrivo con la stessa velocità del turno
+      precedente, seguendo la conservazione della quantità di moto. Se si
+      viene colpiti da fuoco d’opportunità dopo aver effettuato il balzo e il
+      danneggiamento porta a terminare immediatamente il turno, il movimento
+      continuerà ugualmente. Durante un balzo l’entità è considerata con
+      nessuna copertura, ma non come in alta esposizione. Se per qualche
+      ragione si rimane fermi nel vuoto, allora si è considerati in alta
+      esposizione a meno di non essere dotati di propulsori o di essere
+      agganciati a cavi di sicurezza.</p>
+    <h4 id="movimento-tridimensionale-con-propulsori">Movimento
+      tridimensionale con propulsori</h4>
+    <p>In microgravità è possibile utilizzare i propulsori per muoversi
+      nelle 3 direzioni cardinali come si desidera, tenendo in considerazione
+      un movimento standard con i propulsori di 5 caselle. Si può decidere di
+      disattivare gli smorzatori di inerzia per permettere di iniziare nel
+      turno successivo con la stessa velocità di movimento conservata dal
+      turno precedente. Si potrà mantenere una velocità di movimento uguale o
+      inferiore alle caselle di rincorsa del turno precedente. Per smorzare
+      una velocità di movimento mantenuta dal turno precedente sarà necessaria
+      una quantità di punti movimento uguale alla velocità di movimento
+      accumuata. Se si rimane privi di propulsori in un ambiente pressurizzato
+      ci si può muovere di una casella per turno sfruttando l’aria, senza la
+      possibilità di accumulare velocità. Se si è attaccati a dei cavi di
+      sicurezza la velocità di risalita del cavo è uguale alla velocità di
+      arrampicata.</p>
+    <h3 id="muoversi-attraverso-spazi-riservati-ad-altre-entità">Muoversi
+      attraverso spazi riservati ad altre entità</h3>
+    <p>Il movimento non può attraversare spazi in cui è presente un nemico e
+      non può concludersi in spazi dove è già presente un’entità nemica,
+      alleata o neutrale. Muoversi nello spazio di un’altra entità (alleata o
+      neutrale) costa 1 movimento in più. Le limitazioni sulla conclusione del
+      movimento valgono anche nel caso si voglia spezzare il movimento in più
+      tratti. Se si utilizza l’azione scatto, si può considerare l’intero
+      movimento, costituito da velocità di movimento normale più velocità di
+      movimento dallo scatto (che va a duplicare la velocità di movimento
+      normale), come un unico movimento. In alcuni casi può capitare che
+      involontariamente una entità finisca il proprio movimento su un’altra
+      entità. In questo caso entrambe le entità devono effettuare un tiro
+      salvezza di acrobatica (DC10 + differenza di dimensione dell’altra
+      entità moltiplicata per 2) per non cadere a terra e perdere un turno
+      (effetto stordito). A partire dall’entità che è arrivata per ultima
+      sulla casella, se si ha successo nel tiro salvezza le entità possono
+      scegliere di spostarsi in una casella libera delle 8 circostanti alla
+      casella di scontro. L’entità presente per prima nella casella non può
+      spostarsi se l’altra entità si è già spostata. Tutte le azioni svolte
+      dalle entità nella stessa casella sono svolte con svantaggio. Un attacco
+      a entità nella stessa casella avviene rivolto a entrambe e se le entità
+      non sono in copertura, sono considerate in alta esposizione.</p>
+    <h3 id="attacco-dopportunità-durante-il-movimento">Attacco d’opportunità
+      durante il movimento</h3>
+    <p>Se durante il movimento si esce dall’area di reazione di un nemico
+      senza usare un’azione di disingaggio, si può essere bersaglio di un
+      attacco d’opportunità del nemico. L’area di reazione di un nemico di
+      taglia media corrisponde alle 8 caselle intorno al nemico e i 9 cubi
+      subito sopra/sotto queste e sopra/sotto il nemico. In caso di ferita
+      grave da tale attacco, il turno termina immediatamente. Se si esce
+      dall’area di reazione di un nemico, ma nella casella dalla quale si esce
+      si trova un alleato, l’alleato copre la fuga e non si può essere
+      soggetti a una reazione del nemico.</p>
+    <p>Nel caso in cui si entri in una casella entro la linea di vista di un
+      nemico che il suo turno precedente ha utilizzato l’azione prepararsi
+      all’attacco d’opportunità, si può essere soggetti a una reazione del
+      nemico. In caso di ferita grave, stordimento o superiori da tale
+      attacco, il turno dell’entità attiva (che si stava muovendo) termina
+      immediatamente.</p>
+    <h3 id="muoversi-furtivamente">Muoversi furtivamente</h3>
+    <p>Muoversi furtivamente dimezza i punti movimento, ma consente di
+      ridurre la possibilità di venire scoperti dal nemico. Nel caso il
+      movimento furtivo attraversi delle caselle non in copertura, entro la
+      linea di vista del nemico, è necessario effettuare una prova di
+      precisione (furtività) contro la percezione passiva del nemico. Si dovrà
+      effettuare un tiro per ogni nemico nella cui linea di vista si transita
+      senza trovarsi in copertura.</p>
+    <p>Se alla fine del turno ci si trova entro in una casella nella linea
+      di vista del nemico e fuori copertura, si viene automaticamente
+      scoperti. Il terreno accidentato può in alcuni casi valere come
+      copertura per nascondersi.</p>
+    <p>La copertura che si ricava da oggetti a mezz’altezza non si estende
+      all’infinito, ma si estende ad una distanza massima dall’oggetto pari
+      alla distanza tra l’oggetto che fornisce copertura e il nemico.</p>
+    <hr/>
+
+    <h2 id="eseguire-unazione">Eseguire un’azione</h2>
+    <p>Con azione si identifica una singola scelta dalle seguenti:</p>
+    <ul>
+      <li>Attacco</li>
+      <li>Scatto - Schivata - Disingaggio - Aiuto - Prepararsi - Nascondersi
+        - Utilizzare un’abilità attiva
+      </li>
+      <li>Cercare - Utilizzare un oggetto - Improvvisazione</li>
+    </ul>
+    <h3 id="attacco">Attacco</h3>
+    <p>L’attacco è una classe generale di azione incredibilmente variegata,
+      vedi “Eseguire un’attacco” per maggiori informazioni.</p>
+    <h3 id="scatto">Scatto</h3>
+    <p>Lo scatto permette di spendere l’azione per duplicare la propria
+      velocità di movimento per quel turno.</p>
+    <h3 id="schivata">Schivata</h3>
+    <p>Concentrandosi sulla difesa, qualsiasi attacco subito sarà effettuato
+      con svantaggio fino all’inizio del proprio prossimo turno. Inoltre si
+      effettuano con vantaggio tiri salvezza di multitasking se la situazione
+      lo richiede, fino all’inizio del proprio prossimo turno.</p>
+    <h3 id="disingaggio">Disingaggio</h3>
+    <p>Si spende un’azione per evitare un attacco di opportunità quando si
+      esce dalla zona di attacco di un nemico. Se uscendo dalla stessa casella
+      si uscirebbe dalla zona di attacco di più di un nemico, l’azione di
+      disingaggio vale sempre anche se si esce dalla zona di attacco di più
+      nemici contemporaneamente.</p>
+    <h3 id="aiuto">Aiuto</h3>
+    <p>Si può effettuare un’azione aiutando un alleato nei propri tiri
+      abilità fino all’inizio del prossimo turno oppure si può distrarre un
+      nemico aiutando l’alleato nell’attacco. In entrambi i casi l’alleato
+      acquista vantaggio nel tiro.</p>
+    <h3 id="prepararsi">Prepararsi</h3>
+    <p>Si può preparare un’azione che non verrà svolta nel proprio turno ma
+      nel turno di un’altra entità alleata o nemica. Ponendo delle condizioni
+      per l’attivazione della reazione e definendo cosa si vuole effettuare
+      nella reazione, è possibile, se le condizioni sono soddisfatte,
+      utilizzare la reazione per svolgere l’azione prevista quando ci si è
+      preparati. Un esempio classico è l’attacco d’opportunità che può essere
+      svolto su un nemico che si muove in una casella nella propria linea di
+      vista, utilizzando la propria reazione, se nel turno precedente ci si è
+      preparati a farlo utilizzando un’azione. In questo caso, all’inizio del
+      movimento il nemico può trovarsi dentro o fuori la linea di vista,
+      l’importante è che al momento dell’attacco d’opportunità il nemico si
+      sia appena mosso in una casella all’interno della linea di vista.
+      L’attacco d’opportunità può essere svolto durante il movimento.</p>
+    <h3 id="nascondersi">Nascondersi</h3>
+    <p>Se ci si sottrae alla linea di vista del nemico è possibile provare a
+      nascondersi con una prova di furtività che superi la percezione passiva
+      del nemico. Se si ha successo il nemico dovrà cercare attivamente per
+      trovare l’entità nascosta.</p>
+    <h3 id="utilizzare-unabilità-attiva">Utilizzare un’abilità attiva</h3>
+    <p>Un’abilità attiva deriva dalle proprie capacità fisiche o mentali
+      oppure dall’esperienza. Esistono abilità attive e passive. Le abilità
+      passive sono sempre “attivate” oppure entrano automaticamente in
+      funzione sotto determinate condizioni. Le abilità attive sono invece
+      volontarie, devono essere attivate utilizzando un’azione o, se
+      esplicitato nella descrizione dell’abilità, con un’azione bonus.</p>
+    <h3 id="cercare">Cercare</h3>
+    <p>L’azione viene impiegata nella ricerca di qualcuno o qualcosa,
+      dipendentemente dal tipo di ricerca, questo si tradurrà in una prova di
+      multitasking (percezione attiva) o in una prova di calcolo
+      (investigazione)</p>
+    <h3 id="utilizzare-un-oggetto">Utilizzare un oggetto</h3>
+    <p>Mentre l’utilizzo di alcuni oggetti richiede solamente
+      un’interazione, per la maggior parte degli oggetti è necessaria
+      un’intera azione. Esempi sono forzare una porta con un piede di porco,
+      applicare un bendaggio, utilizzare un terminale. Utilizzare un oggetto
+      può richiedere una prova di abilità. Curare ricade sotto l’utilizzo di
+      un oggetto, vedi “Curare”.</p>
+    <h3 id="improvvisazione">Improvvisazione</h3>
+    <p>L’improvvisazione rispecchia nel combattimento la libertà che il
+      giocatore normalmente ha fuori dal combattimento. L’improvvisazione è
+      un’azione generica che va descritta dal giocatore allo Station Master,
+      che a sua volta dovrà porre eventuali limitazioni alla fantasia del
+      giocatore e infine determinare se l’azione è valida oppure no. Un
+      esempio di improvvisazione può essere utilizzare il corpo di un nemico
+      come copertura, trascinare un alleato a terra in copertura o saltare al
+      piano superiore grazie all’effetto della bassa gravità.</p>
+    <hr/>
+
+    <h2 id="eseguire-un-attacco">Eseguire un attacco</h2>
+    <p>Si attacca il nemico con l’arma di cui si dispone al momento, in modo
+      ravvicinato o a distanza. Vi sono poi altri modi per attaccare, legati
+      agli attributi dell’entità considerata o ad abilità attive.</p>
+    <h3 id="attacco-ravvicinato">Attacco ravvicinato</h3>
+    <p>In un attacco ravvicinato è possibile colpire i bersagli all’interno
+      dell’area di reazione (vedi “Reazione”). La probabilità di colpire
+      dipende dall’arma ravvicinata utilizzata. Se la probabilità di colpire
+      non è specificata o viene utilizzata un’arma improvvisata è necessario
+      rifarsi a probabilità di colpire e danni da oggetti lanciabili a medio
+      raggio (vedi “Lanciare un oggetto” e “Danneggiamento dal lancio di
+      oggetti”).</p>
+    <h3 id="attacco-a-distanza">Attacco a distanza</h3>
+    <p>Un’attacco a distanza è svolto in due fasi:</p>
+    <ul>
+      <li>Determinazione della linea di vista</li>
+      <li>Tiro per colpire</li>
+      <li>Tiro per i danni</li>
+    </ul>
+    <h4 id="determinare-la-linea-di-vista">Determinare la linea di
+      vista</h4>
+    <p>La maggior parte delle armi utilizzate necessitano di avere una linea
+      di vista con il bersaglio per essere utilizzate. La linea di vista è
+      determinata tracciando una linea retta tra il centro della casella
+      dell’attaccante e il centro della casella del bersaglio. Se la linea
+      interseca ostacoli a piena altezza, la linea di vista non è stabilità e
+      l’attacco non può essere effettuato. Se la linea non interseca ostacoli
+      a piena altezza, la linea di vista è stabilita e l’attacco può essere
+      effettuato. Nel caso in cui la linea sia tangente a uno spigolo o a un
+      bordo di un ostacolo, va verificato che almeno uno dei due semipiani
+      identificati dalla linea resti libero per l’intera lunghezza della linea
+      dalla casella dell’attaccante a quella del bersaglio. In caso questo sia
+      verificato allora la linea di vista è stabilita. Se la linea di vista
+      passa attraverso la casella di una o più entità alleate, queste non sono
+      considerate ostacoli. Se la linea di vista passa attraverso un’entità
+      nemica o neutrale, questa è considerata un ostacolo a piena altezza se è
+      di dimensioni medie o superiori. In ogni caso le entità non possono
+      essere usate come copertura a meno che non sia espresso il contrario
+      nelle abilità dell’entità.</p>
+    <h4 id="tiro-per-colpire">Tiro per colpire</h4>
+    <p>Il tiro per colpire è il lancio di 1d100. Il bersaglio è considerato
+      colpito se il tiro di dado produce un risultato inferiore o uguale alla
+      probabilità di colpire. Il bersaglio è considerato mancato se il tiro di
+      dado produce un risultato superiore alla probabilità di colpire. Il
+      bersaglio sarà sempre considerato colpito nel caso il tiro risulti un 1.
+      Il bersaglio sarà sempre considerato mancato nel caso il tiro risulti un
+      100. Questo significa che la probabilità di colpire può andare da 1% a
+      99% e non può invece mai essere 0% o 100%. Essendo il dado utilizzato
+      1d100, si parla di probabilità di colpire considerandola in
+      percentuale.</p>
+    <h4 id="probabilità-di-colpire">Probabilità di colpire</h4>
+    <p>La probabilità di colpire un bersaglio è dipendente da una serie di
+      fattori:</p>
+    <ul>
+      <li>Attaccante
+        <ul>
+          <li>Arma utilizzata</li>
+          <li>Bonus di attacco</li>
+          <li>Abilità attive e passive</li>
+        </ul>
+      </li>
+      <li>Bersaglio
+        <ul>
+          <li>Armatura</li>
+          <li>Bonus di difesa</li>
+          <li>Abilità attive o passive</li>
+        </ul>
+      </li>
+      <li>Ambiente
+        <ul>
+          <li>Distanza</li>
+          <li>Copertura</li>
+        </ul>
+      </li>
+    </ul>
+    <p>Tutti questi fattori sono condensati in una formula che restituisce
+      la probabilità di colpire:</p>
+    <p><span class="math display">\[\% P = \% P_{arma} \times \frac{100 \% +
+\left(Bonus_{att} - Bonus_{dif}\right) \times 5 \% - \% Armatura - \%
+Copertura}{100 \%}\]</span></p>
+    <p>Dove</p>
+    <ul>
+      <li><span class="math inline">\(\% P =\)</span> probabilità di
+        colpire
+      </li>
+      <li><span class="math inline">\(\% P_{arma} =\)</span> probabilità di
+        colpire base dell’arma, già modificata con eventuali modifiche all’arma
+        utilizzata o al tipo di proiettile, vedi “Armi”
+      </li>
+      <li><span class="math inline">\(Bonus_{att} =\)</span> bonus di attacco
+        <ul>
+          <li>Per armi da fuoco è utilizzato il bonus di una prova di precisione
+            (utilizzo armi e strumenti a distanza) dell’attaccante
+          </li>
+          <li>Per armi lanciabili è utilizzato a scelta il bonus di una prova di
+            precisione (utilizzo armi e strumenti a distanza) oppure il bonus di una
+            prova di gravità muscolare (atletica) dell’attaccante
+          </li>
+        </ul>
+      </li>
+      <li><span class="math inline">\(Bonus_{dif} =\)</span> bonus di difesa:
+        è utilizzato il bonus di una prova di multitasking (attenzione
+        suddivisa) del bersaglio
+      </li>
+      <li><span class="math inline">\(\% Armatura =\)</span> riduzione
+        percentuale della probabilità di colpire garantita dall’armatura del
+        bersaglio. Questa percentuale è in generale diversa a seconda della
+        tipologia di danno e della gravità del danno che verrebbe inflitto
+        dall’attacco, vedi “Armatura”
+      </li>
+      <li><span class="math inline">\(\% Copertura =\)</span> riduzione
+        percentuale della probabilità di colpire garantita dalla copertura di
+        cui gode il bersaglio; la copertura è determinata in base
+        all’angolazione del tiro e alla posizione degli ostacoli sulla mappa,
+        vedi “Determinare la copertura”.
+      </li>
+    </ul>
+    <p>Come già espresso in precedenza, se la probabilità di colpire supera
+      99% viene riportata a 99%, mentre se è al di sotto di 1%, viene
+      riportata a 1%.</p>
+    <h4 id="determinare-la-copertura">Determinare la copertura</h4>
+    <p>La copertura è la possibilità del bersaglio di ripararsi dietro agli
+      ostacoli nonostante si sia in linea di vista con l’attaccante. Gli
+      ostacoli a mezz’altezza che coprirebbero solo una parte del corpo del
+      bersaglio non costituiscono un ostacolo per la linea di vista, ma
+      contano ai fini della copertura. Per ostacoli a mezz’altezza si parla di
+      copertura leggera. La copertura è presente quando una parte della
+      casella del bersaglio risulta oscurata da ostacoli a piena altezza o
+      mezz’altezza, senza che la linea di vista tra i due centri delle caselle
+      di attacco e del bersaglio sia ostacolata da ostacoli a piena altezza.
+      Nel caso di copertura con ostacoli a piena altezza come pareti o
+      finestre si parla di copertura pesante. La copertura è considerata
+      leggera quanto gli ostacoli a piena altezza sono molto stretti, ad
+      esempio delle colonne sottili. Se la casella del bersaglio non è
+      oscurata nei modi sopra descritti, il bersaglio non è in copertura. La
+      copertura degli ostacoli a mezz’altezza non varia solo in funzione
+      dell’angolazione di tiro, ma anche in funzione della distanza. Se
+      l’ostacolo a mezza altezza che fornirebbe copertura si trova a una
+      distanza uguale o inferiore dall’attaccante rispetto alla distanza tra
+      l’ostacolo e il bersaglio, quell’ostacolo non offre copertura. Se
+      l’attaccante attacca da una posizione rialzata di 1.5 (1 casella) metri
+      la distanza massima tra ostacolo e bersaglio per cui è possibile avere
+      copertura secondo il ragionamento precedente (in piano) è divisa per
+      due, per difetto; se invece la posizione dell’attaccante è rialzata di 3
+      (2 caselle) metri allora la distanza sarà divisa per 3 e così via,
+      secondo la formula qui sotto:</p>
+    <p><span class="math display">\[d_{copertura} = \left\lceil
+\frac{d_{att}}{N_{sopr}} \right\rceil - 1\]</span></p>
+    <p>Dove</p>
+    <ul>
+      <li><span class="math inline">\(d_{copertura} =\)</span> distanza
+        dall’ostacolo considerata in copertura
+      </li>
+      <li><span class="math inline">\(d_{att} =\)</span> distanza
+        dell’attaccante dall’ostacolo
+      </li>
+      <li><span class="math inline">\(N_{sopr} =\)</span> numero di caselle
+        verticali (di 1.5 metri di lato) dell’attaccante sopra il difensore;
+        questo numero può anche essere negativo se è il difensore a trovarsi in
+        una posizione sopraelevata
+      </li>
+      <li><span class="math inline">\(\left\lceil\ \right\rceil =\)</span>
+        arrotonda il numero all’interno per eccesso
+      </li>
+    </ul>
+    <p>Un’ostacolo a mezz’altezza è considerato in genere di circa una
+      casella verticale di altezza: circa 1.5 metri.</p>
+    <p>Se il bersaglio non ha copertura ed è distante almeno due caselle
+      lungo gli assi e in diagonale da qualsiasi ostacolo, è considerato
+      altamente esposto.</p>
+    <p>Dato il tipo di copertura si applicano le seguenti riduzioni
+      percentuali della probabilità di colpire:</p>
+    <ul>
+      <li>Copertura pesante: +50%</li>
+      <li>Copertura leggera: +25%</li>
+      <li>Nessuna copertura: 0%</li>
+      <li>Alta esposizione: -15%</li>
+    </ul>
+    <h4 id="tiro-per-i-danni">Tiro per i danni</h4>
+    <p>Se il bersaglio viene colpito, si effettua il tiro per i danni. Il
+      tiro per i danni è il lancio del numero e tipologia di dadi descritti
+      dall’arma utilizzata. Questi dadi sono associati a una tipologia di
+      danno:</p>
+    <ul>
+      <li>taglio</li>
+      <li>perforante</li>
+      <li>impatto</li>
+      <li>elettrico</li>
+      <li>ustione</li>
+      <li>radiazione</li>
+    </ul>
+    <p>Il tiro di dado definisce il danno base dell’arma, che può essere
+      modificato da eventuali modifiche all’arma o ai proiettili e poi ridotto
+      considerando la riduzione percentuale dall’armatura del bersaglio e la
+      resistenza al danno del bersaglio. Si utilizza questa formula:</p>
+    <p><span class="math display">\[D = D_{arma} \times \frac{100\% - \%
+R_{armatura}}{100 \%} - R_{dif}\]</span></p>
+    <p>Dove:</p>
+    <ul>
+      <li><span class="math inline">\(D =\)</span> danno finale</li>
+      <li><span class="math inline">\(D_{arma} =\)</span> danno dell’arma
+        dell’attaccante già soggetto a modifiche dell’arma e dei proiettili,
+        espresso con un tiro di dadi a cui può eventualmente sommarsi una
+        quantità costante
+      </li>
+      <li><span class="math inline">\(\% R_{armatura} =\)</span> riduzione
+        percentuale del danno garantita dall’armatura del bersaglio. Questa
+        percentuale è in generale diversa a seconda della tipologia di danno e
+        della gravità del danno che verrebbe inflitto dall’attacco, vedi
+        “Armatura”
+      </li>
+      <li><span class="math inline">\(R_{dif} =\)</span> resistenza al danno
+        del bersaglio: è utilizzato il bonus di una prova di ossatura
+        (radiazione) del bersaglio per il danno da radiazione o il bonus di una
+        prova di ossatura (sopravvivenza) del bersaglio per tutti gli altri tipi
+        di danno. Il danno viene applicato immediatamente e porterà a effetti
+        diversi in base alla tipologia e alla quantità di danno inflitto, vedi
+        “Applicazione del danno e vulnerabilità”.
+      </li>
+    </ul>
+    <h4 id="lanciare-un-oggetto">Lanciare un oggetto</h4>
+    <p>Alcuni oggetti possono essere lanciati, senza necessità di colpire
+      direttamente un’entità nemica. Se l’oggetto lanciato deve colpire una
+      casella e non uno specifico obiettivo su questa, allora il tiro per
+      colpire la casella è considerato immaginando di avere la competenza per
+      quel tiro oppure si può scegliere di considerare il bonus che il
+      lanciatore avrebbe in una prova di precisione (utilizzo armi e strumenti
+      a distanza) o in una prova di gravità muscolare (atletica). La distanza
+      massima alla quale è possibile lanciare un oggetto è determinata dalla
+      dimensione dell’oggetto:</p>
+    <ul>
+      <li>leggero (un sasso, una granata, un piccolo oggetto)</li>
+      <li>medio (una sedia, una cassa)</li>
+      <li>grande (un tavolo, una porta)</li>
+    </ul>
+    <table>
+      <thead>
+      <tr class="header">
+        <th></th>
+        <th style="text-align: center;">Medio raggio</th>
+        <th style="text-align: center;">Lungo raggio</th>
+        <th style="text-align: center;">Danno da impatto</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+        <td>Oggetto leggero</td>
+        <td style="text-align: center;">4</td>
+        <td style="text-align: center;">9</td>
+        <td style="text-align: center;">1d8</td>
+      </tr>
+      <tr class="even">
+        <td>Oggetto medio</td>
+        <td style="text-align: center;">3</td>
+        <td style="text-align: center;">8</td>
+        <td style="text-align: center;">1d10</td>
+      </tr>
+      <tr class="odd">
+        <td>Oggetto grande</td>
+        <td style="text-align: center;">2</td>
+        <td style="text-align: center;">7</td>
+        <td style="text-align: center;">1d12</td>
+      </tr>
+      </tbody>
+    </table>
+    <p>Se il lancio è a medio raggio non è necessario un tiro per colpire e
+      il lancio va automaticamente a segno. Se il lancio è a lungo raggio è
+      necessario tirare 1d100 per colpire. Nel calcolo della probabilità di
+      colpire si può utilizzare la competenza (automatica contro le caselle e
+      non contro un obiettivo specifico sulla casella) che dipenderà dal
+      livello del personaggio, oppure il bonus di una prova di gravità
+      muscolare (atletica) La probabilità di colpire si calcola con questa
+      formula:</p>
+    <p><span class="math display">\[\% P = \% P_{arma} \times \frac{100 \% +
+\left(Bonus_{att} - Bonus_{dif}\right) \times 5 \% - \% Armatura - \%
+Copertura}{100 \%}\]</span></p>
+    <p>Dove</p>
+    <ul>
+      <li><span class="math inline">\(\% P =\)</span> probabilità di
+        colpire
+      </li>
+      <li><span class="math inline">\(\% P_{arma} =\)</span> probabilità di
+        colpire dell’arma; quando l’oggetto lanciato non ha una propria
+        probabilità di colpire si considera <span
+            class="math inline">\(60\%\)</span> nel caso di lancio su caselle a
+        lungo raggio, vedi “Armi”
+      </li>
+      <li><span class="math inline">\(Bonus_{att} =\)</span> bonus di attacco
+        <ul>
+          <li>Per armi da fuoco è utilizzato il bonus di una prova di precisione
+            (utilizzo armi e strumenti a distanza) dell’attaccante
+          </li>
+          <li>Per armi lanciabili è utilizzato a scelta il bonus di una prova di
+            precisione (utilizzo armi e strumenti a distanza) oppure il bonus di una
+            prova di gravità muscolare (atletica) dell’attaccante
+          </li>
+        </ul>
+      </li>
+      <li><span class="math inline">\(Bonus_{dif} =\)</span> bonus di difesa:
+        è utilizzato il bonus di una prova di multitasking (attenzione
+        suddivisa) del bersaglio (nel caso in cui non si stia attaccando una
+        casella, ma un bersaglio su di essa)
+      </li>
+      <li><span class="math inline">\(\% Armatura =\)</span> riduzione
+        percentuale della probabilità di colpire garantita dall’armatura del
+        bersaglio. Questa percentuale è in generale diversa a seconda della
+        tipologia di danno e della gravità del danno che verrebbe inflitto
+        dall’attacco, vedi “Armatura” (nel caso in cui non si stia attaccando
+        una casella, ma un bersaglio su di essa)
+      </li>
+      <li><span class="math inline">\(\% Copertura =\)</span> riduzione
+        percentuale della probabilità di colpire garantita dalla copertura di
+        cui gode il bersaglio; la copertura è determinata in base
+        all’angolazione del tiro e alla posizione degli ostacoli sulla mappa,
+        vedi “Determinare la copertura”.
+      </li>
+    </ul>
+    <p>Come già espresso in precedenza, se la probabilità di colpire supera
+      99% viene riportata a 99%, mentre se è al di sotto di 1%, viene
+      riportata a 1%.</p>
+    <p>Nel caso in cui si attacchi un bersaglio su una casella e non la
+      casella stessa e la probabilità di colpire dell’oggetto lanciato non sia
+      data, si considerano le seguenti <span class="math inline">\(\%
+P_{arma}\)</span></p>
+    <ul>
+      <li>Bersaglio a medio raggio: <span class="math inline">\(60
+\%\)</span></li>
+      <li>Bersaglio a lungo raggio: <span class="math inline">\(50
+\%\)</span></li>
+      <li>Casella a lungo raggio: <span class="math inline">\(60
+\%\)</span></li>
+    </ul>
+    <h4 id="determinare-la-devizione-del-lancio">Determinare la devizione
+      del lancio</h4>
+    <p>Quando il tiro per colpire su una casella a lungo raggio fallisce, va
+      determinato su quale casella atterrerà l’oggetto. Nel caso fallisca il
+      tiro per colpire su un bersaglio a lungo raggio fallisca, bisognerà
+      ricalcolare la probabilità di colpire come per un lancio sulla casella a
+      lungo raggio per definire se si ha deviazione e quale. Se tirando 1d100
+      si supera la probabilità di colpire, l’oggetto cade a un numero di
+      caselle pari a 1 + 1 casella per ogni 10% di sforo effettuato con il
+      dado rispetto alla percentuale di probabilità di colpire. La direzione
+      di caduta rispetto alla casella bersaglio è definita con 1d4 per
+      battaglie in gravità, considerando come 1 la direzione di allontanamento
+      dall’attaccante e poi in senso orario. Per battaglie in microgravità si
+      utilizza 1d6 per determinare la direzione di deviazione dell’oggetto,
+      con 5 che indica “sopra” e 6 che indica “sotto”.</p>
+    <h4 id="danneggiamento-dal-lancio-di-oggetti">Danneggiamento dal lancio
+      di oggetti</h4>
+    <p>Quando l’oggetto viene lanciato contro un bersaglio e il bersaglio
+      viene colpito, l’oggetto può portare a danneggiare il bersaglio con
+      danno da impatto, gravità danno leggero.</p>
+    <table>
+      <thead>
+      <tr class="header">
+        <th></th>
+        <th style="text-align: center;">Medio raggio</th>
+        <th style="text-align: center;">Lungo raggio</th>
+        <th style="text-align: center;">Danno da impatto</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+        <td>Oggetto leggero</td>
+        <td style="text-align: center;">4</td>
+        <td style="text-align: center;">9</td>
+        <td style="text-align: center;">1d8</td>
+      </tr>
+      <tr class="even">
+        <td>Oggetto medio</td>
+        <td style="text-align: center;">3</td>
+        <td style="text-align: center;">8</td>
+        <td style="text-align: center;">1d10</td>
+      </tr>
+      <tr class="odd">
+        <td>Oggetto grande</td>
+        <td style="text-align: center;">2</td>
+        <td style="text-align: center;">7</td>
+        <td style="text-align: center;">1d12</td>
+      </tr>
+      </tbody>
+    </table>
+    <p>Il danno andrà poi ridotto e considerato in funzione delle
+      vulnerabilità del bersaglio (vedi “Applicazione del danno e
+      vulnerabilità”)</p>
+    <h3 id="applicazione-del-danno-e-vulnerabilità">Applicazione del danno e
+      vulnerabilità</h3>
+    <p>In “Le Periferie del Vuoto” il danno non viene sottratto a una barra
+      della vita, ma agisce sulle vulnerabilità del bersaglio e provoca degli
+      effetti negativi che riducono l’efficacia combattiva e di movimento del
+      bersaglio e che possono infine portare alla morte. Ogni bersaglio può
+      avere diverse vulnerabilità a diverse tipologie di danno, con effetti
+      diversi se queste vengono sfruttate. Per un normale essere umano le
+      vulnerabilità sono le seguenti</p>
+    <ul>
+      <li>taglio
+        <ul>
+          <li>1-5 -&gt; ferita leggera</li>
+          <li>6-9 -&gt; ferita grave</li>
+          <li>10-13 -&gt; fuori combattimento + ferita grave</li>
+          <li>14 o superiore -&gt; fuori combattimento + ferita mortale</li>
+        </ul>
+      </li>
+      <li>perforante
+        <ul>
+          <li>1-5 -&gt; ferita leggera</li>
+          <li>6-9 -&gt; ferita grave</li>
+          <li>10-13 -&gt; fuori combattimento + ferita grave</li>
+          <li>14 o superiore -&gt; fuori combattimento + ferita mortale</li>
+        </ul>
+      </li>
+      <li>impatto
+        <ul>
+          <li>4-7 -&gt; stordito</li>
+          <li>8-9 -&gt; ferita leggera + stordito</li>
+          <li>10-11 -&gt; ferita grave + stordito</li>
+          <li>12-15 -&gt; fuori combattimento + ferita grave</li>
+          <li>16 o superiore -&gt; fuori combattimento + ferita mortale</li>
+        </ul>
+      </li>
+      <li>elettrico
+        <ul>
+          <li>4-7 -&gt; stordito</li>
+          <li>8-9 -&gt; shock</li>
+          <li>10-13 -&gt; fuori combattimento</li>
+          <li>14 o superiore -&gt; fuori combattimento + ferita mortale</li>
+        </ul>
+      </li>
+      <li>ustione
+        <ul>
+          <li>1-5 -&gt; ferita leggera</li>
+          <li>6-9 -&gt; ferita grave</li>
+          <li>10-13 -&gt; fuori combattimento + ferita grave</li>
+          <li>14 o superiore -&gt; fuori combattimento + ferita mortale</li>
+        </ul>
+      </li>
+      <li>radiazione
+        <ul>
+          <li>1-5 -&gt; ferita leggera</li>
+          <li>6-13 -&gt; ferita grave + stordito</li>
+          <li>14 o superiore -&gt; ferita mortale + stordito</li>
+        </ul>
+      </li>
+    </ul>
+    <p>Gli effetti delle vulnerabilità sono</p>
+    <ul>
+      <li>Ferita leggera: anticipa gli effetti di tutte le vulnerabilità di 1.
+        Le ferite leggere possono essere accumulate, al subire della terza
+        ferita leggera, le ferite leggere si trasformano in una ferita
+        grave.
+      </li>
+      <li>Ferita grave: anticipa gli effetti di tutte le vulnerabilità di 2,
+        tutti i tipi di movimento sono dimezzati. Al subire della seconda ferita
+        grave, le ferite gravi si trasformano in una ferita mortale.
+      </li>
+      <li>Ferita mortale: l’entità non può muoversi. É necessario stabilizzare
+        l’entità prima che muoia, vedi “Curare e stabilizzare”.
+      </li>
+    </ul>
+    <p>Riassumendo:</p>
+    <ul>
+      <li>3 x ferita leggera -&gt; 1 x ferita grave</li>
+      <li>2 x ferita grave -&gt; 1 x ferita mortale (6 x ferita leggera -&gt;
+        1 x ferita mortale)
+      </li>
+    </ul>
+    <p>Vi sono effetti che non mettono direttamente a rischio la vita
+      dell’entità, ma che ne riducono l’efficacia in combattimento</p>
+    <ul>
+      <li>Stordito: l’entità soggetta a stordito perde il suo prossimo turno.
+        l’effetto permane fino all’inizio del turno successivo dell’entità
+        affetta.
+      </li>
+      <li>Shock: l’entità soggetta a stordito perde il suo prossimo turno e la
+        copertura. l’effetto permane fino all’inizio del turno successivo
+        dell’entità affetta.
+      </li>
+      <li>Accecato: l’entità affetta non può stabilire la linea di vista con
+        nessuna altra entità nel suo prossimo turno, non può attaccare. Può
+        muoversi di una sola casella a meno che non sia aiutata da un’altra
+        entità, in tal caso la velocità originale di movimento è mantenuta.
+      </li>
+      <li>Infuocato: l’entità ha preso fuoco, all’inizio del proprio turno
+        tira 1d8 di danno da ustione e ne applica gli effetti in funzione delle
+        proprie vulnerabilità. L’effetto infuocato svanisce alla fine del turno
+        dell’entità che ne è affetta.
+      </li>
+      <li>Fuori combattimento: l’entità rimane sulla casella corrente e perde
+        tutti i turni successivi, di fatto non contribuendo al combattimento.
+        Può tuttavia essere attaccata e colpita.
+      </li>
+    </ul>
+    <h3 id="attacchi-ad-area">Attacchi ad area</h3>
+    <p>Un attacco ad area occupa un certo pattern sulla tassellatura di
+      gioco a partire da una specifica casella. Alcuni pattern hanno uno o due
+      piani di simmetria, mentre altri sono più particolari. Il pattern di
+      attacco dell’attacco ad area può anche essere di un’unica casella. In
+      caso di combattimenti sviluppati in tre dimensioni il pattern di attacco
+      ad area va derivato con buonsenso a partire dal pattern 2D associato
+      all’arma o all’oggetto. Gli attacchi possono essere generalmente
+      bloccati dagli ostacoli che bloccano la linea di vista (ad esempio una
+      granata a frammentazione, ma per alcuni questo non è possibile (ad
+      esempio il lanciafiamme)</p>
+    <h3 id="riduzione-di-efficacia-dellarmatura">Riduzione di efficacia
+      dell’armatura</h3>
+    <p>Contro il danno perforante l’armatura perde di efficacia nella
+      riduzione della probabilità di colpire, in particolare si avrà:</p>
+    <p><span class="math display">\[\% Armatura = \% Armatura_{base} \times
+efficacia\]</span></p>
+    <p><span class="math inline">\(efficacia = \left\{\begin{array}{@{}l@{}}
+1-\left(9 - d \right) \times \frac{0.3}{8}\ \ se\ 1 \leq d &lt; 9\\ 1 \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ se\ 9 \leq d \leq 30
+\end{array} \right .\,\)</span></p>
+    <hr/>
+
+    <h2 id="curare">Curare</h2>
+    <h3 id="riposo">Riposo</h3>
+    <p>Dopo la fine di un combattimento, un riposo di 8 ore unito
+      all’utilizzo di equipaggiamento medico è possibile curare una ferite
+      grave che si trasformano in una ferita leggera e le ferite leggere
+      scompaiono.</p>
+    <h3 id="curare-le-ferite-in-combattimento">Curare le ferite in
+      combattimento</h3>
+    <p>Si può utilizzare dell’equipaggiamento medico per curarsi con
+      un’azione “utilizzare un’oggetto” utilizzando un kit medico per curare
+      le ferite a se stessi o a entità alleate in caselle adiacenti.</p>
+    <ul>
+      <li>Curare ferita leggera: utilizza 1 kit medico per curare una ferita
+        leggera
+      </li>
+      <li>Curare ferita grave: utilizza 1 kit medico per curare una ferita
+        grave, con una prova di applicazione (medicina) DC12. Se la prova
+        fallisce il medikit viene comunque esaurito
+      </li>
+      <li>Curare ferita mortale: utilizza 1 kit medico per curare una ferita
+        mortale di un alleato con una prova di applicazione (medicina) DC15 per
+        trasformarla in una ferita grave. Se la prova fallisce il medikit viene
+        comunque esaurito. Non è possibile curare autonomamente la propria
+        ferita mortale. Se comunque si supera durante la prova la soglia DC10
+        l’entità alleata è considerata stabilizzata, vedi “Scampare la morte e
+        stabilizzare”.
+      </li>
+    </ul>
+    <h3 id="scampare-la-morte-e-stabilizzare">Scampare la morte e
+      stabilizzare</h3>
+    <p>Quando si riceve una ferita mortale, all’inizio del proprio turno
+      bisognerà effettuare un tiro salvezza per scampare la morte. Si tratta
+      di una prova di abilità generica DC10 nella quale non è possibile
+      utilizzare i bonus delle abilità o dei talenti. Ogni turno si effettua
+      un tiro salvezza all’inizio del turno. L’entità è considerata
+      stabilizzata al terzo successo e non dovrà più effettuare tiri salvezza.
+      Rimarrà tuttavia fuori combattimento o andrà fuori combattimento non
+      appena collezionato il terzo successo. L’entità muore al terzo
+      fallimento del tiro salvezza e non dovrà più effettuare tiri salvezza.
+      Se durante un tiro salvezza viene segnato un 1 con il d20, conta come
+      due fallimenti. Se durante un tiro salvezza viene segnato un 20 con il
+      d20 la ferita mortale torna a essere una ferita grave. In questo caso,
+      se non si è già fuori combattimento, si rimane in combattimento. Se
+      mentre si è affetti da ferita mortale si viene colpiti, ogni attacco
+      subito che va a segno conta come un fallimento di un tiro salvezza.</p>
+    <p>Un’entità che è stata stabilizzata diventa automaticamente fuori
+      combattimento e rimane affetta da ferita mortale, tuttavia non è più in
+      pericolo di vita. Un’entità che non viene curata ma solo stabilizzata
+      trasformerà la sua ferita mortale in ferita grave in 1d4 ore e rinverrà
+      rimuovendo l’effetto di fuori combattimento.</p>
+    <p>Se un’entità stabilizzata subisce danni perderà l’effetto
+      stabilizzata e dovrà ricominciare a effettuare tiri salvezza come se
+      avesse appena subito una ferita mortale.</p>
+    <h3 id="macchine-e-veicoli">Macchine e veicoli</h3>
+    <p>Le macchine considerabili come entità, possono, a seconda
+      dell’entità, guastarsi non appena ricevono una ferita mortale, oppure
+      seguire lo stesso iter delle entità organiche. In questo caso per curare
+      le ferite sarà necessaria una prova di applicazione (riparazione).</p>
+    <hr/>
+
+    <h2 id="combattimento-strategico">Combattimento strategico</h2>
+    <p>Nel combattimento strategico i giocatori guideranno un forza militare
+      di notevole grandezza, concentrandosi sulla visione strategica delle
+      battaglie. La visione strategica di un conflitto studia la gestione
+      delle risorse per la guerra o per la battaglia a seconda della
+      dimensione del comando.</p>
+    <h3 id="manuale-del-combattimento-strategico">Manuale del combattimento
+      strategico</h3>
+    <h4 id="il-comando-strategico">Il comando strategico</h4>
+    <p>Il comando strategico rappresenta virtualmente la testa pensante
+      della sezione di guerra/battaglia controllata dal giocatore. Il comando
+      strategico è associato a una specifica fazione all’interno del conflitto
+      o a un gruppo di fazioni alleate. Il comando strategico è fisicamente
+      situato in qualche luogo dentro o fuori dalla zona del conflitto. Come
+      regola generale, avvicinare il comando strategico alla zona del
+      conflitto controllata migliora la responsività del comando e lo scambio
+      di informazioni tra le forze sul campo e il comando strategico, tuttavia
+      rende il comando strategico più vulnerabile agli attacchi nemici. Il
+      comando strategico è generalmente composto da una serie di ufficiali di
+      alto rango, ma nel combattimento strategico nel gioco questo dipende in
+      realtà dalla larghezza del conflitto controllato in termini di personale
+      e dimensioni spaziali. Il comando strategico contiene equipaggiamento
+      fisico per comunicare con gli organi superiori di comando (alto comando,
+      ruoli politici) e con gli organi locali di comando (più vicini al campo
+      di battaglia).</p>
+    <p>Per meglio comprendere le possibili dimensioni del conflitto, qui è
+      riportata la denominazione NATO delle unità in funzione delle dimensioni
+      medie dell’unità in termini di personale.</p>
+    <table>
+      <colgroup>
+        <col style="width: 5%"/>
+        <col style="width: 14%"/>
+        <col style="width: 15%"/>
+        <col style="width: 12%"/>
+        <col style="width: 16%"/>
+        <col style="width: 12%"/>
+        <col style="width: 22%"/>
+      </colgroup>
+      <thead>
+      <tr class="header">
+        <th style="text-align: center;">Simbolo</th>
+        <th>Denominazione inglese</th>
+        <th>Denominazione italiana</th>
+        <th style="text-align: center;">Numero di soldati</th>
+        <th style="text-align: center;">Numero di soldati medio</th>
+        <th style="text-align: center;">Unità subordinata</th>
+        <th style="text-align: center;">Numero di unità subordinate medio</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+        <td style="text-align: center;">Ø</td>
+        <td>Team</td>
+        <td><strong>Gruppo di fuoco</strong></td>
+        <td style="text-align: center;">3-5</td>
+        <td style="text-align: center;">4</td>
+        <td style="text-align: center;">-</td>
+        <td style="text-align: center;">-</td>
+      </tr>
+      <tr class="even">
+        <td style="text-align: center;">•</td>
+        <td>Squad</td>
+        <td><strong>Squadra</strong></td>
+        <td style="text-align: center;">5-10</td>
+        <td style="text-align: center;">10</td>
+        <td style="text-align: center;">Gruppo di fuoco</td>
+        <td style="text-align: center;">3</td>
+      </tr>
+      <tr class="odd">
+        <td style="text-align: center;">••</td>
+        <td>Section</td>
+        <td><strong>Pattuglia</strong></td>
+        <td style="text-align: center;">7-13</td>
+        <td style="text-align: center;">20</td>
+        <td style="text-align: center;">Gruppo di fuoco</td>
+        <td style="text-align: center;">5</td>
+      </tr>
+      <tr class="even">
+        <td style="text-align: center;">•••</td>
+        <td>Platoon</td>
+        <td><strong>Plotone</strong></td>
+        <td style="text-align: center;">25-44</td>
+        <td style="text-align: center;">40</td>
+        <td style="text-align: center;">Squadra</td>
+        <td style="text-align: center;">4</td>
+      </tr>
+      <tr class="odd">
+        <td style="text-align: center;">I</td>
+        <td>Company</td>
+        <td><strong>Compagnia</strong></td>
+        <td style="text-align: center;">60-250</td>
+        <td style="text-align: center;">200</td>
+        <td style="text-align: center;">Plotone</td>
+        <td style="text-align: center;">5</td>
+      </tr>
+      <tr class="even">
+        <td style="text-align: center;">II</td>
+        <td>Battalion</td>
+        <td><strong>Battaglione</strong></td>
+        <td style="text-align: center;">300-1000</td>
+        <td style="text-align: center;">800</td>
+        <td style="text-align: center;">Compagnia</td>
+        <td style="text-align: center;">4</td>
+      </tr>
+      <tr class="odd">
+        <td style="text-align: center;">III</td>
+        <td>Regiment</td>
+        <td><strong>Reggimento</strong></td>
+        <td style="text-align: center;">500-2000</td>
+        <td style="text-align: center;">1500</td>
+        <td style="text-align: center;">Battaglione</td>
+        <td style="text-align: center;">2</td>
+      </tr>
+      <tr class="even">
+        <td style="text-align: center;">X</td>
+        <td>Brigade</td>
+        <td><strong>Brigata</strong></td>
+        <td style="text-align: center;">2000-5000</td>
+        <td style="text-align: center;">3200</td>
+        <td style="text-align: center;">Reggimento</td>
+        <td style="text-align: center;">2</td>
+      </tr>
+      <tr class="odd">
+        <td style="text-align: center;">XX</td>
+        <td>Division</td>
+        <td><strong>Divisione</strong></td>
+        <td style="text-align: center;">10000-20000</td>
+        <td style="text-align: center;">16000</td>
+        <td style="text-align: center;">Brigata</td>
+        <td style="text-align: center;">5</td>
+      </tr>
+      <tr class="even">
+        <td style="text-align: center;">XXX</td>
+        <td>Corps</td>
+        <td><strong>Corpo d’armata</strong></td>
+        <td style="text-align: center;">20000-60000</td>
+        <td style="text-align: center;">40000</td>
+        <td style="text-align: center;">Divisione</td>
+        <td style="text-align: center;">3</td>
+      </tr>
+      <tr class="odd">
+        <td style="text-align: center;">XXXX</td>
+        <td>Army</td>
+        <td><strong>Armata</strong></td>
+        <td style="text-align: center;">80000-100000</td>
+        <td style="text-align: center;">100000</td>
+        <td style="text-align: center;">Corpo d’armata</td>
+        <td style="text-align: center;">3</td>
+      </tr>
+      <tr class="even">
+        <td style="text-align: center;">XXXXX</td>
+        <td>Army group</td>
+        <td><strong>Gruppo d’armate</strong></td>
+        <td style="text-align: center;">120000-500000</td>
+        <td style="text-align: center;">300000</td>
+        <td style="text-align: center;">Armata</td>
+        <td style="text-align: center;">3</td>
+      </tr>
+      </tbody>
+    </table>
+    <p>Il comando strategico deve gestire una serie di risorse umane e
+      materiali al fine di raggiungere l’obiettivo prefissato nel tempo
+      richiesto con la minor spesa di risorse. Il comando strategico non deve
+      solo decidere quante risorse allocare e dove, ma anche supervisionare la
+      logistica: come far arrivare le risorse.</p>
+    <p>Le minacce al comando strategico stanno sul campo di battaglia nella
+      guerra convenzionale, nelle incursioni e negli attacchi a lungo raggio
+      che potrebbero decapitare la testa della fazione conquistando o
+      distruggendo il comando strategico nella guerra elettronica e nella
+      guerra ibrida che riducono l’efficacia delle comunicazioni, delle
+      tecnologie belliche e infine il supporto della popolazione locale. Anche
+      l’ambiente può essere ostile e portare a perdita di efficacia o perdita
+      di risorse. Infine le minacce possono arrivare dall’alto direttamente
+      dagli ordini dell’alto comando che possono risultare alle volte stupidi
+      e sconvenienti.</p>
+    <h4 id="le-risorse">Le risorse</h4>
+    <p>Le risorse si dividono in:</p>
+    <ul>
+      <li>Risorse materiali</li>
+      <li>Risorse umane</li>
+    </ul>
+    <p>Le risorse materiali rappresentano qualsiasi tipo di equipaggiamento
+      utilizzato dalle forze armate</p>
+    <ul>
+      <li>Equipaggiamento offensivo
+        <ul>
+          <li>Armi leggere</li>
+          <li>Sistemi d’arma dispiegabili</li>
+          <li>Sistemi d’arma ambulanti</li>
+          <li>Sistemi autonomi o a controllo remoto</li>
+        </ul>
+      </li>
+      <li>Equipaggiamento difensivo
+        <ul>
+          <li>Tute, armature e altri dispositivi ad uso personale</li>
+          <li>Strutture e difese prefabbricate</li>
+          <li>Basi mobili corazzate</li>
+        </ul>
+      </li>
+      <li>Equipaggiamento da ricognizione
+        <ul>
+          <li>Ottiche</li>
+          <li>Radar e altri sistemi di localizzazione attiva e passiva</li>
+          <li>Sistemi autonomi o a controllo remoto</li>
+        </ul>
+      </li>
+      <li>Equipaggiamento di supporto
+        <ul>
+          <li>Risorse mediche e sanitarie</li>
+          <li>Risorse alimentari e idriche</li>
+          <li>Indumenti e parti di ricambio</li>
+          <li>Strumenti e impianti per ospedalizzazioni e riparazioni</li>
+          <li>Terminali per le comunicazioni e il controllo remoto</li>
+          <li>Veicoli e attrezzi di trasporto logistico</li>
+        </ul>
+      </li>
+      <li>Munizioni</li>
+    </ul>
+    <p>Le risorse umane rappresentano il cuore insostituibile delle forze
+      armate e generalmente hanno un valore strategico superiore alle risorse
+      materiali</p>
+    <ul>
+      <li>Corpi della fazione
+        <ul>
+          <li>Soldati
+            <ul>
+              <li>Soldati semplici</li>
+              <li>Specialisti</li>
+            </ul>
+          </li>
+          <li>Sottoufficiali</li>
+          <li>Ufficiali</li>
+        </ul>
+      </li>
+      <li>Strutture di comando e controllo
+        <ul>
+          <li>Comando strategico</li>
+          <li>Comunicazioni</li>
+          <li>Ricognizione</li>
+          <li>Corpo combattente</li>
+          <li>Logistica</li>
+        </ul>
+      </li>
+      <li>Supporto esterno
+        <ul>
+          <li>Civili combattenti</li>
+          <li>Supporto civile</li>
+          <li>Supporto da altre fazioni</li>
+        </ul>
+      </li>
+    </ul>
+    <h5 id="raggruppare-le-risorse">Raggruppare le risorse</h5>
+    <p>Raggruppare le risorse in zone ristrette permette di dare luogo, una
+      volta raggruppate le risorse, a operazioni veloci e di grande impatto.
+      Tuttavia raggruppare le risorse costruisce per il nemico un grande
+      bersaglio che, se colpito, può danneggiare significativamente
+      l’efficacia della fazione avversaria.</p>
+    <h5 id="disperdere-le-risorse">Disperdere le risorse</h5>
+    <p>Disperdere le risorse le rende più difficili da controllare ed è
+      genralmente poco conveniente nel caso in cui l’ambiente operativo sia
+      molto ostile.</p>
+    <h5 id="controllo-e-autonomia">Controllo e autonomia</h5>
+    <p>Controllare le risorse significa poter scegliere di spostarle in
+      qualsiasi momento. Un grande controllo sulle risorse significa poter
+      spostare grandi segmenti di fronte da una parte all’altra della zona di
+      conflitto. Tuttavia un forte controllo spesso riduce l’autonomia delle
+      unità controllate, spostando molto peso decisionale sul comando
+      strategico. Una maggiore autonomia delle singole unità combattive è in
+      generale positiva, ma arriva con l’indebolimento del sistema di
+      controllo centrale. L’utilizzo di un buona percentuale di ufficiali e
+      sottoufficiali è positiva perché migliora sia l’autonomia che la
+      capacità di cominicazione tra le unità e quindi la capacità di
+      controllarle che ne deriva. L’utilizzo di più ufficiali e sottoufficiali
+      sul campo di battaglia aumenta ovviamente il rischio di perdite di
+      risorse umane di grande valore, dato che rimpiazzare ufficiali e
+      sottoufficiali ha un costo strategico superiore rispetto al rimpiazzo di
+      soldati semplici.</p>
+    <h4 id="la-mappa-del-conflitto">La mappa del conflitto</h4>
+    <p>La mappa del conflitto ha un enorme impatto sulla gestione del
+      combattimento strategico, perché definirà i punti strategici, la forma
+      del fronte (se presente), la difficoltà di gestione della logistica e la
+      natura del combattimento. Se ad esempio il combattimento avviene sulla
+      superficie di un pianeta deserto, il fronte potrebbe essere ampio e le
+      unità estremamente disperse. Questo porterà forti problemi di
+      capillarizzazione della logistica e del controllo e favorirà azioni
+      individuali of grosse azioni di sfondamento localizzate, aumentando il
+      rischio di un attacco in profondità nelle linee avversarie a causa della
+      mancanza di ostacoli naturali. Sarà semplificata la ricognizione della
+      superficie del pianeta, mentre la ricognizione delle gallerie potrebbe
+      essere affidata a radar a bassa frequenza, sismometri di precisione o
+      telecamere installate nei tunnel. In un combattimento all’interno di una
+      stazione spaziale, la presenza di corridoi e condotti generà grandi
+      colli di bottiglia portando a una frammentazione del fronte in piccoli
+      tratti corrispondenti a tunnel e aperture. Risulterà molto complesso
+      avere idee chiare sulle dimensioni delle forze nemiche, e le incursioni
+      potrebbero sfruttare condotti o tunnel non noti alla fazione nemica.</p>
+    <h5 id="studiare-la-mappa">Studiare la mappa</h5>
+    <p>Quando si studia la mappa, che questa sia bidimensionale o
+      tridimensionale è necessario comunicare attivamente con i sottoposti
+      addetti alla ricognizione e all’archivio mappe per comprendere bene la
+      mappa. In particolare sarà fondamentale individuare:</p>
+    <ul>
+      <li>Colli di bottiglia (choke points)</li>
+      <li>Punti strategici</li>
+      <li>Obiettivi</li>
+      <li>Unità nemiche ed eventuale fronte</li>
+      <li>Bersagli civili</li>
+      <li>Zone critiche</li>
+    </ul>
+    <p>I colli di bottiglia sono strettoie nei passaggi che possono far
+      passare poche unità alla volta, riducendo notevolmente la velocità di
+      trasporto o il fronte. I punti strategici rappresentano zone localizzate
+      particolarmente importanti per la loro posizione o disponibilità di
+      risorse. Gli obbiettivi sono legati agli ordini ricevuti dagli organi di
+      comando superiori. La conoscenza sulla posizione e sui numeri delle
+      unità nemiche è incompleta. Basandosi sulle informazioni possedute si
+      può provare a stabilire una linea del fronte tra le forze dei due
+      schieramenti avversari. La linea del fronte non si può sempre stabilire,
+      specialmente in caso di guerriglia. Le zone critiche possono essere zone
+      infestate, prive di ossigeno, con perdite di gas, incendiate oppure in
+      cui sono presenti tecnologie o materiali pericolosi se coinvolti in uno
+      scontro a fuoco.</p>
+    <h5 id="allocare-le-risorse-sulla-mappa">Allocare le risorse sulla
+      mappa</h5>
+    <p>Il modo più immediato di allocare le risorse sulla mappa è
+      distribuire in modo uniforme le proprie risorse umane cercando di
+      bilanciarle sulla lunghezza del fronte, contrastando in modo
+      proporzionale le unità nemiche dall’altro lato del fronte. Quando si
+      allocano le risorse è utile avere già in mente la strategia che si vorrà
+      seguire:</p>
+    <ul>
+      <li>Tenere la linea</li>
+      <li>Sfondare in un punto localizzato</li>
+      <li>Sbaragliare il fronte nemico</li>
+      <li>Lasciare accessi aperti per possibili incursioni</li>
+    </ul>
+    <h4 id="operazioni">Operazioni</h4>
+    <p>Le operazioni sono spostamenti di truppe fusi con azioni predefinite
+      necessarie a ottenere uno specifico risultato in un certo luogo, con il
+      fine ultimo di influenzare le sorti dello scontro. Le operazioni hanno
+      un impatto previsto e un impatto reale. L’organizzazione di
+      un’operazione è collegata ad una certa propensione al rischio: il
+      rischio di fallimento parziale o totale dell’operazione.
+      Nell’organizzazione dell’operazione è necessario considerare:</p>
+    <ul>
+      <li>Obiettivo dell’operazione e relazione con l’obiettivo definito dagli
+        organi di comando superiori
+      </li>
+      <li>Struttura dell’operazione, cioè la descrizione delle diverse fasi
+        dell’operazione
+      </li>
+      <li>Terreno d’azione in cui si svolge l’operazione</li>
+      <li>Tempistiche dell’operazione, cioè la stima del tempo impiegato da
+        ogni fase dell’operazione
+      </li>
+      <li>Risorse necessarie all’operazione nelle sue diverse fasi</li>
+      <li>Tempo di preparazione dell’operazione</li>
+      <li>Rischi dell’operazione e possibili modi di fallimento (suddivisi
+        nelle diverse fasi dell’operazione)
+      </li>
+    </ul>
+    <h4 id="costruire-la-logistica">Costruire la logistica</h4>
+    <p>La logistica permette l’arrivo di risorse umane e materiali dalle
+      basi logistiche fino al fronte. Per garantire la comunicazione logistica
+      bisogna tenere aperto un qualche tipo di passaggio sicuro in cui
+      veicolare le risorse senza che queste vengano bersagliate durante il
+      passaggio. A seconda della concentrazione di risorse e delle dimensioni,
+      parti delle forze armate possono resistere più o meno tempo senza
+      logistica, ma in ogni caso il potere combattivo sarà degradato.</p>
+    <h4 id="percepire-informazioni-dal-campo-di-battaglia">Percepire
+      informazioni dal campo di battaglia</h4>
+    <p>La posizione delle proprie unità, le variazioni della mappa del campo
+      di battaglia e gli spostamenti delle unità nemiche sono percepiti
+      attraverso le informazioni di rimbalzo che arrivano al comando
+      strategico. Possibili informatori sono:</p>
+    <ul>
+      <li>Unità al fronte</li>
+      <li>Unità di ricognizione</li>
+      <li>Unità in operazioni speciali</li>
+      <li>Unità alleate (ad esempio civili)</li>
+    </ul>
+    <p>Per questo motivo oltre alla linea logistica è necessario garantire
+      la linea di comunicazione per poter continuare a comunicare con il
+      fronte e mantenere unito il comando.</p>
+    <h4 id="tipologia-di-conflitto">Tipologia di conflitto</h4>
+    <p>Il conflitto armata può distinguersi in diversi modi. A seconda che
+      sia presente la linea del fronte oppure no si può parlare di guerra vera
+      e propria (simmetrica) o guerriglia asimmetrica in cui la fazione in
+      inferiorità di forze rimane nascosta a favore di piccoli attacchi mordi
+      e fuggi (raid) allo scopo di indebolire logistica e morale dell’esercito
+      nemico. Il conflitto ha poi una sua intensità. L’intensità del conflitto
+      è indice di quanto in fretta le risorse vengono utilizzate e perse da
+      entrambi i fronti. Infine il concetto di superiorità permette di
+      evidenziare eventuali dominii di alcune tipologie di campi di battaglia.
+      La superiorità navale ad esempio potrebbe garantire il dominio dei
+      cieli.</p>
+    <h5 id="estensione-del-conflitto">Estensione del conflitto</h5>
+    <p>L’estensione nel tempo o nello spazio di un conflitto armato porta
+      nel tempo al logoramento delle forze armate nonostante una linea
+      logistica stabile. Per mitigare il calo di efficienza delle proprie
+      unità è conveniente far girare le truppe al fronte (fare dei cambi)</p>
+    <h4 id="morale">Morale</h4>
+    <p>In base all’addestramento di un’unità e alla situazione in cui si
+      trova, il morale può portarla a un’ottima performance in combattimento,
+      o a una pessima performance. Il morale di un’unità è influenzato da:</p>
+    <ul>
+      <li>Obiettivo del conflitto</li>
+      <li>Addestramento</li>
+      <li>Esperienza</li>
+      <li>Logistica</li>
+      <li>Campo di battaglia</li>
+      <li>Bilanciamento di forze</li>
+      <li>Tipo e intensità del conflitto</li>
+      <li>Tempo trascorso dall’ingresso in combattimento</li>
+    </ul>
+    <p>Le unità autonome e a controllo remoto sono meno soggette agli
+      effetti del morale.</p>
+    <p>Se il morale è troppo basso l’unità potrebbe darsi alla fuga o
+      arrendersi al nemico.</p>
+    <p>L’obiettivo è creare le condizioni per le quali le unità alleate non
+      si debbano arrendere e invece le unità nemiche si vogliano
+      arrendere.</p>
+  </main>
+
+  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasExample"
+       aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Navigazione Regolamento</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul>
+        <li><a href="#introduzione">Introduzione</a></li>
+        <li><a href="#sigle-e-acronimi">Sigle e acronimi</a></li>
+        <li><a href="#punteggi-abilità-e-talenti">Punteggi abilità e talenti</a>
+          <ul>
+            <li><a href="#bonus-dai-punteggi-abilità-e-dalle-competenze">Bonus dai
+              punteggi abilità e dalle competenze</a></li>
+            <li><a href="#prova-di-abilità">Prova di abilità</a></li>
+            <li><a href="#tiri-salvezza">Tiri salvezza</a></li>
+          </ul>
+        </li>
+        <li><a href="#luogo-di-appartenenza">Luogo di appartenenza</a>
+          <ul>
+            <li><a href="#nazioni-unite-della-terra">Nazioni Unite della
+              Terra</a></li>
+            <li><a href="#repubblica-congressuale-marziana">Repubblica Congressuale
+              Marziana</a></li>
+            <li><a href="#alleanza-dei-pianeti-esterni">Alleanza dei Pianeti
+              Esterni</a></li>
+          </ul>
+        </li>
+        <li><a href="#professioni">Professioni</a>
+          <ul>
+            <li><a href="#professioni-terrestri">Professioni terrestri</a></li>
+            <li><a href="#professioni-marziane">Professioni marziane</a></li>
+            <li><a href="#professioni-cinturiane">Professioni cinturiane</a></li>
+          </ul>
+        </li>
+        <li><a href="#combattimento-tattico-con-armi-leggere">Combattimento
+          tattico con armi leggere</a>
+          <ul>
+            <li><a href="#introduzione-al-combattimento-tattico">Introduzione al
+              combattimento tattico</a></li>
+            <li><a href="#il-round-di-gioco">Il round di gioco</a>
+              <ul>
+                <li><a href="#iniziare-un-combattimento">Iniziare un combattimento</a>
+                  <ul>
+                    <li><a href="#tirare-per-liniziativa">Tirare per l’iniziativa</a></li>
+                    <li><a href="#cogliere-di-sorpresa">Cogliere di sorpresa</a></li>
+                  </ul>
+                </li>
+                <li><a href="#rinforzi">Rinforzi</a></li>
+                <li><a href="#scoprire-entità-esterne-in-combattimento">Scoprire entità
+                  esterne in combattimento</a></li>
+              </ul>
+            </li>
+            <li><a href="#il-turno-di-gioco">Il turno di gioco</a>
+              <ul>
+                <li><a href="#movimento">Movimento</a></li>
+                <li><a href="#azione">Azione</a></li>
+                <li><a href="#interazione">Interazione</a></li>
+                <li><a href="#azione-bonus">Azione bonus</a></li>
+                <li><a href="#reazione">Reazione</a></li>
+              </ul>
+            </li>
+            <li><a href="#posizione-e-movimento">Posizione e movimento</a>
+              <ul>
+                <li><a href="#spezzare-il-movimento">Spezzare il movimento</a></li>
+                <li><a href="#velocità-di-movimento-e-modificatori">Velocità di
+                  movimento e modificatori</a></li>
+                <li><a href="#tassellatura-e-limitazioni">Tassellatura e
+                  limitazioni</a></li>
+                <li><a href="#balzo">Balzo</a></li>
+                <li><a href="#movimento-tridimensionale-in-microgravità">Movimento
+                  tridimensionale in microgravità</a>
+                  <ul>
+                    <li><a href="#movimento-tridimensionale-tramite-balzi">Movimento
+                      tridimensionale tramite balzi</a></li>
+                    <li><a href="#movimento-tridimensionale-con-propulsori">Movimento
+                      tridimensionale con propulsori</a></li>
+                  </ul>
+                </li>
+                <li><a
+                    href="#muoversi-attraverso-spazi-riservati-ad-altre-entità">Muoversi
+                  attraverso spazi riservati ad altre entità</a></li>
+                <li><a href="#attacco-dopportunità-durante-il-movimento">Attacco
+                  d’opportunità durante il movimento</a></li>
+                <li><a href="#muoversi-furtivamente">Muoversi furtivamente</a></li>
+              </ul>
+            </li>
+            <li><a href="#eseguire-unazione">Eseguire un’azione</a>
+              <ul>
+                <li><a href="#attacco">Attacco</a></li>
+                <li><a href="#scatto">Scatto</a></li>
+                <li><a href="#schivata">Schivata</a></li>
+                <li><a href="#disingaggio">Disingaggio</a></li>
+                <li><a href="#aiuto">Aiuto</a></li>
+                <li><a href="#prepararsi">Prepararsi</a></li>
+                <li><a href="#nascondersi">Nascondersi</a></li>
+                <li><a href="#utilizzare-unabilità-attiva">Utilizzare un’abilità
+                  attiva</a></li>
+                <li><a href="#cercare">Cercare</a></li>
+                <li><a href="#utilizzare-un-oggetto">Utilizzare un oggetto</a></li>
+                <li><a href="#improvvisazione">Improvvisazione</a></li>
+              </ul>
+            </li>
+            <li><a href="#eseguire-un-attacco">Eseguire un attacco</a>
+              <ul>
+                <li><a href="#attacco-ravvicinato">Attacco ravvicinato</a></li>
+                <li><a href="#attacco-a-distanza">Attacco a distanza</a>
+                  <ul>
+                    <li><a href="#determinare-la-linea-di-vista">Determinare la linea di
+                      vista</a></li>
+                    <li><a href="#tiro-per-colpire">Tiro per colpire</a></li>
+                    <li><a href="#probabilità-di-colpire">Probabilità di colpire</a></li>
+                    <li><a href="#determinare-la-copertura">Determinare la
+                      copertura</a></li>
+                    <li><a href="#tiro-per-i-danni">Tiro per i danni</a></li>
+                    <li><a href="#lanciare-un-oggetto">Lanciare un oggetto</a></li>
+                    <li><a href="#determinare-la-deviazione-del-lancio">Determinare la
+                      deviazione del lancio</a></li>
+                    <li><a href="#danneggiamento-dal-lancio-di-oggetti">Danneggiamento dal
+                      lancio di oggetti</a></li>
+                  </ul>
+                </li>
+                <li><a href="#applicazione-del-danno-e-vulnerabilità">Applicazione del
+                  danno e vulnerabilità</a></li>
+                <li><a href="#attacchi-ad-area">Attacchi ad area</a></li>
+                <li><a href="#riduzione-di-efficacia-dellarmatura">Riduzione di
+                  efficacia dell’armatura</a></li>
+              </ul>
+            </li>
+            <li><a href="#curare">Curare</a>
+              <ul>
+                <li><a href="#riposo">Riposo</a></li>
+                <li><a href="#curare-le-ferite-in-combattimento">Curare le ferite in
+                  combattimento</a></li>
+                <li><a href="#scampare-la-morte-e-stabilizzare">Scampare la morte e
+                  stabilizzare</a></li>
+                <li><a href="#macchine-e-veicoli">Macchine e veicoli</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#combattimento-tattico-navale">Combattimento tattico
+          navale</a></li>
+        <li><a href="#combattimento-strategico">Combattimento strategico</a>
+          <ul>
+            <li><a href="#guida-al-combattimento-strategico">Guida al combattimento strategico</a>
+              <ul>
+                <li><a href="#il-comando-strategico">Il comando strategico</a></li>
+                <li><a href="#le-risorse">Le risorse</a>
+                  <ul>
+                    <li><a href="#raggrippare-le-risorse">Raggrippare le risorse</a></li>
+                    <li><a href="#disperdere-le-risorse">Disperdere le risorse</a></li>
+                    <li><a href="#controllo-e-autonomia">Controllo e autonomia</a></li>
+                  </ul>
+                </li>
+                <li><a href="#la-mappa-del-conflitto">La mappa del conflitto</a>
+                  <ul>
+                    <li><a href="#studiare-la-mappa">Studiare la mappa</a></li>
+                    <li><a href="#allocare-le-risorse-sulla-mappa">Allocare le risorse sulla
+                      mappa</a></li>
+                  </ul>
+                </li>
+                <li><a href="#operazioni">Operazioni</a></li>
+                <li><a href="#costruire-la-logistica">Costruire la logistica</a></li>
+                <li><a href="#percepire-informazioni-dal-campo-di-battaglia">Percepire
+                  informazioni dal campo di battaglia</a></li>
+                <li><a href="#tipologia-di-conflitto">Tipologia di conflitto</a>
+                  <ul>
+                    <li><a href="#estensione-del-conflitto">Estensione del
+                      conflitto</a></li>
+                  </ul>
+                </li>
+                <li><a href="#morale">Morale</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+</template>
+
+<script setup lang="ts">
+</script>
+
+<style scoped>
+
+</style>

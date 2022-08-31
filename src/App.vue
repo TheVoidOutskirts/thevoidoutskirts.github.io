@@ -76,9 +76,13 @@ function logout() {
       <div class="collapse navbar-collapse">
         <div class="navbar-nav">
           <router-link to="calculator" class="nav-link">Calcolatore</router-link>
-          <router-link to="units" class="nav-link">Unit Viewer</router-link>
           <router-link to="naval" class="nav-link">Calcolatore Navale</router-link>
+          <router-link to="units" class="nav-link">Unità</router-link>
           <router-link to="history" class="nav-link">Storia</router-link>
+          <router-link to="factions" class="nav-link">Fazioni</router-link>
+          <router-link to="places" class="nav-link">Luoghi</router-link>
+          <router-link to="maps" class="nav-link">Mappe</router-link>
+          <router-link to="rules" class="nav-link">Regolamento</router-link>
         </div>
         <div class="navbar-nav ms-auto" v-show="store.isDataLoaded">
           <div class="nav-item">

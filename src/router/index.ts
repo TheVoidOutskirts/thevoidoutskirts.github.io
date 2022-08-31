@@ -27,9 +27,30 @@ const router = createRouter({
         },
         {
             path: '/history',
-            name: 'historyViewer',
+            name: 'history',
             component: () => import('../views/HistoryView.vue')
+        },
+        {
+            path: '/places',
+            name: 'places',
+            component: () => import('../views/PlacesView.vue')
+        },
+        {
+            path: '/factions',
+            name: 'factions',
+            component: () => import('../views/FactionsView.vue')
+        },
+        {
+            path: '/maps',
+            name: 'maps',
+            component: () => import('../views/MapsView.vue')
+        },
+        {
+            path: '/rules',
+            name: 'rules',
+            component: () => import('../views/RulesView.vue')
         }
+
     ]
 })
 
