@@ -106,7 +106,7 @@
         <th>Probabilità</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody v-if="tabellaProbabilita !== undefined">
       <tr v-for="(row, index) in tabellaProbabilita" :key="index">
         <td>{{ row[1][1] }}</td>
         <td>{{ row[0] }}</td>
@@ -250,10 +250,14 @@ const tabellaProbabilita = computed(() => {
 
   const diceProbabilities = dicePossibilities(weapon.value.danno).map(x => x / totComb * 100).map(x => x.toFixed(2)).map((a, i) => [a, i]).filter(([a, i]) => a > 0.0)
 
-  return diceProbabilities.map((x, i) => [
+  const map = diceProbabilities.map((x, i) => [
     Math.max(0, (i + dannoMin) * (100 - resistenza) / 100 - (defender.value?.statistiche?.ossatura?.[1] ?? 0)),
     x
   ]);
+
+  console.log(map);
+
+  return map;
 })
 
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
