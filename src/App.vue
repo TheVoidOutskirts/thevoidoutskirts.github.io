@@ -114,7 +114,7 @@ function logout() {
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" @click="loadData">
+          <button type="button" class="btn btn-primary" @click="loadData('')">
             <span class="me-2" v-if="modalKey.length <=0">Non sono Tommaso</span>
             <span class="me-2" v-else>Carica i dati completi</span>
             <span class="spinner-border spinner-border-sm" v-show="isLoadingData"></span>

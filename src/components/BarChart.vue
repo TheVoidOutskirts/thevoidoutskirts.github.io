@@ -4,7 +4,8 @@
 
 <script setup lang="ts">
 import {onMounted, ref, watch} from "vue";
-import {Chart as ChartJS, ChartDataset} from "chart.js";
+import type {ChartDataset} from "chart.js";
+import {Chart as ChartJS} from "chart.js";
 
 const props = defineProps<{
   data: ChartDataset<'bar', number[]>[],
