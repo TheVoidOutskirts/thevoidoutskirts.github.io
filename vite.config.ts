@@ -6,6 +6,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // https://stackoverflow.com/questions/69744253/vite-build-always-using-static-paths
+  base: '',
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
