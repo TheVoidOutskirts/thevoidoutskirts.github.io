@@ -1,0 +1,23 @@
+name: Build project and push to GH Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build_vue:
+    runs-on: ubuntu-latest
+    name: Build Vue
+    steps:
+    - uses: actions/checkout@v2
+    - id: Build-Vue
+      uses: xRealNeon/VuePagesAction@1.0.1
+      with:
+        username: 'stefa168'
+        reponame: 'enigma-calculator'
+        token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
