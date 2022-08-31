@@ -106,11 +106,11 @@
         <th>Probabilità</th>
       </tr>
       </thead>
-      <tbody v-if="tabellaProbabilita !== undefined">
+      <tbody>
       <tr v-for="(row, index) in tabellaProbabilita" :key="index">
-        <td>{{ row[1][1] }}</td>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1][0] }} %</td>
+        <td>{{ row.probability.diceResult }}</td>
+        <td>{{ row.effectiveDamage }}</td>
+        <td>{{ row.probability.probability }} %</td>
       </tr>
       </tbody>
     </table>
@@ -222,11 +222,11 @@ const attackPercentage = computed(() => {
   return calcolaPercentualeAttacco(weapon.value, attacker.value, defender.value, coverValue.value);
 })
 
-const tabellaProbabilita = computed(() => {
-  if (weapon.value === null) return undefined;
-  if (attacker.value === null) return undefined;
-  if (defender.value === null) return undefined;
-  if (coverValue.value === undefined) return undefined;
+const tabellaProbabilita = computed<DiceRow[]>(() => {
+  if (weapon.value === null) return [];
+  if (attacker.value === null) return [];
+  if (defender.value === null) return [];
+  if (coverValue.value === undefined) return [];
 
   const nomeArmaturaDifensore = defender.value.armatura
   const armaturaDifensore = Armature.value.find(e => e.codice == nomeArmaturaDifensore)
@@ -235,12 +235,7 @@ const tabellaProbabilita = computed(() => {
   const totComb = weapon.value.danno.reduce((a, b) => a * b, 1)
   const tipoAttacco = weapon.value.tipoDanno
   const gravitaDanno = weapon.value.gravitaDanno
-  let resistenza: number
-  if (armaturaDifensore?.gravitaDanno == undefined) {
-    resistenza = 0
-  } else {
-    resistenza = armaturaDifensore.gravitaDanno[gravitaDanno]?.[tipoAttacco][0] ?? 0
-  }
+  const resistenza = armaturaDifensore?.gravitaDanno?.[gravitaDanno]?.[tipoAttacco][0] ?? 0
 
   const sum = (a: number[], b: number[]) => a.length > b.length
       ? a.map((_, i) => i < b.length ? a[i] + b[i] : a[i])
@@ -248,17 +243,33 @@ const tabellaProbabilita = computed(() => {
 
   const dicePossibilities = (dices: number[]) => dices.reduce((_: number[], face) => _.reduceRight((s: number[], x) => [0, ...sum(Array(face).fill(x), s)], []), [1])
 
-  const diceProbabilities = dicePossibilities(weapon.value.danno).map(x => x / totComb * 100).map(x => x.toFixed(2)).map((a, i) => [a, i]).filter(([a, i]) => a > 0.0)
+  const diceProbabilities = dicePossibilities(weapon.value.danno)
+      .map(x => x / totComb * 100)
+      .map<ResultProbability>((a, i) => ({diceResult: i, probability: a}))
+      .filter(p => p.probability > 0.0)
 
-  const map = diceProbabilities.map((x, i) => [
-    Math.max(0, (i + dannoMin) * (100 - resistenza) / 100 - (defender.value?.statistiche?.ossatura?.[1] ?? 0)),
-    x
-  ]);
+  console.log("Diceprob")
+  console.log(diceProbabilities)
+
+  const map = diceProbabilities.map<DiceRow>((p, i) => {
+    const damage = Math.max(0, (i + dannoMin) * (100 - resistenza) / 100 - (defender.value?.statistiche?.ossatura?.[1] ?? 0))
+    return {probability: p, effectiveDamage: damage}
+  });
 
   console.log(map);
 
   return map;
 })
+
+interface ResultProbability {
+  diceResult: number;
+  probability: number;
+}
+
+interface DiceRow {
+  probability: ResultProbability
+  effectiveDamage: number;
+}
 
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
   return [{
