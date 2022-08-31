@@ -2,18 +2,19 @@
 </script>
 
 <template>
-  <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%">
-    <div class="mt-2">
-      <router-link class="btn btn-outline-primary" to="/calculator">Vai al Calcolatore 🧮</router-link>
-    </div>
-    <div class="mt-2">
-      <router-link class="btn btn-outline-primary" to="/naval">Vai al Calcolatore Navale 🚀</router-link>
-    </div>
-    <div class="mt-2">
-      <router-link class="btn btn-outline-primary" to="/unit-viewer">Vai al Unit Viewer 🔫</router-link>
-    </div>
-  </div>
+  <video autoplay muted loop id="myVideo">
+    <source src="public/portale.webm" type="video/webm">
+    Your browser does not support HTML5 video.
+  </video>
 </template>
 
 <style scoped>
+#myVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+}
 </style>

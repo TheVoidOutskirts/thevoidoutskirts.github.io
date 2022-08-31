@@ -70,14 +70,15 @@ function logout() {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <router-link to="/" class="navbar-brand">Home</router-link>
+      <router-link to="/" class="navbar-brand">The Void Outskirts</router-link>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav">
-          <router-link to="/calculator" class="nav-link">Calcolatore</router-link>
-          <router-link to="/unit-viewer" class="nav-link">Unit Viewer</router-link>
-          <router-link to="/naval" class="nav-link">Calcolatore Navale</router-link>
+          <router-link to="calculator" class="nav-link">Calcolatore</router-link>
+          <router-link to="unit-viewer" class="nav-link">Unit Viewer</router-link>
+          <router-link to="naval" class="nav-link">Calcolatore Navale</router-link>
+          <!--          <router-link to=""-->
         </div>
         <div class="navbar-nav ms-auto" v-show="store.isDataLoaded">
           <div class="nav-item">
@@ -127,4 +128,8 @@ function logout() {
   <router-view></router-view>
 </template>
 
-<style></style>
+<style scoped>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
