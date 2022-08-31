@@ -7,46 +7,50 @@ const router = createRouter({
     routes: [
         {
             path: '/',
+            redirect: {name: 'home'}
+        },
+        {
+            path: '/enigma-calculator/',
             name: 'home',
             component: HomeView
         },
         {
-            path: '/calculator',
+            path: '/enigma-calculator/calculator',
             name: 'calculator',
             component: () => import('../views/CalculatorView.vue')
         },
         {
-            path: '/naval',
+            path: '/enigma-calculator/naval',
             name: 'navalCalculator',
             component: () => import('../views/NavalCalculatorView.vue')
         },
         {
-            path: '/units',
+            path: '/enigma-calculator/units',
             name: 'unitViewer',
             component: () => import('../views/UnitViewerView.vue')
         },
         {
-            path: '/history',
+            path: '/enigma-calculator/history',
             name: 'history',
             component: () => import('../views/HistoryView.vue')
         },
         {
-            path: '/places',
+            path: '/enigma-calculator/places',
             name: 'places',
             component: () => import('../views/PlacesView.vue')
         },
         {
-            path: '/factions',
+            path: '/enigma-calculator/factions',
             name: 'factions',
             component: () => import('../views/FactionsView.vue')
         },
         {
-            path: '/maps',
+            path: '/enigma-calculator/maps',
             name: 'maps',
             component: () => import('../views/MapsView.vue')
         },
         {
-            path: '/rules',
+            path: '/enigma-calculator/rules',
             name: 'rules',
             component: () => import('../views/RulesView.vue')
         }
