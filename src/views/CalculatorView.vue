@@ -108,9 +108,9 @@
       </thead>
       <tbody>
       <tr v-for="(row, index) in tabellaProbabilita" :key="index">
-        <td>{{ row.probability.diceResult }}</td>
-        <td>{{ row.effectiveDamage }}</td>
-        <td>{{ row.probability.probability }} %</td>
+        <td>{{ (row.probability.diceResult.toFixed(2)*1).toString() }}</td>
+        <td>{{ (row.effectiveDamage.toFixed(2)*1).toString() }}</td>
+        <td>{{ (row.probability.probability.toFixed(2)*1).toString() }} %</td>
       </tr>
       </tbody>
     </table>
