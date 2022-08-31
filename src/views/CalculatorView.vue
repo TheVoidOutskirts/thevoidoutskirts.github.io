@@ -222,6 +222,16 @@ const attackPercentage = computed(() => {
   return calcolaPercentualeAttacco(weapon.value, attacker.value, defender.value, coverValue.value);
 })
 
+interface ResultProbability {
+  diceResult: number;
+  probability: number;
+}
+
+interface DiceRow {
+  probability: ResultProbability
+  effectiveDamage: number;
+}
+
 const tabellaProbabilita = computed<DiceRow[]>(() => {
   if (weapon.value === null) return [];
   if (attacker.value === null) return [];
@@ -248,28 +258,11 @@ const tabellaProbabilita = computed<DiceRow[]>(() => {
       .map<ResultProbability>((a, i) => ({diceResult: i, probability: a}))
       .filter(p => p.probability > 0.0)
 
-  console.log("Diceprob")
-  console.log(diceProbabilities)
-
-  const map = diceProbabilities.map<DiceRow>((p, i) => {
+  return diceProbabilities.map<DiceRow>((p, i) => {
     const damage = Math.max(0, (i + dannoMin) * (100 - resistenza) / 100 - (defender.value?.statistiche?.ossatura?.[1] ?? 0))
     return {probability: p, effectiveDamage: damage}
   });
-
-  console.log(map);
-
-  return map;
-})
-
-interface ResultProbability {
-  diceResult: number;
-  probability: number;
-}
-
-interface DiceRow {
-  probability: ResultProbability
-  effectiveDamage: number;
-}
+});
 
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
   return [{
