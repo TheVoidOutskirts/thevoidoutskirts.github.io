@@ -101,8 +101,8 @@ function logout() {
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content bg-dark">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Caricamento dati</h5>
         </div>
@@ -111,9 +111,9 @@ function logout() {
           <p>Se per caso hai una password, puoi caricare i dati completi, altrimenti solo i dati pubblici saranno
             caricati.</p>
 
-          <div class="form-floating">
-            <input class="form-control" type="password" id="authKeyInput" placeholder="123" v-model="modalKey">
-            <label for="authKeyInput">Inserisci la <strong>chiave di autenticazione</strong></label>
+          <div>
+            <label class="form-label" for="authKeyInput">Inserisci la <strong>chiave di autenticazione</strong></label>
+            <input class="form-control" type="password" id="authKeyInput" placeholder="Codice: 🔒🔑" v-model="modalKey">
             <div class="form-text text-center">Solo alcuni ce l'hanno! 🤫</div>
           </div>
 
