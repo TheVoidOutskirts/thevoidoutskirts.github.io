@@ -3,7 +3,7 @@
 
 <template>
   <video autoplay muted loop id="myVideo">
-    <source src="public/portale.webm" type="video/webm">
+    <source src="./public/portale.webm" type="video/webm">
     Your browser does not support HTML5 video.
   </video>
 </template>
