@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+// todo change page title https://stackoverflow.com/a/51640162/3560579
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -20,9 +21,14 @@ const router = createRouter({
             component: () => import('../views/NavalCalculatorView.vue')
         },
         {
-            path: '/unit-viewer',
+            path: '/units',
             name: 'unitViewer',
             component: () => import('../views/UnitViewerView.vue')
+        },
+        {
+            path: '/history',
+            name: 'historyViewer',
+            component: () => import('../views/HistoryView.vue')
         }
     ]
 })

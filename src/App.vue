@@ -76,9 +76,9 @@ function logout() {
       <div class="collapse navbar-collapse">
         <div class="navbar-nav">
           <router-link to="calculator" class="nav-link">Calcolatore</router-link>
-          <router-link to="unit-viewer" class="nav-link">Unit Viewer</router-link>
+          <router-link to="units" class="nav-link">Unit Viewer</router-link>
           <router-link to="naval" class="nav-link">Calcolatore Navale</router-link>
-          <!--          <router-link to=""-->
+          <router-link to="history" class="nav-link">Storia</router-link>
         </div>
         <div class="navbar-nav ms-auto" v-show="store.isDataLoaded">
           <div class="nav-item">
