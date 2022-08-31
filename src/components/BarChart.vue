@@ -19,6 +19,9 @@ onMounted(() => {
   if (chartDOMElement.value === undefined) {
     return
   }
+  //https://www.chartjs.org/docs/latest/axes/styling.html#grid-line-configuration
+  const fontColor = '#E3E3E3';
+  const gridColor = '#464646';
 
   chartJs = new ChartJS(chartDOMElement.value, {
     type: 'bar',
@@ -27,12 +30,24 @@ onMounted(() => {
       datasets: []
     },
     options: {
+      color: fontColor,
+      borderColor: gridColor,
       responsive: true,
       scales: {
         y: {
+          ticks: {color: fontColor},
           beginAtZero: true,
           suggestedMax: 100,
           suggestedMin: 0,
+          grid: {
+            color: gridColor
+          }
+        },
+        x: {
+          ticks: {color: fontColor},
+          grid: {
+            color: gridColor
+          }
         }
       },
       plugins: {
@@ -40,7 +55,7 @@ onMounted(() => {
           anchor: 'end',
           align: 'end',
           offset: 2,
-          color: '#000'
+          color: fontColor
         }
       }
     }
