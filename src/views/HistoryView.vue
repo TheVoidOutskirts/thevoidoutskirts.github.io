@@ -1893,10 +1893,7 @@ efficacia\]</span></p>
 
 </template>
 
-<script>
-export default {
-  name: "HistoryView"
-}
+<script setup lang="ts">
 </script>
 
 <style scoped>
