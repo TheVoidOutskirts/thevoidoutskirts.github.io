@@ -104,19 +104,19 @@ function logout() {
         </div>
         <div class="modal-body">
           <p>Sembra che non siano stati caricati i dati.</p>
-          <p>Se per caso sei Tommaso, puoi caricare i dati completi, altrimenti solo i dati pubblici saranno
+          <p>Se per caso hai una password, puoi caricare i dati completi, altrimenti solo i dati pubblici saranno
             caricati.</p>
 
           <div class="form-floating">
             <input class="form-control" type="password" id="authKeyInput" placeholder="123" v-model="modalKey">
             <label for="authKeyInput">Inserisci la <strong>chiave di autenticazione</strong></label>
-            <div class="form-text text-center">Solo Tom ce l'ha! 🤫</div>
+            <div class="form-text text-center">Solo alcuni ce l'hanno! 🤫</div>
           </div>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" @click="loadData('')">
-            <span class="me-2" v-if="modalKey.length <=0">Non sono Tommaso</span>
+            <span class="me-2" v-if="modalKey.length <=0">Non ho una password</span>
             <span class="me-2" v-else>Carica i dati completi</span>
             <span class="spinner-border spinner-border-sm" v-show="isLoadingData"></span>
           </button>
