@@ -17,10 +17,14 @@ import 'vue3-easy-data-table/dist/style.css';
 
 // Bootstrap
 import 'bootstrap/scss/bootstrap.scss'
+import 'bootstrap-icons/font/bootstrap-icons.scss'
 
 // Axios
 import axios from "axios";
 import VueAxios from "vue-axios";
+
+// Mathjax
+// import 'mathjax/es5/tex-chtml.js'
 
 // VueCookies
 import VueCookies from "vue-cookies";

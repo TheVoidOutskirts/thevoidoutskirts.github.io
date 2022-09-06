@@ -1,7 +1,7 @@
 <template>
   <main class="container">
-    <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button">
-      Link with href
+    <a class="btn btn-secondary btn-lg" id="bottoneSommario" data-bs-toggle="offcanvas" href="#offcanvasSommario" role="button">
+      <i class="bi bi-list-nested"></i>
     </a>
     <h1 id="manuale-del-giocatore">Manuale del giocatore</h1>
     <h2 id="introduzione">Introduzione</h2>
@@ -1709,11 +1709,10 @@ efficacia\]</span></p>
       arrendere.</p>
   </main>
 
-  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasExample"
-       aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasSommario">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Navigazione Regolamento</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <h5 class="offcanvas-title" id="offcanvasLabelSommario">Navigazione Regolamento</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <ul>
@@ -1897,5 +1896,20 @@ efficacia\]</span></p>
 </script>
 
 <style scoped>
+li a {
+  color: white;
+  text-decoration: none;
+}
 
+li a:hover {
+  text-decoration: underline;
+}
+</style>
+
+<style>
+#bottoneSommario {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+}
 </style>
