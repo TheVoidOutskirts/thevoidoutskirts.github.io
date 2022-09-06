@@ -6,7 +6,6 @@ import {Modal} from 'bootstrap'
 import type {AxiosStatic} from "axios";
 import type {AllData} from "@/assets/Types";
 import type {VueCookies} from "vue-cookies";
-import {useRouter} from "vue-router";
 
 // https://stackoverflow.com/a/69013153/3560579
 const axios = inject<AxiosStatic>('axios') ?? (() => {
@@ -18,7 +17,6 @@ const cookies = inject<VueCookies>('$cookies') ?? (() => {
 })();
 
 const store = useDataStore();
-const router = useRouter();
 
 let keyModal: Modal | undefined
 
