@@ -73,8 +73,11 @@ function logout() {
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand">The Void Outskirts</router-link>
-      <div class="collapse navbar-collapse">
-        <div class="navbar-nav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <div class="navbar-nav ms-auto" v-show="store.isDataLoaded">
           <router-link to="calculator" class="nav-link">Calcolatore</router-link>
           <router-link to="naval" class="nav-link">Calcolatore Navale</router-link>
           <router-link to="units" class="nav-link">Unità</router-link>
@@ -83,11 +86,7 @@ function logout() {
           <router-link to="places" class="nav-link">Luoghi</router-link>
           <router-link to="maps" class="nav-link">Mappe</router-link>
           <router-link to="rules" class="nav-link">Regolamento</router-link>
-        </div>
-        <div class="navbar-nav ms-auto" v-show="store.isDataLoaded">
-          <div class="nav-item">
-            <a class="nav-link text-danger" href="" @click.prevent="logout">Logout</a>
-          </div>
+          <a class="nav-link text-danger" href="" @click.prevent="logout">Logout</a>
         </div>
       </div>
     </div>
