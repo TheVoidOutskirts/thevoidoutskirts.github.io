@@ -70,7 +70,7 @@ function logout() {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand">The Void Outskirts</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
@@ -128,7 +128,7 @@ function logout() {
     </div>
   </div>
 
-  <router-view></router-view>
+  <router-view style="padding-top: 65px"></router-view>
 </template>
 
 <style scoped>
