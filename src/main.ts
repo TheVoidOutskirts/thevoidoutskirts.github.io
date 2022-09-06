@@ -23,9 +23,6 @@ import 'bootstrap-icons/font/bootstrap-icons.scss'
 import axios from "axios";
 import VueAxios from "vue-axios";
 
-// Mathjax
-// import 'mathjax/es5/tex-chtml.js'
-
 // VueCookies
 import VueCookies from "vue-cookies";
 

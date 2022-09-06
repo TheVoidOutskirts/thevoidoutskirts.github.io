@@ -1,6 +1,27 @@
+<script setup lang="ts">
+import {onMounted} from "vue";
+
+onMounted(() => {
+  tryApplyMathJax()
+
+  function tryApplyMathJax() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const mathJax = window.MathJax;
+    if (mathJax !== undefined) {
+      // https://stackoverflow.com/questions/45047126/how-to-add-external-js-scripts-to-vuejs-components
+      mathJax.typeset()
+    } else {
+      console.warn("Mathjax not yet loaded... trying again")
+      setTimeout(() => tryApplyMathJax(), 100)
+    }
+  }
+})
+</script>
 <template>
-  <main class="container">
-    <a class="btn btn-secondary btn-lg" id="bottoneSommario" data-bs-toggle="offcanvas" href="#offcanvasSommario" role="button">
+  <main class="container" style="padding-top: 65px">
+    <a class="btn btn-secondary btn-lg" id="bottoneSommario" data-bs-toggle="offcanvas" href="#offcanvasSommario"
+       role="button">
       <i class="bi bi-list-nested"></i>
     </a>
     <h1 id="manuale-del-giocatore">Manuale del giocatore</h1>
@@ -460,8 +481,7 @@
       può saltare più in alto del limite descritto con una prova di gravità
       muscolare (atletica) con una difficulty class calcolata con la formula
       seguente:</p>
-    <p><span class="math display">\[DC = n_{caselle\ verticali} \times 2 +
-6\]</span></p>
+    <p><span class="math display">\[DC = n_{caselle\ verticali} \times 2 +6\]</span></p>
     <p>dove:</p>
     <ul>
       <li><span class="math inline">\(DC =\)</span> difficulty class della
@@ -1891,9 +1911,6 @@ efficacia\]</span></p>
 
 
 </template>
-
-<script setup lang="ts">
-</script>
 
 <style scoped>
 li a {
