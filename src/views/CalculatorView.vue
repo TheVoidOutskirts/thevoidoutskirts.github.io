@@ -182,7 +182,7 @@ function calcolaPercentualeAttacco(arma: Arma, attaccante: Personaggio, difensor
 
   const armaturaDifensore: Armatura | undefined = Armature.value.find(e => e.codice == difensore.armatura)
   if (!armaturaDifensore)
-    throw `Arma difensore non trovata ${difensore.armatura}`
+    throw `Armatura difensore non trovata ${difensore.armatura}`
 
   const tipoDanno = arma.tipoDanno;
   const gravitaDanno = arma.gravitaDanno
