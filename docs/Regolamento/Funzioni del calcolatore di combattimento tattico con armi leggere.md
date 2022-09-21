@@ -70,3 +70,5 @@
 	- 4.2 Deve essere visualizzato il menu dei log salvati direttamente a schermo, accessibile tramite un menu a tendina o direttamente visibile
 	- 4.3 Deve essere possibile schiacciare su un log desiderato e questo deve portare al reinserimento automatico di tutti i dati necessari per calcolare % di probabilità di colpire e danni
 	- 4.4 Il menu dei log deve mantenere accessibili i log dell'intera istanza corrente, fino alla chiusura
+- 5 Deve essere possibile attribuire bonus e malus anche di tipo non intero ai valori di base dei bonus di attaccante e bersaglio
+	- 5.1 Vicino al valore mostrato a schermo di competenza attacco, competenza difesa resistenza al danno deve risultare una casella riempibile con un numero decimale che rappresenti un bonus o malus aggiuntivo
