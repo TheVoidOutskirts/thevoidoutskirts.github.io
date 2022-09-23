@@ -97,6 +97,8 @@
         <BarChart :data="attackPercentageChartData"/>
       </div>
     </div>
+    <!-- Danno Medio -->
+    <div></div>
     <!-- Tabella probabilità danni -->
     <table class="table table-dark table-striped mt-4" id="tabDanni">
       <thead>
@@ -127,6 +129,8 @@ import type {Arma, Armatura, Personaggio} from "@/assets/Types";
 
 import type {ChartDataset} from "chart.js";
 import {useDataStore} from "@/stores/data";
+import {types} from "sass";
+import Number = types.Number;
 
 const coverValue = ref<number | undefined>(undefined);
 
@@ -262,6 +266,10 @@ const tabellaProbabilita = computed<DiceRow[]>(() => {
     const damage = Math.max(0, (i + dannoMin) * (100 - resistenza) / 100 - (defender.value?.statistiche?.ossatura?.[1] ?? 0))
     return {probability: p, effectiveDamage: damage}
   });
+});
+
+const mediaProbabilita = computed<number>(() => {
+
 });
 
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
