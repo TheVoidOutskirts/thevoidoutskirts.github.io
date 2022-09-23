@@ -13,6 +13,7 @@ export const useDataStore = defineStore({
         getCronologia: state => state.data?.cronologia ?? [],
         getPersonaggi: state => state.data?.personaggi ?? [],
         getProfessions: state => state.data?.professions ?? [],
+        getUnits: state => state.data?.unita ?? []
     },
     actions: {
         loadData(loadedData: AllData) {
