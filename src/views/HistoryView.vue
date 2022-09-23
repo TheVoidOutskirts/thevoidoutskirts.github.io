@@ -313,7 +313,7 @@ mineraria e una fabbrica automatica e il secondo nel
 <p>
  
 </p>
-<h2 id="i-quarteri-sospesi">I quarteri sospesi</h2>
+<h2 id="i-quartieri-sospesi">I quartieri sospesi</h2>
 <p>I <strong>quartieri sospesi</strong> sono forse il settore più
 caratteristico delle Periferie del Vuoto. Furono costruiti tra il
 <strong>2472</strong> e il <strong>2480</strong> a partire dai covering
