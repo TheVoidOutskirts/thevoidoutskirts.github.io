@@ -45,23 +45,23 @@
 			- 2.1.2 Il programma deve effettuare il calcolo ✅
 			- 2.1.3 Il programma deve tenere conto nel calcolo della modifica dei bonus della corazza che si modificano quando il bersaglio si trova vicino all'attaccante; per maggiori informazioni consultare la programmazione del precedente calcolatore
 	- 2.2 Deve essere possibile visualizzare un grafico con i risultati di % di probabilità di colpire modificata per distanze di fuoco da 1 a 30 caselle ✅
-- 3 Deve essere possibile visualizzare il danno nel caso di colpo a segno in funzione del risultato dei dadi
-	- 3.1 Il programma deve poter leggere i dati dell'arma dal file "armi.js"
-		- 3.1.1 Leggere il tipo di danno associato alle modifiche selezionate dell'arma
-		- 3.1.2 Leggere numero e facce dei dadi associate al tipo di danno
-		- 3.1.3 Sommare eventuali bonus/malus costanti dovuti all'arma base o alle modifiche utilizzate
-	- 3.2 Deve essere possibile calcolare il danno ridotto che è la moltiplicazione della somma dei risultati dei dadi con la sottrazione tra 100% e la somma delle percentuali di riduzione del danno dovute all'armatura e alle abilità del personaggio; Successivamente si sottrae al risultato il bonus del punteggio abilità ossatura del personaggio per trovare il danno ridotto
-		- 3.2.1 Il programma deve poter leggere i dati dell'armatura dal file "armature.js"
-			- 3.2.1.1 Riduzione del danno associata alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco
-		- 3.2.2 Il programma deve poter leggere i dati del personaggio dal file "personaggi.js"
-			- 3.2.2.1 Riduzione del danno associato alle abilità, alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco
-			- 3.2.2.2 Bonus di resistenza al danno (quello derivante dall'ossatura)
-		- 3.2.3 Il programma deve essere in grado di effettuare il calcolo di riduzione del danno
-	- 3.3 Il calcolo dei danni inflitti deve essere svolto per tutti i possibili valori della somma dei dadi per il danno tirati dall'attaccante
-		- 3.3.1 Il calcolo deve essere possibile con un numero di dadi variabile e con dadi con diverso numero di facce tirati contemporaneamente
-		- 3.3.2 Il calcolo deve prevedere una dimensione variabile dell'output
-	- 3.4 Deve essere calcolata la probabilità di ottenere un certo risultato dei dadi, che coincide con la probabilità di ottenere un certo danno finale associato al risultato dei dadi
-	- 3.5 Deve essere mostrata una tabella (o un istogramma a voci verticali) con la prima colonna che definisce il risultato dei dadi che porta al valore di danno finale, la seconda colonna che mostra la probabilità di ottenere quel risultato, la terza colonna che mostra il danno associato arrecato
+- 3 Deve essere possibile visualizzare il danno nel caso di colpo a segno in funzione del risultato dei dadi ✅
+	- 3.1 Il programma deve poter leggere i dati dell'arma dal file "armi.js" ✅
+		- 3.1.1 Leggere il tipo di danno associato alle modifiche selezionate dell'arma ✅
+		- 3.1.2 Leggere numero e facce dei dadi associate al tipo di danno ✅
+		- 3.1.3 Sommare eventuali bonus/malus costanti dovuti all'arma base o alle modifiche utilizzate ✅
+	- 3.2 Deve essere possibile calcolare il danno ridotto che è la moltiplicazione della somma dei risultati dei dadi con la sottrazione tra 100% e la somma delle percentuali di riduzione del danno dovute all'armatura e alle abilità del personaggio; Successivamente si sottrae al risultato il bonus del punteggio abilità ossatura del personaggio per trovare il danno ridotto ✅
+		- 3.2.1 Il programma deve poter leggere i dati dell'armatura dal file "armature.js" ✅
+			- 3.2.1.1 Riduzione del danno associata alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco ✅
+		- 3.2.2 Il programma deve poter leggere i dati del personaggio dal file "personaggi.js" ✅
+			- 3.2.2.1 Riduzione del danno associato alle abilità, alla tipologia di danno e alla gravità di danno associate all'arma e alle modifiche dell'arma utilizzate per l'attacco ✅
+			- 3.2.2.2 Bonus di resistenza al danno (quello derivante dall'ossatura) ✅
+		- 3.2.3 Il programma deve essere in grado di effettuare il calcolo di riduzione del danno ✅
+	- 3.3 Il calcolo dei danni inflitti deve essere svolto per tutti i possibili valori della somma dei dadi per il danno tirati dall'attaccante ✅
+		- 3.3.1 Il calcolo deve essere possibile con un numero di dadi variabile e con dadi con diverso numero di facce tirati contemporaneamente ✅
+		- 3.3.2 Il calcolo deve prevedere una dimensione variabile dell'output ✅
+	- 3.4 Deve essere calcolata la probabilità di ottenere un certo risultato dei dadi, che coincide con la probabilità di ottenere un certo danno finale associato al risultato dei dadi ✅
+	- 3.5 Deve essere mostrata una tabella (o un istogramma a voci verticali) con la prima colonna che definisce il risultato dei dadi che porta al valore di danno finale, la seconda colonna che mostra la probabilità di ottenere quel risultato, la terza colonna che mostra il danno associato arrecato ✅
 	- 3.6 Deve essere calcolato il danno medio arrecabile e mostrato prima della tabella dei danni
 		- 3.6.1 Deve essere calcolato il danno medio già ridotto con tutti i modificatori
 		- 3.6.2 Deve essere mostrato il danno medio sopra la tabella dei danni, approssimato alla seconda cifra decimale
