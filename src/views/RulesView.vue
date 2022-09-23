@@ -1877,7 +1877,7 @@ efficacia\]</span></p>
               <ul>
                 <li><a href="#il-comando-strategico">Il comando strategico</a></li>
                 <li><a href="#le-risorse">Le risorse</a>
-                  <ul>
+                  <ul>e
                     <li><a href="#raggrippare-le-risorse">Raggrippare le risorse</a></li>
                     <li><a href="#disperdere-le-risorse">Disperdere le risorse</a></li>
                     <li><a href="#controllo-e-autonomia">Controllo e autonomia</a></li>
