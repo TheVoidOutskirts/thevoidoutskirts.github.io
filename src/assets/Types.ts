@@ -1,29 +1,32 @@
-// Last synced with enigma-data: 2022/08/09
 
 // Arma
 
-type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione';
-type GravitaDanno = 'leggero' | 'pesante';
+export type TipoDanno = 'taglio' | 'perforante' | 'impatto' | 'elettrico' | 'ustione' | 'radiazione';
+export type GravitaDanno = 'leggero' | 'pesante';
 
-type DimensioniUnita = 'gruppo di fuoco' | 'squadra' | 'pattuglia' | 'plotone' | 'compagnia' | 'battaglione' | 'reggimento' | 'brigata' | 'divisione' | 'corpo d\'armata' | 'armata' | 'gruppo d\'armate';
-type QualitaSensori = 'eccezionali' | 'molto buoni' | 'buoni' | 'medi' | 'scarsi';
-type QualitaAddestramento = 'nessun addestramento' | 'addestramento all\'arma' | 'addestramento regolare' | 'addestramento d\'assalto' | 'addestramento d\'elite';
-type TipoAddestramento = 'abbordaggio' |'guarnigione' |'planetario' |'infiltrazione' |'ricognizione' |'assalto con droni' |'oltre la linea del fronte' |'organizzazione della difesa';
-type TipoSensori = | 'sensori infrarossi'| 'rilevatori di movimento'| 'sensori luce visibile'| 'radiometro'| 'radar';
-type QualitaCriptaggio = 'eccezionale' | 'molto buono' | 'buono' | 'medio' | 'scarso' | 'nessun criptaggio';
-type MezzoComunicazione = 'luce visibile' | 'laser' | 'suono' | 'manovre o gesti' | 'radio morse' | 'radio voice' | 'radio data link';
-type AttrezzaturaUnita = 'stivali magnetici' | 'guanti magnetici' | 'tuta EVA' | 'cavi di sicurezza' | 'propulsori' | 'motore Epstein';
-type QualitaOccultamento = 'eccezionale' | 'molto buono' | 'buono' | 'medio' | 'scarso';
-type TipoOccultamento = 'tecnologia stealth' | 'riflettori' | 'riduzione traccia radar';
-type QualitaVelocita = 'molto veloce' | 'veloce' | 'media' | 'lenta' | 'molto lenta';
+// MilitaryUnits.ts
 
-type Permission = string[] | "*" | ["exclude", string[]]
+export type DimensioniUnita = 'gruppo di fuoco' | 'squadra' | 'pattuglia' | 'plotone' | 'compagnia' | 'battaglione' | 'reggimento' | 'brigata' | 'divisione' | 'corpo d\'armata' | 'armata' | 'gruppo d\'armate';
+export type QualitaSensori = 'eccezionali' | 'molto buoni' | 'buoni' | 'medi' | 'scarsi';
+export type QualitaAddestramento = 'nessun addestramento' | 'addestramento all\'arma' | 'addestramento regolare' | 'addestramento d\'assalto' | 'addestramento d\'elite';
+export type TipoAddestramento = 'abbordaggio' |'guarnigione' |'planetario' |'infiltrazione' |'ricognizione' |'assalto con droni' |'oltre la linea del fronte' |'organizzazione della difesa';
+export type TipoSensori = | 'sensori infrarossi'| 'rilevatori di movimento'| 'sensori luce visibile'| 'radiometro'| 'radar';
+export type QualitaCriptaggio = 'eccezionale' | 'molto buono' | 'buono' | 'medio' | 'scarso' | 'nessun criptaggio';
+export type MezzoComunicazione = 'luce visibile' | 'laser' | 'suono' | 'manovre o gesti' | 'radio morse' | 'radio voice' | 'radio data link';
+export type AttrezzaturaUnita = 'stivali magnetici' | 'guanti magnetici' | 'tuta EVA' | 'cavi di sicurezza' | 'propulsori' | 'motore Epstein' | 'ruote' | 'ruote magnetiche' | 'cingoli' | 'gambe robotiche magnetiche';
+export type QualitaOccultamento = 'eccezionale' | 'molto buono' | 'buono' | 'medio' | 'scarso';
+export type TipoOccultamento = 'tecnologia stealth' | 'riflettori' | 'riduzione traccia radar';
+export type QualitaVelocita = 'molto veloce' | 'veloce' | 'media' | 'lenta' | 'molto lenta';
 
-interface WithPermission {
+export type Permission = string[] | "*" | ["exclude", string[]]
+
+export type Azione = 'rubavita' | 'genera copia' | 'arma' | 'presa' | 'spinta' | 'divincolarsi' | 'distrarre' | 'comunicare';
+
+export interface WithPermission {
     permission?: Permission
 }
 
-interface Arma extends WithPermission {
+export interface Arma extends WithPermission {
     nome: string;
     codice: string;
     tipo: string;
@@ -39,27 +42,25 @@ interface Arma extends WithPermission {
     raggio?: string[][];
 }
 
-type Armi = Arma[]
+export type Armi = Arma[]
 
 // Cronologia
 
-interface Evento extends WithPermission {
+export interface Evento extends WithPermission {
     who: string[] | "scenario",
     what: string
 }
 
-interface Giorno extends WithPermission {
+export interface Giorno extends WithPermission {
     when: { year: number, month: number, day: number },
     events: Evento[],
 }
 
-type Cronologia = Giorno[]
+export type Cronologia = Giorno[]
 
 // Personaggio
 
-type Azione = 'arma' | 'presa' | 'spinta' | 'divincolarsi' | 'distrarre' | 'comunicare';
-
-interface Personaggio extends WithPermission {
+export interface Personaggio extends WithPermission {
     nome: string,
     // todo
     armatura: string,
@@ -98,11 +99,11 @@ interface Personaggio extends WithPermission {
     descrizione?: string
 }
 
-type Personaggi = Personaggio[]
+export type Personaggi = Personaggio[]
 
 // Armatura
 
-interface Armatura extends WithPermission {
+export interface Armatura extends WithPermission {
     nome: string;
     codice: string;
     tipoArmatura: string;
@@ -117,7 +118,7 @@ interface Armatura extends WithPermission {
     descrizione?: string;
 }
 
-type Armature = Armatura[]
+export type Armature = Armatura[]
 
 // Modifiche
 
@@ -127,11 +128,11 @@ interface Modifica extends WithPermission {
     modifica: unknown;
 }
 
-type Modifiche = Modifica[]
+export type Modifiche = Modifica[]
 
 // SkillTrees
 
-interface Profession extends WithPermission {
+export interface Profession extends WithPermission {
     title: string,
     trees: {
         tier1: string,
@@ -144,18 +145,18 @@ interface Profession extends WithPermission {
     }[]
 }
 
-interface ProfessionPlace {
+export interface ProfessionPlace {
     place: string,
     professions: Profession[]
 }
 
-interface Skill {
+export interface Skill {
     name: string,
     description: string,
     unlocked?: string[],
 }
 
-interface MilitaryUnitType extends WithPermission {
+export interface MilitaryUnitType extends WithPermission {
     nome: string,
     fazione: string,
     classe: string,
@@ -197,54 +198,31 @@ interface MilitaryUnitType extends WithPermission {
     },
     tipo: string,
     armatura: string,
-    armi: {
-        TipoArma: string[],
-        quantità: number[],
-    },
+    armi: { tipo: string, quantità: number }[],
     equipaggiamentoSpeciale: string[],
     capacitàDiTrasporto: number, //in m^3
+    descrizione: string,
+}
+export interface UnitGroupType extends WithPermission {
+    nome: string,
+    fazione: string,
+    forza?: number,
+    dimensioni: {
+        dimensioniElementi?: number,
+        dimensioniUnità: DimensioniUnita,
+    },
+    unitaContenute?: string[], //Nomi unità contenute
+    tipo: string,
     descrizione: string,
 }
 
 // Full API data
 
-type AllData = {
+export type AllData = {
     armi: Arma[];
     armature: Armatura[];
     cronologia: Giorno[];
     personaggi: Personaggio[];
     professions: ProfessionPlace[];
+    unita: MilitaryUnitType[];
 }
-export type
-   { TipoDanno
-   , GravitaDanno
-   , DimensioniUnita
-   , QualitaSensori
-   , QualitaAddestramento
-   , TipoAddestramento
-   , TipoSensori
-   , QualitaCriptaggio
-   , MezzoComunicazione
-   , AttrezzaturaUnita
-   , QualitaOccultamento
-   , TipoOccultamento
-   , QualitaVelocita
-   , Permission
-   , WithPermission
-   , Arma
-   , Armi
-   , Evento
-   , Giorno
-   , Cronologia
-   , Azione
-   , Personaggio
-   , Personaggi
-   , Armatura
-   , Armature
-   , Modifiche
-   , Profession
-   , ProfessionPlace
-   , Skill
-   , MilitaryUnitType
-   , AllData
-   }
