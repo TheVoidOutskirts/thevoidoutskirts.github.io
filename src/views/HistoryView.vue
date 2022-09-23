@@ -372,10 +372,10 @@ ancora in fase di riempimento nel <strong>2522</strong>.</p>
         <li><a href="#introduzione">Introduzione</a></li>
         <li><a href="#la-scoperta">La scoperta</a></li>
         <li><a href="#lincontro">L’incontro</a></li>
-        <li><a href="il-conflitto-freddo-dovuto-allisolamento">Il conflitto freddo dovuto all’isolamento</a></li>
-        <li><a href="il-progetto-newptune">Il progetto Newptune</a></li>
-        <li><a href="i-quartieri-sospesi">I quartieri sospesi</a></li>
-        <li><a href="lespansione-verso-lira">l’espansione verso Lira</a></li>
+        <li><a href="#il-conflitto-freddo-dovuto-allisolamento">Il conflitto freddo dovuto all’isolamento</a></li>
+        <li><a href="#il-progetto-newptune">Il progetto Newptune</a></li>
+        <li><a href="#i-quartieri-sospesi">I quartieri sospesi</a></li>
+        <li><a href="#lespansione-verso-lira">l’espansione verso Lira</a></li>
     </ul>
   </div>
 </div>
