@@ -136,7 +136,7 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
     const ctx = imgCanvas.value?.getContext("2d")
 
     const naveAtt = spaceShip.find(e => e.nome == nomeNave)
-    const rgbMatrix = computeRGBmatrix(naveAtt?.piantaNave)
+    const rgbMatrix = computeRGBmatrix(naveAtt?.piantaNave!)
 
     const blockSize = 20
     const blockSeparation = 2
