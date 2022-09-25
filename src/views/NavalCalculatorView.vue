@@ -87,6 +87,8 @@ const weapon = ref<Arma | null>(null);
 // Fix for vue-select not emitting an event when the selection is cleared.
 watch(attacker, () => {
     weapon.value = attackerWeapons.value[0];
+    init()
+    htmlPlotNave(attacker.value?.nome??'')
 })
 
 type plotMatrix = number[][][] | undefined;
@@ -223,6 +225,8 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
 function rgbToHex(r: number, g: number, b: number) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
+onMounted(init)
+
 function init() {
     const c = imgCanvas2.value?.getContext("2d");
     let img1 = new Image();
