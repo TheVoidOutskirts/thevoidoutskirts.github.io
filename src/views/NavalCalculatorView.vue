@@ -89,9 +89,12 @@ watch(attacker, () => {
     weapon.value = attackerWeapons.value[0];
 })
 
-type plotMatrix = number[][][];
+type plotMatrix = number[][][] | undefined;
 
 function computeHitMatrix(planMatrix: plotMatrix, initialPosition: number[], angle: number) { // Costruisce il path del proiettile
+    if(!planMatrix){
+        return
+    }
     let hitMatrix = planMatrix.map(a => [...a.map(x => [...x])])
 
     // https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
@@ -176,9 +179,12 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
         ctx.fillStyle = "Grey"
         ctx.fillRect(0, 0, imgCanvas.value.width, imgCanvas.value.height);
 
-        const piantaNave = START === null || slider.value === null
+        const piantaNave: number[][][] | undefined = START === null || slider.value === null
             ? rgbMatrix
             : computeHitMatrix(rgbMatrix, START, toRadians(parseInt(slider.value.value)))
+
+            if(!piantaNave)
+            return
 
         piantaNave[3].forEach((row, i) => {
             row.forEach((item, j) => {
@@ -199,7 +205,7 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
             console.log(START)
             const POS = [toCanvas(START[0]), toCanvas(START[1])]
 
-            const sliderAngle = slider.value.value / 360 * Math.PI*2
+            const sliderAngle = Number(slider.value) / 360 * Math.PI*2
 
             ctx.strokeStyle = "white"
             ctx.lineWidth = 2
@@ -230,10 +236,10 @@ function computeRGBmatrix(srcNave: string) {
     let img1 = new Image();
     img1.src = srcNave
     img1.crossOrigin = "Anonymous";
-    let rgbMatrix = []
+    let rgbMatrix: number[][][] | undefined = [];
 
     c?.drawImage(img1, 0, 0, img1.width, img1.height);
-    const imgdata = c?.getImageData(0, 0, img1.width, img1.height);
+    const imgdata: ImgData | undefined = c?.getImageData(0, 0, img1.width, img1.height);
     rgbMatrix = getPixels(imgdata);
 
     return rgbMatrix
@@ -245,26 +251,29 @@ interface ImgData {
     width: number;
 }
 
-function getPixels(imgData: ImgData) {
+function getPixels(imageData: ImgData | undefined) {
     // get colors rgba (4 pix sequentially)
 
     let x = 0;
     let y = 0;
     let rgbMatrix = [
-        Array(imgData.height).fill().map(() => Array(imgData.width).fill()),
-        Array(imgData.height).fill().map(() => Array(imgData.width).fill()),
-        Array(imgData.height).fill().map(() => Array(imgData.width).fill()),
-        Array(imgData.height).fill().map(() => Array(imgData.width).fill())
+        Array(imageData?.height).fill(undefined).map(() => Array(imageData?.width).fill(undefined)),
+        Array(imageData?.height).fill(undefined).map(() => Array(imageData?.width).fill(undefined)),
+        Array(imageData?.height).fill(undefined).map(() => Array(imageData?.width).fill(undefined)),
+        Array(imageData?.height).fill(undefined).map(() => Array(imageData?.width).fill(undefined))
     ];
     for (var i = 0; i < 3; i++) {
-        for (var j = i; j < imgData.data.length; j += 4) {
-            rgbMatrix[i][y][x] = imgData.data[j];
-            if (imgData.data[j] !== 255 && imgData.data[j + 1] !== 255 && imgData.data[j + 2] !== 255 && i == 0) {
+        if(!imageData?.width){
+                return
+        }
+        for (var j = i; j < imageData.data.length ; j += 4) {
+            rgbMatrix[i][y][x] = imageData?.data[j];
+            if (imageData?.data[j] !== 255 && imageData?.data[j + 1] !== 255 && imageData?.data[j + 2] !== 255 && i == 0) {
                 rgbMatrix[3][y][x] = 1;
             } else if (i != 1 && i != 2) {
                 rgbMatrix[3][y][x] = 0;
             }
-            if (x == imgData.width - 1) {
+            if (x == imageData.width - 1) {
                 x = -1;
                 y++;
             }
