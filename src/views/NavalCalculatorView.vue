@@ -239,19 +239,13 @@ function computeRGBmatrix(srcNave: string) {
     let rgbMatrix: number[][][] | undefined = [];
 
     c?.drawImage(img1, 0, 0, img1.width, img1.height);
-    const imgdata: ImgData | undefined = c?.getImageData(0, 0, img1.width, img1.height);
+    const imgdata: ImageData | undefined = c?.getImageData(0, 0, img1.width, img1.height);
     rgbMatrix = getPixels(imgdata);
 
     return rgbMatrix
 }
-interface ImgData {
-    data: number[];
-    colorSpace: string;
-    height: number;
-    width: number;
-}
 
-function getPixels(imageData: ImgData | undefined) {
+function getPixels(imageData: ImageData | undefined) {
     // get colors rgba (4 pix sequentially)
 
     let x = 0;
