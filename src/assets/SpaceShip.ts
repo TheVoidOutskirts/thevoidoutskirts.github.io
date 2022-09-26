@@ -5,13 +5,13 @@ const spaceShip = [
         nome: "Spacca-Stelle I",
         classe: "Stardestroyer",
         armi: ["Lsr","knt"],
-        piantaNave: 'http://localhost:8000/testimage.png'
+        piantaNave: 'testImage.png'
     },
     {
         nome: "Curiosity",
         classe: "Science-Ship",
         armi: ["PDC"],
-        piantaNave: 'http://localhost:8000/testimage2.png'
+        piantaNave: 'testImage2.png'
     }
 ]
 
