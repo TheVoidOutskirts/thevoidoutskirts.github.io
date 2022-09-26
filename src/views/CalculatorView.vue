@@ -98,7 +98,7 @@
       </div>
     </div>
     <!-- Danno Medio -->
-    <div></div>
+    <div>Danno Medio: {{ dannoMedio }}</div>
     <!-- Tabella probabilità danni -->
     <table class="table table-dark table-striped mt-4" id="tabDanni">
       <thead>
@@ -129,8 +129,6 @@ import type {Arma, Armatura, Personaggio} from "@/assets/Types";
 
 import type {ChartDataset} from "chart.js";
 import {useDataStore} from "@/stores/data";
-import {types} from "sass";
-import Number = types.Number;
 
 const coverValue = ref<number | undefined>(undefined);
 
@@ -268,8 +266,10 @@ const tabellaProbabilita = computed<DiceRow[]>(() => {
   });
 });
 
-const mediaProbabilita = computed<number>(() => {
-
+const dannoMedio = computed<number>(() => {
+  return tabellaProbabilita.value
+      .map(row => row.effectiveDamage * row.probability.probability / 100)
+      .reduce((a, b) => a + b, 0)
 });
 
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
