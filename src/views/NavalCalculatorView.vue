@@ -25,7 +25,7 @@
                 </div>
                 <div style="flex-basis: 1000px">
                 <h1 id="titoloNave">Nave</h1>
-                <canvas width="1000px" height="1500px" ref="imgCanvas" id="nave"></canvas>
+                <canvas width="1000px" height="1500px" ref="imgCanvas" ></canvas>
                 <input type="range" min="-180" max="180" value="0" class="slider" id="slider" ref="slider">
             </div>
             <canvas ref="imgCanvas2"></canvas>
@@ -43,6 +43,7 @@ import { numberLiteralTypeAnnotation } from "@babel/types";
 
 const imgCanvas = ref<HTMLCanvasElement | undefined>(undefined)
 const imgCanvas2 = ref<HTMLCanvasElement | undefined>(undefined)
+const canvas = ref<HTMLCanvasElement | undefined>(undefined)    
 const slider = ref<HTMLInputElement | undefined>(undefined)
 
 interface Nave {
@@ -87,7 +88,7 @@ const weapon = ref<Arma | null>(null);
 // Fix for vue-select not emitting an event when the selection is cleared.
 watch(attacker, () => {
     weapon.value = attackerWeapons.value[0];
-    init()
+   // initial(attacker.value?.piantaNave??'')
     htmlPlotNave(attacker.value?.nome??'')
 })
 
@@ -141,7 +142,7 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
     const ctx = imgCanvas.value?.getContext("2d")
 
     const naveAtt = spaceShip.find(e => e.nome == nomeNave)
-    const rgbMatrix = computeRGBmatrix(naveAtt?.piantaNave!)
+    const rgbMatrix = init(naveAtt?.piantaNave!)
 
     const blockSize = 20
     const blockSeparation = 2
@@ -156,6 +157,9 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
             return
         
         ctx.fillStyle = color
+        console.log(i)
+        console.log(j)
+        console.log(color)
         ctx.fillRect(toCanvas(j), toCanvas(i), blockSize, blockSize)
     }
 
@@ -187,7 +191,6 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
 
             if(!piantaNave)
             return
-
         piantaNave[3].forEach((row, i) => {
             row.forEach((item, j) => {
                 switch (item) {
@@ -225,27 +228,42 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
 function rgbToHex(r: number, g: number, b: number) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
-onMounted(init)
 
-function init() {
-    const c = imgCanvas2.value?.getContext("2d");
-    let img1 = new Image();
-    img1.crossOrigin = "Anonymous"; // to bypass cors for imgur image link
-    img1.src = 'testImage.png'
+onMounted(initial)
 
-}
-function computeRGBmatrix(srcNave: string) {
-    const c = imgCanvas2.value?.getContext("2d");
-
-    let img1 = new Image();
-    img1.src = srcNave
-    img1.crossOrigin = "Anonymous";
+function initial() {
+    var img = new Image;
+    if (!/^data/.test('testImage.png'))
+    img.crossOrigin = ''
     let rgbMatrix: number[][][] | undefined = [];
+    img.src = 'testImage.png'
+    img.onload = function () {
+        var ctx = imgCanvas2.value?.getContext("2d");
+        ctx?.drawImage(img, 0, 0)    
+    }    
+}
+function init(src: string) {
+    var img = new Image;
+    if (!/^data/.test(src))
+    img.crossOrigin = ''
+    let rgbMatrix: number[][][] | undefined = [];
+    img.src = src
+    //img.onload = function () {
+      rgbMatrix = computeRGBmatrix(img) 
+    //}
+    return rgbMatrix
+}
+function computeRGBmatrix(img: HTMLImageElement) {
+    var ctx = imgCanvas2.value?.getContext("2d");
 
-    c?.drawImage(img1, 0, 0, img1.width, img1.height);
-    const imgdata: ImageData | undefined = c?.getImageData(0, 0, img1.width, img1.height);
+    let rgbMatrix: number[][][] | undefined = [];
+    if(imgCanvas.value != undefined){
+        imgCanvas.value.width = img.width + 800
+        imgCanvas.value.height = img.height + 1000
+    }
+    ctx?.drawImage(img, 0, 0)
+    const imgdata: ImageData | undefined = ctx?.getImageData(0, 0, img.width, img.height);
     rgbMatrix = getPixels(imgdata);
-
     return rgbMatrix
 }
 
