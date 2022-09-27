@@ -1,121 +1,134 @@
 <template>
   <div class="container">
-    <!-- Selezione attaccante -->
     <div class="row">
-      <div class="col-6">
-        <div class="mb-4">
-          <h2 class="text-center">Scegli un attaccante</h2>
-          <!--suppress HtmlUnknownTag -->
-          <v-select
-              :options="Personaggi"
-              label="nome"
-              v-model="attacker"></v-select>
-        </div>
-        <div v-show="attacker" class="mb-4">
-          <h2>Dettagli personaggio</h2>
-          <div><span class="h4">Nome:</span> <span class="ps-3">{{ attacker?.nome }}</span></div>
-          <div><span class="h4">Armatura:</span> <span class="ps-3">{{ attacker?.armatura }}</span></div>
-          <div>
-            <span class="h4">Competenza Attacco:</span> <span class="ps-3">{{ attacker?.competenzaAttacco }}</span>
+      <!-- Selezione attaccante -->
+      <div>
+        <div class="col-6">
+          <div class="mb-4">
+            <h2 class="text-center">Scegli un attaccante</h2>
+            <!--suppress HtmlUnknownTag -->
+            <v-select
+                :options="Personaggi"
+                label="nome"
+                v-model="attacker"></v-select>
           </div>
-          <div>
-            <span class="h4">Competenza Difesa:</span> <span class="ps-3">{{ attacker?.competenzaDifesa }}</span>
-          </div>
-          <div>
-            <span class="h4">Resistenza al danno:</span>
-            <span class="ps-3">{{ attacker?.resistenzaAlDanno ?? 0 }}</span>
-          </div>
-          <div>
-            <span class="h4">Armi:</span>
-            <div v-if="attackerWeapons.length === 0">Il personaggio non ha armi</div>
-            <div v-else>
-              <v-select
-                  :options="attackerWeapons"
-                  label="nome"
-                  v-model="weapon"></v-select>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="attackerAllWeaponsCheckbox"
-                     v-model="useAllWeapons">
-              <label class="form-check-label" for="attackerAllWeaponsCheckbox">Mostra tutte le armi</label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Probabilità dell'arma -->
-    <div class="row justify-content-center">
-      <div class="col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8">
-        <BarChart :data="weaponPercentageChartData"/>
-      </div>
-    </div>
-
-    <div class="row mt-4">
-      <div class="col-6">
-        <div class="mb-4">
-          <h2 class="text-center">Scegli un difensore</h2>
-          <v-select :options="Personaggi"
-                    label="nome"
-                    v-model="defender"></v-select>
-        </div>
-        <div v-show="defender">
-          <h2>Dettagli personaggio</h2>
-          <div><span class="h4">Nome:</span> <span class="ps-3">{{ defender?.nome }}</span></div>
-          <div><span class="h4">Armatura:</span> <span class="ps-3">{{ defender?.armatura }}</span></div>
-          <div>
-            <span class="h4">Competenza Attacco:</span> <span class="ps-3">{{ defender?.competenzaAttacco }}</span>
-          </div>
-          <div>
-            <span class="h4">Competenza Difesa:</span> <span class="ps-3">{{ defender?.competenzaDifesa }}</span>
-          </div>
-          <div>
-            <span class="h4">Resistenza al danno:</span>
-            <span class="ps-3">{{ defender?.resistenzaAlDanno ?? 0 }}</span>
-          </div>
-          <div>
-            <span class="h4">Copertura:</span>
+          <div v-show="attacker" class="mb-4">
+            <h2>Dettagli personaggio</h2>
+            <div><span class="h4">Nome:</span> <span class="ps-3">{{ attacker?.nome }}</span></div>
+            <div><span class="h4">Armatura:</span> <span class="ps-3">{{ attacker?.armatura }}</span></div>
             <div>
-              <div class="form-check" v-for="(cover, index) in ValoriCopertura" :key="index">
-                <input class="form-check-input" type="radio" :value="cover" v-model="coverValue">
-                <label class="form-check-label">{{
-                    // todo change cover type to object with string
-                    index === "pesante" ? "Copertura pesante" :
-                        index === "nessuna" ? "Nessuna copertura" :
-                            index === "leggera" ? "Leggera copertura" :
-                                index === "alta" ? "Alta esposizione" : ""
-                  }}</label>
+              <span class="h4">Competenza Attacco:</span> <span class="ps-3">{{ attacker?.competenzaAttacco }}</span>
+            </div>
+            <div>
+              <span class="h4">Competenza Difesa:</span> <span class="ps-3">{{ attacker?.competenzaDifesa }}</span>
+            </div>
+            <div>
+              <span class="h4">Resistenza al danno:</span>
+              <span class="ps-3">{{ attacker?.resistenzaAlDanno ?? 0 }}</span>
+            </div>
+            <div>
+              <span class="h4">Armi:</span>
+              <div v-if="attackerWeapons.length === 0">Il personaggio non ha armi</div>
+              <div v-else>
+                <v-select
+                    :options="attackerWeapons"
+                    label="nome"
+                    v-model="weapon"></v-select>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="attackerAllWeaponsCheckbox"
+                       v-model="useAllWeapons">
+                <label class="form-check-label" for="attackerAllWeaponsCheckbox">Mostra tutte le armi</label>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Grafico probabilità attacco -->
-    <div class="row justify-content-center">
-      <div class="col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8">
-        <BarChart :data="attackPercentageChartData"/>
+
+      <!-- Probabilità dell'arma -->
+      <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8">
+          <BarChart :data="weaponPercentageChartData"/>
+        </div>
       </div>
     </div>
-    <!-- Danno Medio -->
-    <div>Danno Medio: {{ dannoMedio }}</div>
-    <!-- Tabella probabilità danni -->
-    <table class="table table-dark table-striped mt-4" id="tabDanni">
-      <thead>
-      <tr>
-        <th>Risultato dadi</th>
-        <th>Danno effettivo</th>
-        <th>Probabilità</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="(row, index) in tabellaProbabilita" :key="index">
-        <td>{{ parseFloat(row.probability.diceResult.toFixed(2)) }}</td>
-        <td>{{ parseFloat(row.effectiveDamage.toFixed(2)) }}</td>
-        <td>{{ parseFloat(row.probability.probability.toFixed(2)) }} %</td>
-      </tr>
-      </tbody>
-    </table>
+
+    <hr>
+
+    <!-- Selezione difensore -->
+    <div class="mt-4">
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-4">
+            <h2 class="text-center">Scegli un difensore</h2>
+            <v-select :options="Personaggi"
+                      label="nome"
+                      v-model="defender"></v-select>
+          </div>
+          <div v-show="defender">
+            <h2>Dettagli personaggio</h2>
+            <div><span class="h4">Nome:</span> <span class="ps-3">{{ defender?.nome }}</span></div>
+            <div><span class="h4">Armatura:</span> <span class="ps-3">{{ defender?.armatura }}</span></div>
+            <div>
+              <span class="h4">Competenza Attacco:</span> <span class="ps-3">{{ defender?.competenzaAttacco }}</span>
+            </div>
+            <div>
+              <span class="h4">Competenza Difesa:</span> <span class="ps-3">{{ defender?.competenzaDifesa }}</span>
+            </div>
+            <div>
+              <span class="h4">Resistenza al danno:</span>
+              <span class="ps-3">{{ defender?.resistenzaAlDanno ?? 0 }}</span>
+            </div>
+            <div>
+              <span class="h4">Copertura:</span>
+              <div>
+                <div class="form-check" v-for="(cover, index) in ValoriCopertura" :key="index">
+                  <input class="form-check-input" type="radio" :value="cover" v-model="coverValue">
+                  <label class="form-check-label">{{
+                      // todo change cover type to object with string
+                      index === "pesante" ? "Copertura pesante" :
+                          index === "nessuna" ? "Nessuna copertura" :
+                              index === "leggera" ? "Leggera copertura" :
+                                  index === "alta" ? "Alta esposizione" : ""
+                    }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grafico probabilità attacco -->
+      <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8">
+          <BarChart :data="attackPercentageChartData"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4" v-show="tabellaProbabilita.length > 0">
+      <hr/>
+      <!-- Danno Medio -->
+      <!--<h2 class="text-center">Danno Medio: <strong>{{ dannoMedio }} - {{ dannoMedio2 }}</strong></h2>-->
+      <h2 class="text-center">Danno Medio: <strong>{{ parseFloat(dannoMedio.toFixed(2)) }}</strong></h2>
+      <!-- Tabella probabilità danni -->
+      <table class="table table-dark table-striped mt-2" id="tabDanni">
+        <thead>
+        <tr>
+          <th>Risultato dadi</th>
+          <th>Danno effettivo</th>
+          <th>Probabilità</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(row, index) in tabellaProbabilita" :key="index">
+          <td>{{ parseFloat(row.probability.diceResult.toFixed(2)) }}</td>
+          <td>{{ parseFloat(row.effectiveDamage.toFixed(2)) }}</td>
+          <td>{{ parseFloat(row.probability.probability.toFixed(2)) }} %</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -271,6 +284,13 @@ const dannoMedio = computed<number>(() => {
       .map(row => row.effectiveDamage * row.probability.probability / 100)
       .reduce((a, b) => a + b, 0)
 });
+
+/*const dannoMedio2 = computed<number>(() => {
+  return tabellaProbabilita.value.reduce((a, b) => b.probability.probability > a.probability.probability ? b : a, {
+    effectiveDamage: 0,
+    probability: {probability: 0, diceResult: 0}
+  }).effectiveDamage
+});*/
 
 const attackPercentageChartData = computed<ChartDataset<'bar', number[]>[]>(() => {
   return [{
