@@ -24,11 +24,14 @@
                     </div>
                 </div>
                 <div style="flex-basis: 1000px">
-                <h1 id="titoloNave">Nave</h1>
-                <canvas width="1000px" height="1500px" ref="imgCanvas" ></canvas>
-                <input type="range" min="-180" max="180" value="0" class="slider" id="slider" ref="slider">
+                    <h1 id="titoloNave">Nave</h1>
+                    <canvas width="1000px" height="1500px" ref="imgCanvas"></canvas>
+                    <input type="range" min="-180" max="180" value="0" class="slider" id="slider" ref="slider">
+                </div>
+                <canvas ref="imgCanvas2"></canvas>
             </div>
-            <canvas ref="imgCanvas2"></canvas>
+            <div id="battle button">
+                <input type="button" id="button" ref="button" value="Initiate Battle">
             </div>
         </div>
     </div>
@@ -39,12 +42,13 @@
 import { spaceShip } from "@/assets/SpaceShip";
 import { armiNavi } from "@/assets/ArmiNavi";
 import { computed, onMounted, ref, watch } from "vue";
-import { numberLiteralTypeAnnotation } from "@babel/types";
+import { exportDefaultSpecifier, jsxClosingElement, numberLiteralTypeAnnotation } from "@babel/types";
 
 const imgCanvas = ref<HTMLCanvasElement | undefined>(undefined)
 const imgCanvas2 = ref<HTMLCanvasElement | undefined>(undefined)
-const canvas = ref<HTMLCanvasElement | undefined>(undefined)    
+const canvas = ref<HTMLCanvasElement | undefined>(undefined)
 const slider = ref<HTMLInputElement | undefined>(undefined)
+const button = ref<HTMLInputElement | undefined>(undefined)
 
 interface Nave {
     nome: string;
@@ -88,14 +92,16 @@ const weapon = ref<Arma | null>(null);
 // Fix for vue-select not emitting an event when the selection is cleared.
 watch(attacker, () => {
     weapon.value = attackerWeapons.value[0];
-   // initial(attacker.value?.piantaNave??'')
-    htmlPlotNave(attacker.value?.nome??'')
+    init(attacker.value?.piantaNave!, function (rgbMatrix: number[][][] | undefined) {
+        htmlPlotNave(attacker.value?.nome!, rgbMatrix)
+    })
+
 })
 
 type plotMatrix = number[][][] | undefined;
 
-function computeHitMatrix(planMatrix: plotMatrix, initialPosition: number[], angle: number) { // Costruisce il path del proiettile
-    if(!planMatrix){
+function computeHitPathMatrix(planMatrix: plotMatrix, initialPosition: number[], angle: number) { // Costruisce il path del proiettile
+    if (!planMatrix) {
         return
     }
     let hitMatrix = planMatrix.map(a => [...a.map(x => [...x])])
@@ -137,13 +143,52 @@ function computeHitMatrix(planMatrix: plotMatrix, initialPosition: number[], ang
     return hitMatrix
 }
 
-function htmlPlotNave(nomeNave: string) { // pianta nave
+function computeDamageMatrix(planMatrix: plotMatrix, initialPosition: number[], angle: number) { // Costruisce il path del proiettile
+    if (!planMatrix) {
+        return
+    }
+    let damageMatrix = planMatrix.map(a => [...a.map(x => [...x])])
+    console.log(damageMatrix)
+    // https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+
+    let x = initialPosition
+    let p = initialPosition
+
+    let projectileStrength = 100.0
+    let dt = 0.05
+    let d = [dt * Math.cos(angle), dt * Math.sin(angle)]
+    let hasHit = false
+
+    x = x.map((v, i) => v + d[i])
+
+    while (0.0 <= x[0] && x[0] <= 1.0 * planMatrix[3][0].length
+        && 0.0 <= x[1] && x[1] <= 1.0 * planMatrix[3].length
+        && projectileStrength > 0.0) {
+
+        const [xj, xi] = [Math.floor(x[0]), Math.floor(x[1])]
+        const [pj, pi] = [Math.floor(p[0]), Math.floor(p[1])]
+
+        if (damageMatrix[3][xi][xj] == 1) {
+            if (xj > pj || xj < pj || xi < pi || xi > pi) { damageMatrix[3][xi][xj] = -1; hasHit = true }
+            else
+                ;
+            if (hasHit) {
+                projectileStrength -= 0.1
+                hasHit = false
+            }
+        }
+
+        p = [...x]
+
+        x = x.map((v, i) => v + d[i])
+    }
+
+    return damageMatrix
+}
+
+function htmlPlotNave(nomeNave: string, rgbMatrix: number[][][] | undefined) { // pianta nave
 
     const ctx = imgCanvas.value?.getContext("2d")
-
-    const naveAtt = spaceShip.find(e => e.nome == nomeNave)
-    const rgbMatrix = init(naveAtt?.piantaNave!)
-
     const blockSize = 20
     const blockSeparation = 2
     const blockTotal = blockSize + blockSeparation
@@ -151,54 +196,62 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
 
     const toCanvas = (x: number) => 20 + x * blockTotal
     const fromCanvas = (x: number) => (x - 20) / blockTotal
-    const toRadians = (x: number) => x / 360 * Math.PI *2
+    const toRadians = (x: number) => x / 360 * Math.PI * 2
     const draw = (i: number, j: number, color: string) => {
-        if(!ctx)
+        if (!ctx)
             return
-        
+
         ctx.fillStyle = color
-        console.log(i)
-        console.log(j)
-        console.log(color)
         ctx.fillRect(toCanvas(j), toCanvas(i), blockSize, blockSize)
     }
 
     let START: number[] | null = null
 
-    if(imgCanvas.value) {
+    if (imgCanvas.value) {
         imgCanvas.value.onmousedown = (e) => {
             START = [fromCanvas(e.offsetX), fromCanvas(e.offsetY)]
             drawShip()
         }
     }
-
-    if(slider.value){
+    if (button.value) {
+        button.value.onclick = _ => {
+            drawShip()
+        }
+    }
+    if (slider.value) {
         slider.value.oninput = _ => {
             drawShip()
         }
     }
 
     const drawShip = () => {
-        if(!ctx || !imgCanvas.value || !slider.value)
+        if (!ctx || !imgCanvas.value || !slider.value)
             return
-            
+
         ctx.fillStyle = "Grey"
         ctx.fillRect(0, 0, imgCanvas.value.width, imgCanvas.value.height);
 
-        const piantaNave: number[][][] | undefined = START === null || slider.value === null
-            ? rgbMatrix
-            : computeHitMatrix(rgbMatrix, START, toRadians(parseInt(slider.value.value)))
+        let shipPlan: number[][][] | undefined = []
 
-            if(!piantaNave)
+        if (START === null || slider.value === null) {
+            shipPlan = rgbMatrix
+        } else if (button.value === null) {
+            shipPlan = computeHitPathMatrix(rgbMatrix, START, toRadians(parseInt(slider.value.value)))
+        } else { shipPlan = computeDamageMatrix(rgbMatrix, START, toRadians(parseInt(slider.value.value))) }
+
+
+        if (!shipPlan || shipPlan.length === 0)
             return
-        piantaNave[3].forEach((row, i) => {
+
+
+        shipPlan[3].forEach((row, i) => {
             row.forEach((item, j) => {
                 switch (item) {
                     case 0:
                         draw(i, j, "white");
                         break
                     case 1:
-                        draw(i, j, `rgb(${piantaNave[0][i][j]}, ${piantaNave[1][i][j]}, ${piantaNave[2][i][j]})`);
+                        draw(i, j, `rgb(${shipPlan[0][i][j]}, ${shipPlan[1][i][j]}, ${shipPlan[2][i][j]})`);
                         break
                     case -1:
                         draw(i, j, `rgb(100, 100, 100)`);
@@ -206,11 +259,12 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
             })
         })
 
+
         if (START != null) {
             console.log(START)
             const POS = [toCanvas(START[0]), toCanvas(START[1])]
 
-            const sliderAngle = Number(slider.value) / 360 * Math.PI*2
+            const sliderAngle = Number(slider.value) / 360 * Math.PI * 2
 
             ctx.strokeStyle = "white"
             ctx.lineWidth = 2
@@ -223,47 +277,34 @@ function htmlPlotNave(nomeNave: string) { // pianta nave
     }
     const sliderValue = [START, slider.value]
     drawShip()
-    return sliderValue
-}
-function rgbToHex(r: number, g: number, b: number) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+
 }
 
-onMounted(initial)
-
-function initial() {
-    var img = new Image;
-    if (!/^data/.test('testImage.png'))
-    img.crossOrigin = ''
-    let rgbMatrix: number[][][] | undefined = [];
-    img.src = 'testImage.png'
-    img.onload = function () {
-        var ctx = imgCanvas2.value?.getContext("2d");
-        ctx?.drawImage(img, 0, 0)    
-    }    
-}
-function init(src: string) {
+function init(src: string, callback: Function) {
     var img = new Image;
     if (!/^data/.test(src))
-    img.crossOrigin = ''
+        img.crossOrigin = ''
     let rgbMatrix: number[][][] | undefined = [];
     img.src = src
-    //img.onload = function () {
-      rgbMatrix = computeRGBmatrix(img) 
-    //}
-    return rgbMatrix
+    img.onload = function () {
+        rgbMatrix = computeRGBmatrix(img)
+        callback(rgbMatrix)
+    }
 }
 function computeRGBmatrix(img: HTMLImageElement) {
-    var ctx = imgCanvas2.value?.getContext("2d");
+    const ctx = imgCanvas2.value?.getContext("2d");
 
     let rgbMatrix: number[][][] | undefined = [];
-    if(imgCanvas.value != undefined){
-        imgCanvas.value.width = img.width + 800
-        imgCanvas.value.height = img.height + 1000
+    if (imgCanvas.value != undefined) {
+        imgCanvas.value.width = img.width * 20 + img.width * 3
+        imgCanvas.value.height = img.height * 20 + img.height * 2.5
     }
     ctx?.drawImage(img, 0, 0)
-    const imgdata: ImageData | undefined = ctx?.getImageData(0, 0, img.width, img.height);
-    rgbMatrix = getPixels(imgdata);
+    if (img.width !== 0 && img.height !== 0) {
+        console.log('collecting data')
+        const imgdata: ImageData | undefined = ctx?.getImageData(0, 0, img.width, img.height);
+        rgbMatrix = getPixels(imgdata);
+    }
     return rgbMatrix
 }
 
@@ -279,10 +320,10 @@ function getPixels(imageData: ImageData | undefined) {
         Array(imageData?.height).fill(undefined).map(() => Array(imageData?.width).fill(undefined))
     ];
     for (var i = 0; i < 3; i++) {
-        if(!imageData?.width){
-                return
+        if (!imageData?.width) {
+            return
         }
-        for (var j = i; j < imageData.data.length ; j += 4) {
+        for (var j = i; j < imageData.data.length; j += 4) {
             rgbMatrix[i][y][x] = imageData?.data[j];
             if (imageData?.data[j] !== 255 && imageData?.data[j + 1] !== 255 && imageData?.data[j + 2] !== 255 && i == 0) {
                 rgbMatrix[3][y][x] = 1;
