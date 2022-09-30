@@ -239,13 +239,13 @@ function htmlPlotNave(nomeNave: string, rgbMatrix: number[][][] | undefined) { /
             shipPlan = computeHitPathMatrix(rgbMatrix, START, toRadians(parseInt(slider.value.value)))
         } else { shipPlan = computeDamageMatrix(rgbMatrix, START, toRadians(parseInt(slider.value.value))) }
 
-
         if (!shipPlan || shipPlan.length === 0)
-            return
-
+           return
 
         shipPlan[3].forEach((row, i) => {
             row.forEach((item, j) => {
+                if (!shipPlan )
+                return
                 switch (item) {
                     case 0:
                         draw(i, j, "white");
