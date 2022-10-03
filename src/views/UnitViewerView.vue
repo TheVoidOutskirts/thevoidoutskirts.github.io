@@ -8,8 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
+import {ref, type Ref} from 'vue'
 import type { Header, Item } from "vue3-easy-data-table";
+import {useDataStore} from "@/stores/data";
+
+const store = useDataStore();
 
 const headers: Ref<Header[]> = ref([
       { text: "Nome", value: "nome" },
@@ -37,109 +40,10 @@ const headers: Ref<Header[]> = ref([
       { text: "Descrizione", value: "descrizione", sortable: true },
     ]);
 
-const unitaMilitari = [
-    {
-        permission: ["tom"],
-        nome: "Rifle squad",
-        fazione: "Nazioni Unite della Terra (UNN)",
-        classe: "Fanteria leggera regolare",
-        forza: 10,
-        addestramento: {
-            qualità: "addestramento regolare",
-            lista: [],
-        },
-        dimensioni: {
-            dimensioniElementi: 8,
-            dimensioniUnità: "squadra",
-        },
-        sensori: {
-            qualità: "medi",
-            lista: ["sensori luce visibile"],
-        },
-        comunicazione: {
-            raggio: 5000,
-            criptaggio: "scarso",
-            mezzo: ["radio morse", "radio voice"],
-        },
-        velocità: {
-            massima: 8,
-            qualità: "lenta"
-        },
-        attrezzatura: ["stivali magnetici", "cavi di sicurezza"],
-        gravitàOperativa:{
-            minima: 0,
-            massima: 2,
-            ottimale: 1,
-            resistitaMassima: 8,
-        },
-        occultamento:{
-            qualità: "medio",
-            lista: [],
-        },
-        tipo: "Infantry Light",
-        armatura: "UNNLP",
-        armi: [
-            {tipo: "R25A", quantità: 8},
-            {tipo: "SSP5", quantità: 8},
-        ],
-        equipaggiamentoSpeciale: [],
-        capacitàDiTrasporto: 10,
-        descrizione: `Fucilieri regolari della marina terrestre, sono presenti in tutta la stazione e spesso sono rappresentano le prime unità a intervenire contro le minacce armate.`,
-    },
-    {
-        permission: ["tom"],
-        nome: "Light weapon squad",
-        fazione: "Repubblica Congressuale Marziana (MCRN)",
-        classe: "Fanteria leggera regolare",
-        forza: 10,
-        addestramento: {
-            qualità: "addestramento regolare",
-            lista: [],
-        },
-        dimensioni: {
-            dimensioniElementi: 8,
-            dimensioniUnità: "squadra",
-        },
-        sensori: {
-            qualità: "medi",
-            lista: ["sensori luce visibile"],
-        },
-        comunicazione: {
-            raggio: 5000,
-            criptaggio: "scarso",
-            mezzo: ["radio morse", "radio voice"],
-        },
-        velocità: {
-            massima: 8,
-            qualità: "lenta"
-        },
-        attrezzatura: ["stivali magnetici", "cavi di sicurezza"],
-        gravitàOperativa:{
-            minima: 0,
-            massima: 1.1,
-            ottimale: 0.38,
-            resistitaMassima: 6,
-        },
-        occultamento:{
-            qualità: "medio",
-            lista: [],
-        },
-        tipo: "Infantry Light",
-        armatura: "MCRNGSA",
-        armi: [
-            {tipo: "R25A", quantità: 8},
-            {tipo: "SSP5", quantità: 8},
-        ],
-        equipaggiamentoSpeciale: [],
-        capacitàDiTrasporto: 10,
-        descrizione: `Fanteria leggera della marina marziana, necessità di una linea logistica limitata ed è perfetta per mantenere fronti a bassa intensità.`,
-    },
-];
-
 const qualityList = (o: { qualità: string, lista: string[] }) =>
   `${o.qualità} ${o.lista.length === 0 ? "" : `(${o.lista.join(', ')})`}`
 
-const items: Ref<Item[]> = ref(unitaMilitari.map(u => ({
+const items: Ref<Item[]> = ref(store.getUnits.map(u => ({
   ...u,
   addestramentoS: `${qualityList(u.addestramento)}`,
   sensoriS: `${qualityList(u.sensori)}`,
