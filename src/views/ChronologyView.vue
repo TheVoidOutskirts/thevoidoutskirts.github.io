@@ -1,9 +1,10 @@
 <template>
+  <!-- https://bootsnipp.com/snippets/xrKXW -->
   <div class="col-md-10 offset-md-1">
     <h4>Cronologia completa (?)</h4>
     <ul class="timeline">
       <li v-for="(day, key) in Chrono" :key="key">
-        <h4>{{`${day.when.day}-${day.when.month}-${day.when.year}`}}</h4>
+        <h4>{{ `${day.when.day}-${day.when.month}-${day.when.year}` }}</h4>
         <div v-for="(event, key2) in day.events" :key="key2">
           <h5 v-if="day.events.length > 1">Record {{ key2 + 1 }}</h5>
           <div v-html="marked.parse(event.what)"></div>
@@ -17,7 +18,7 @@
 import {onMounted, ref, watch} from "vue";
 import {useDataStore} from "@/stores/data";
 import {marked} from "marked";
-import {Giorno} from "@/assets/Types";
+import type {Giorno} from "@/assets/Types";
 
 const store = useDataStore();
 
