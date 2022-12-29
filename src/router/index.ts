@@ -49,6 +49,11 @@ const router = createRouter({
             path: '/rules',
             name: 'rules',
             component: () => import('../views/RulesView.vue')
+        },
+        {
+            path: '/chronology',
+            name: 'chronology',
+            component: () => import('../views/ChronologyView.vue')
         }
 
     ]

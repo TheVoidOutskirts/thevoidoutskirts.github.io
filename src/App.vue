@@ -80,6 +80,7 @@ function logout() {
           <router-link to="naval" class="nav-link">Calcolatore Navale</router-link>
           <router-link to="units" class="nav-link">Unità</router-link>
           <router-link to="history" class="nav-link">Storia</router-link>
+          <router-link to="chronology" class="nav-link">Cronologia</router-link>
           <router-link to="factions" class="nav-link">Fazioni</router-link>
           <router-link to="places" class="nav-link">Luoghi</router-link>
           <router-link to="maps" class="nav-link">Mappe</router-link>
