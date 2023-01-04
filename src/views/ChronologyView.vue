@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, watch} from "vue";
+import {onBeforeMount, onMounted, ref, watch} from "vue";
 import {useDataStore} from "@/stores/data";
 import {marked} from "marked";
 import type {Giorno} from "@/assets/Types";
@@ -32,6 +32,16 @@ onMounted(loadData)
 function loadData() {
   Chrono.value = store.getCronologia.filter(giorno => giorno.events.length > 0);
 }
+
+onBeforeMount(() => {
+  // https://marked.js.org/using_advanced
+  marked.setOptions({
+    gfm: true,
+    breaks: true,
+    headerIds: true
+  })
+})
+
 </script>
 
 <style scoped>
