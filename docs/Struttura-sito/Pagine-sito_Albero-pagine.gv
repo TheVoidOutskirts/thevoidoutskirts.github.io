@@ -1,0 +1,47 @@
+digraph func_tree {
+layout = dot;
+ratio = compress;
+rankdir = LR;
+node [shape = box];
+
+
+a [label = "Homepage (Statica)"]
+    a1 [label = "Combattimento (Statica)"]
+		a11 [label = "Combattimento tattico (Statica)"]
+			a111 [label = "Combattimento tattico: ARMI (Dinamica)"]
+			a112 [label = "Combattimento tattico: TUTE (Dinamica)"]
+			a113 [label = "Combattimento tattico: UNITÀ (Dinamica)"]
+			a114 [label = "Combattimento tattico: CALCOLATORE (Dinamica)"]
+		a12 [label = "Combattimento navale (Statica)"]
+			a121 [label = "Combattimento navale: NAVI (Dinamica)"]
+			a122 [label = "Combattimento navale: CALCOLATORE (Dinamica)"]
+		a13 [label = "Combattimento strategico (Statica)"]
+			a131 [label = "Combattimento strategico: UNITÀ e SIMBOLI (Dinamica)"]
+			a132 [label = "Combattimento strategico: DOTTRINE (Dinamica)"]
+			a133 [label = "Combattimento strategico: MAPPE (Dinamica)"]
+	a2 [label = "Ambientazione (Statica)"]
+		a21 [label = "Luoghi (Dinamica)"]
+		a22 [label = "Fazioni (Dinamica)"]
+		a23 [label = "Mappe (Dinamica)"]
+	a3 [label = "Manuale del giocatore (Statica)"]
+		a31 [label = "Manuale del giocatore: STORIA (Statica)"]
+		a32 [label = "Manuale del giocatore: INIZIARE LA PARTITA (Statica)"]
+		a33 [label = "Manuale del giocatore: SALIRE DI LIVELLO (Statica)"]
+		a34 [label = "Manuale del giocatore: INTERAZIONE CON IL MONDO DI GIOCO (Statica)"]
+		a35 [label = "Combattimento tattico: REGOLAMENTO (Statica)"]
+		a36 [label = "Combattimento navale: REGOLAMENTO (Statica)"]
+		a37 [label = "Combattimento strategico: REGOLAMENTO (Statica)"]
+    a4 [label = "Personaggio (Dinamica)"]
+        a41 [label = "Scheda del personaggio (Dinamica)"]
+        a42 [label = "Squadra e organizzazione (Dinamica)"]
+        a43 [label = "Cronologia (Dinamica)"]
+
+a -> {a1,a2,a3,a4}
+    a1 -> {a11,a12,a13}
+        a11 -> {a111,a112,a113,a114}
+        a12 -> {a121,a122}
+        a13 -> {a131,a132,a133}
+    a2 -> {a21,a22,a23}
+    a3 -> {a31,a32,a33,a34,a35,a36,a37}
+    a4 -> {a41,a42,a43}
+}
