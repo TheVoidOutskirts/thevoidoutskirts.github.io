@@ -1,13 +1,25 @@
 <template>
   <!-- https://bootsnipp.com/snippets/xrKXW -->
   <div class="col-md-10 offset-md-1">
-    <h4>Cronologia completa (?)</h4>
+    <div>
+      <span class="h4">Cronologia </span>
+      <div class="btn-group" role="group">
+        <button class="btn btn-sm btn-secondary" @click="toggleAllChrono(true)">Espandi tutto</button>
+        <button class="btn btn-sm btn-secondary" @click="toggleAllChrono(false)">Chiudi tutto</button>
+      </div>
+    </div>
     <ul class="timeline">
       <li v-for="(day, key) in Chrono" :key="key">
-        <h4>{{ `${day.when.day}-${day.when.month}-${day.when.year}` }}</h4>
-        <div v-for="(event, key2) in day.events" :key="key2">
-          <h5 v-if="day.events.length > 1">Record {{ key2 + 1 }}</h5>
-          <div v-html="marked.parse(event.what)"></div>
+        <div>
+          <a data-bs-toggle="collapse"
+             :href="`#chrono-dropdown-${key}`"
+             class="h4">{{ `${day.when.day}-${day.when.month}-${day.when.year}` }}</a>
+        </div>
+        <div :id="`chrono-dropdown-${key}`" class="collapse">
+          <div v-for="(event, key2) in day.events" :key="key2" class="mt-2">
+            <h5 v-if="day.events.length > 1">Record {{ key2 + 1 }}</h5>
+            <div v-html="marked.parse(event.what)"></div>
+          </div>
         </div>
       </li>
     </ul>
@@ -19,6 +31,7 @@ import {onBeforeMount, onMounted, ref, watch} from "vue";
 import {useDataStore} from "@/stores/data";
 import {marked} from "marked";
 import type {Giorno} from "@/assets/Types";
+import {Collapse} from "bootstrap";
 
 const store = useDataStore();
 
@@ -41,6 +54,20 @@ onBeforeMount(() => {
     headerIds: true
   })
 })
+
+/* User interaction */
+function toggleAllChrono(show: boolean) {
+  const sections = Array.from(
+      document.querySelectorAll<HTMLDivElement>('[id^="chrono-dropdown-"]')
+  ).map(ce => new Collapse(ce));
+
+  for (const section of sections) {
+    if (show)
+      section.show()
+    else
+      section.hide()
+  }
+}
 
 </script>
 
