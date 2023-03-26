@@ -2,7 +2,7 @@
 
 L'header del sito riporta in modo gerarchico le pagine del sito. Per questo propongo 2 strategie, ma sono aperto ad altre proposte
 
-## Strategia 1
+## Strategia 1 Questa no
 
 Header con link alle pagine principali a rappresentare le macroaree
 
@@ -51,7 +51,7 @@ Le altre pagine:
 sarebbero accessibili solamente tramite link presenti all'interno della pagina gerarchicamente superiore
 
 
-## Strategia 2
+## Strategia 2 Facciamo questa qui
 
 Header con link alle pagine principali a rappresentare le macroaree
 

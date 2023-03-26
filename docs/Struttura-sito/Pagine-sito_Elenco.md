@@ -103,11 +103,11 @@
 - Contenuto pagina
   - Testo: Pagine-sito_Testo_Combattimento-tattico
   - Link nel testo alle pagine:
-	- Combattimento tattico: ARMI
-	- Combattimento tattico: TUTE
-	- Combattimento tattico: UNITÀ
-	- Combattimento tattico: CALCOLATORE
-	- Combattimento tattico: REGOLAMENTO
+  	- Combattimento tattico: ARMI
+  	- Combattimento tattico: TUTE
+  	- Combattimento tattico: UNITÀ
+  	- Combattimento tattico: CALCOLATORE
+  	- Combattimento tattico: REGOLAMENTO
 
 
 ### Combattimento tattico: ARMI
@@ -115,7 +115,6 @@
 *Pagina dinamica*
 
 - Header: Pagine-sito_Header
-- Side bar: Pagine-sito_Side-bar_Side-bar-da-API
 - Contenuto pagina riformattato da API
   - Armi: elementi arma e modifica disponibili per l'account attivo
     - Arma: Pagine-sito_Arma-da-API
@@ -130,7 +129,6 @@
 *Pagina dinamica*
 
 - Header: Pagine-sito_Header
-- Side bar: Pagine-sito_Side-bar_Side-bar-da-API
 - Contenuto pagina riformattato da API
   - Armature: elementi armatura disponibili per l'account attivo
     - Armatura: Pagine-sito_Armatura-da-API
