@@ -4,8 +4,8 @@
     <div>
       <span class="h4">Cronologia </span>
       <div class="btn-group" role="group">
-        <button class="btn btn-sm btn-secondary" @click="toggleAllChrono(true)">Espandi tutto</button>
-        <button class="btn btn-sm btn-secondary" @click="toggleAllChrono(false)">Chiudi tutto</button>
+        <button class="btn btn-sm btn-secondary" @click="showAllChrono(true)">Espandi tutto</button>
+        <button class="btn btn-sm btn-secondary" @click="showAllChrono(false)">Chiudi tutto</button>
       </div>
     </div>
     <ul class="timeline">
@@ -56,10 +56,10 @@ onBeforeMount(() => {
 })
 
 /* User interaction */
-function toggleAllChrono(show: boolean) {
+function showAllChrono(show: boolean) {
   const sections = Array.from(
       document.querySelectorAll<HTMLDivElement>('[id^="chrono-dropdown-"]')
-  ).map(ce => new Collapse(ce));
+  ).map(ce => Collapse.getOrCreateInstance(ce));
 
   for (const section of sections) {
     if (show)
