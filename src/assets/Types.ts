@@ -17,8 +17,9 @@ export type AttrezzaturaUnita = 'stivali magnetici' | 'guanti magnetici' | 'tuta
 export type QualitaOccultamento = 'eccezionale' | 'molto buono' | 'buono' | 'medio' | 'scarso';
 export type TipoOccultamento = 'tecnologia stealth' | 'riflettori' | 'riduzione traccia radar';
 export type QualitaVelocita = 'molto veloce' | 'veloce' | 'media' | 'lenta' | 'molto lenta';
+export type NATOUnitType = 'combat' | 'infantry' | 'armor' | 'wheeled' | 'track' | 'legged' | 'antiarmor' | 'light' | 'medium' | 'heavy' | 'motorized' | 'naval' | 'naval assault' | 'breach pods' | 'engineer' | 'costruction' | 'rocket' | 'reconnaissance' | 'missile' | 'internal security forces' | 'combat support' | 'cbrn' | 'military intelligence' | 'operations' | 'interrogation' | 'law enforcement unit' | 'military police' | 'radio unit' | 'information warfare unit' | 'administrative' | 'medical' | 'supply' | 'transportation' | 'maintenance';
 
-export type Permission = string[] | "*" | ["exclude", string[]]
+export type Permission = string[] | "*"
 
 export type Azione = 'rubavita' | 'genera copia' | 'arma' | 'presa' | 'spinta' | 'divincolarsi' | 'distrarre' | 'comunicare';
 
@@ -57,6 +58,24 @@ export interface Giorno extends WithPermission {
 }
 
 export type Cronologia = Giorno[]
+
+
+//Fazioni
+
+export interface Paragrafo extends WithPermission {
+    title: string,
+    body: string
+}
+
+export interface Fazione extends WithPermission {
+    name: string,
+    tag: string,
+    acronimo: string,
+    paragrafi: Paragrafo[]
+}
+
+export type Fazioni = Fazione[]
+
 
 // Personaggio
 
@@ -211,9 +230,32 @@ export interface UnitGroupType extends WithPermission {
         dimensioniElementi?: number,
         dimensioniUnità: DimensioniUnita,
     },
-    unitaContenute?: string[], //Nomi unità contenute
+    unitaContenute?: { tipo: string, quantità: number }[], //Nomi unità contenute e numero
     tipo: string,
     descrizione: string,
+}
+
+export interface Map {
+    nome: string,
+}
+
+export interface MapOverlay {
+    nomeMap: string,
+    nome: string,
+    imageFilename: string,
+    floor: number,
+}
+
+export type TipoStanza = {
+    colore: string;
+    nome: string;
+}
+
+export type Ship = {
+    nome: string;
+    piantaFilename: string;
+    armi: {idArma: string, quantità: number}[];
+    oggetti: {nome: string, quantità: number}[];
 }
 
 // Full API data
@@ -222,7 +264,11 @@ export type AllData = {
     armi: Arma[];
     armature: Armatura[];
     cronologia: Giorno[];
+    fazioni: Fazione[];
     personaggi: Personaggio[];
     professions: ProfessionPlace[];
     unita: MilitaryUnitType[];
+    navi: Ship[];
+    maps: Map[];
+    mapOverlays: MapOverlay[];
 }
