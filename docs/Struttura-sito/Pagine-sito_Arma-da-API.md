@@ -66,7 +66,7 @@ Le colonne ritenute troppo ingombranti durante lo sviluppo per una visualizzazio
 
 
 Tabella in cui le righe sono i campi e le colonne sono le voci.  
-La tabella ha un numero massimo **TBD** di voci.  
+La tabella ha un numero massimo **TBD** di voci. (potenzialmente si potrebbe permettere di aggiungere voci alla tabella, ma non è una priorità)  
 Sopra la tabella è presente una spunta con un testo "Mostra solo le differenze". Spuntando la casella nella tabella rimangono solo i campi in cui vi sono differenze tra le armi confrontate.  
 
 Nel caso la casella non sia spuntata tutti i campi vengono mostrati

@@ -72,3 +72,4 @@
 	- 4.4 Il menu dei log deve mantenere accessibili i log dell'intera istanza corrente, fino alla chiusura
 - 5 Deve essere possibile attribuire bonus e malus anche di tipo non intero ai valori di base dei bonus di attaccante e bersaglio
 	- 5.1 Vicino al valore mostrato a schermo di competenza attacco, competenza difesa resistenza al danno deve risultare una casella riempibile con un numero decimale che rappresenti un bonus o malus aggiuntivo
+- BONUS: Procedura interattiva? Con step e sezioni che slidano? (da valutare)
