@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--
+    Fix per il fatto che Mathjax non ha compatibilità con Vue o con Typescript.
+    Lo faccio caricare e nella pagina in cui serve uso un master trick per far elaborare la pagina
+    -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+    <title>The Void Outskirts</title>
+  <script type="module" crossorigin src="assets/index.4b015a66.js"></script>
+  <link rel="stylesheet" href="assets/index.483cbf22.css">
+</head>
+<body class="bg-dark text-white">
+<div id="app" class="d-flex flex-column" style="height: 100% !important;"></div>
+
+</body>
+</html>
