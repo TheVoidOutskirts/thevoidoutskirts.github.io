@@ -30,11 +30,11 @@ const router = createRouter({
             name: 'history',
             component: () => import('../views/HistoryView.vue')
         },
-        {
+/*        {
             path: '/places',
             name: 'places',
             component: () => import('../views/PlacesView.vue')
-        },
+        },*/
         {
             path: '/factions',
             name: 'factions',

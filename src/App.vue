@@ -76,37 +76,6 @@ function logout() {
             </button>
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <div class="navbar-nav ms-auto" v-show="store.isDataLoaded">
-                    <!--
-                    - H: Combattimento
-                      - DD: Combattimento tattico
-                        - DDI: Combattimento tattico: CALCOLATORE
-                        - DDI: Combattimento tattico: ARMI
-                        - DDI: Combattimento tattico: TUTE
-                        - DDI: Combattimento tattico: UNITÀ
-                      - DD: Combattimento navale
-                        - DDI: Combattimento navale: NAVI
-                        - DDI: Combattimento navale: CALCOLATORE
-                      - DD: Combattimento strategico
-                        - DDI: Combattimento strategico: UNITÀ e SIMBOLI
-                        - DDI: Combattimento strategico: DOTTRINE
-                        - DDI: Combattimento strategico: MAPPE
-                    - H: Ambientazione
-                      - DD: Luoghi
-                      - DD: Fazioni
-                      - DD: Mappe
-                    - H: Manuale
-                      - DD: Manuale del giocatore: STORIA
-                      - DD: Manuale del giocatore: INIZIARE LA PARTITA
-                      - DD: Manuale del giocatore: SALIRE DI LIVELLO
-                      - DD: Manuale del giocatore: INTERAZIONE CON IL MONDO DI GIOCO
-                      - DD: Combattimento tattico: REGOLAMENTO
-                      - DD: Combattimento navale: REGOLAMENTO
-                      - DD: Combattimento strategico: REGOLAMENTO
-                    - H: Personaggio
-                      - DD: Scheda del personaggio
-                      - DD: Squadra e organizzazione
-                      - DD: Cronologia
-                      -->
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
@@ -114,16 +83,20 @@ function logout() {
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li class="dropdown-header">Combattimento tattico</li>
-                            <li><a class="dropdown-item" href="#">Calcolatore</a></li>
+                            <li>
+                                <router-link to="calculator" class="dropdown-item">Calcolatore</router-link>
+                            </li>
                             <li><a class="dropdown-item" href="#">Armi</a></li>
-                            <li><a class="dropdown-item" href="#">Unità</a></li>
+                            <li>
+                                <router-link to="units" class="dropdown-item">Unità</router-link>
+                            </li>
 
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li class="dropdown-header">Combattimento navale</li>
                             <li><a class="dropdown-item" href="#">Navi</a></li>
-                            <li><a class="dropdown-item" href="#">Calcolatore</a></li>
+                            <li><router-link to="naval" class="dropdown-item">Calcolatore Navale</router-link></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -149,17 +122,14 @@ function logout() {
                                 <hr class="dropdown-divider">
                             </li>
                             <li class="dropdown-header">Fazioni</li>
-                            <li><a class="dropdown-item" href="#">Fazioni</a></li>
+                            <li><router-link to="factions" class="dropdown-item">Fazioni</router-link></li>
                             <li><a class="dropdown-item" href="#">Organizzazioni</a></li>
                             <li><a class="dropdown-item" href="#">Personaggi</a></li>
 
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li class="dropdown-header">Mappe</li>
-                            <li><a class="dropdown-item" href="#">Mappe</a></li>
-                            <li><a class="dropdown-item" href="#">Mappe</a></li>
-                            <li><a class="dropdown-item" href="#">Mappe</a></li>
+                            <li><router-link to="maps" class="dropdown-item">Mappe</router-link></li>
                         </ul>
                     </div>
                     <div class="nav-item dropdown">
@@ -167,30 +137,19 @@ function logout() {
                            aria-expanded="false">
                             Manuale
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                             <li class="dropdown-header">Manuale del giocatore</li>
-                            <li><a class="dropdown-item" href="#">Storia</a></li>
+                            <li><router-link to="history" class="dropdown-item">Storia</router-link></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><router-link to="rules" class="dropdown-item">Regolamento</router-link> </li>
                             <li><a class="dropdown-item" href="#">Iniziare la partita</a></li>
                             <li><a class="dropdown-item" href="#">Salire di livello</a></li>
                             <li><a class="dropdown-item" href="#">Interazione con il mondo di gioco</a></li>
-
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li class="dropdown-header">Combattimento tattico</li>
-                            <li><a class="dropdown-item" href="#">Regolamento</a></li>
-
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li class="dropdown-header">Combattimento navale</li>
-                            <li><a class="dropdown-item" href="#">Regolamento</a></li>
-
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li class="dropdown-header">Combattimento strategico</li>
-                            <li><a class="dropdown-item" href="#">Regolamento</a></li>
+                            <li><a class="dropdown-item" href="#">Combattimento Tattico</a></li>
+                            <li><a class="dropdown-item" href="#">Combattimento Navale</a></li>
+                            <li><a class="dropdown-item" href="#">Combattimento Strategico</a></li>
                         </ul>
                     </div>
                     <div class="nav-item dropdown">
@@ -198,12 +157,14 @@ function logout() {
                            aria-expanded="false">
                             Personaggio
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">Scheda del personaggio</a></li>
-                            <li><a class="dropdown-item" href="#">Squadra e organizzazione</a></li>
-                            <li><a class="dropdown-item" href="#">Cronologia</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                            <li class="dropdown-header">Dettagli per il Giocatore</li>
+                            <li><a class="dropdown-item" href="#">Scheda del Personaggio</a></li>
+                            <li><a class="dropdown-item" href="#">Squadra e Organizzazione</a></li>
+                            <li><router-link to="chronology" class="dropdown-item">Cronologia</router-link></li>
                         </ul>
                     </div>
+                    <a class="nav-link text-danger" href="" @click.prevent="logout">Logout</a>
                 </div>
             </div>
         </div>
